@@ -7,12 +7,17 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-
+#logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px; 
+}
 body {
     background-color: #000; 
     font-family: Arial, sans-serif;
     color: #fff; 
-    background-image: url('assets/nii.webp');
+    background-image: url('assets/back.png');
     background-size: cover; /* A imagem se ajustará à largura e altura da tela */
     background-repeat: no-repeat; /* Impede a repetição da imagem de fundo */
     background-attachment: fixed; /* Fixa a imagem de fundo para que não role com a página */
@@ -52,7 +57,7 @@ body {
   .hero .cta-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #f5c518; 
+    background-color: #ebb740; 
     color: #000; 
     text-decoration: none;
     border-radius: 5px;
@@ -62,8 +67,33 @@ body {
   }
 
  .hero .cta-button:hover {
-    background-color: #e0b40a; 
+    background-color: #ebb740; 
 }
+.login-botao {
+  position: absolute;
+  top: 30px; /* Define a distância do topo */
+  right: 40px; /* Define a distância da esquerda */
+  padding: 10px 20px; /* Adapte o preenchimento conforme necessário */
+  background-color: #ebb740; /* Cor de fundo do botão */
+  color: #000000; /* Cor do texto do botão */
+  text-decoration: none; /* Remove sublinhado padrão */
+  border: none;
+  font-weight: bold;
+  border-radius: 5px; /* Cantos arredondados */
+}
+
+/* Estilos de hover para o botão (opcional) */
+.login-botao:hover {
+  background-color: #ebb740; /* Cor de fundo do botão ao passar o mouse */
+}
+
+.filme-section {
+  background: none; /* Remove o background da seção filme-section */
+  background-color: #333; /* Define uma cor de fundo diferente */
+  background-image: url('caminho/para/sua/imagem.jpg'); /* Define uma imagem de fundo diferente */
+  background-size: cover; /* Ajusta a imagem de fundo à largura e altura da seção */
+}
+
 
   
 

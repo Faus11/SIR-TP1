@@ -12,9 +12,10 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url('assets/nii.webp') no-repeat;
-    background-size: cover;
-    background-position: center;
+    background-image: url('assets/back.png');
+    background-size: cover; /* A imagem se ajustará à largura e altura da tela */
+    background-repeat: no-repeat; /* Impede a repetição da imagem de fundo */
+    background-attachment: fixed; /* Fixa a imagem de fundo para que não role com a página */
 }
 
 .wrapper {
