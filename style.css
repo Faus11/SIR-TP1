@@ -89,10 +89,31 @@ body {
 
 .filme-section {
   background: none; /* Remove o background da seção filme-section */
-  background-color: #333; /* Define uma cor de fundo diferente */
-  background-image: url('caminho/para/sua/imagem.jpg'); /* Define uma imagem de fundo diferente */
+  background-image: url(''); /* Define uma imagem de fundo diferente */
   background-size: cover; /* Ajusta a imagem de fundo à largura e altura da seção */
 }
+
+.filme-img {
+  margin: 5px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  max-width: 100px; /* Defina a largura máxima desejada para as imagens */
+  max-height: auto; /* Mantém a proporção original da imagem */
+}
+
+
+.hr {
+  border: none;
+  height: 2px; /* Espessura da linha */
+  background-color: #000; /* Cor da linha */
+  margin: 20px 0; /* Margens superiores e inferiores */
+  width: 60%; /* Largura da linha */
+}
+
+.cor-texto {
+  color: gray;
+}
+
 
 
   
