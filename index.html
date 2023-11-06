@@ -7,9 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <a href="login.html" class="login-botao">Iniciar Sessão</a>
+    <header class="barra-navegacao">
+        <a href="login.html" class="login-botao">Iniciar Sessão</a>
 
-    <img id="logo" src="assets\image.png" alt="Logo da Movie Break">
+        <div>
+            <img id="logo" src="assets\image.png" alt="Logo da Movie Break">
+        </div>
+    </header>
 
    <section class="hero">
         <h1>Veja filmes e séries com a melhor qualidade agora mesmo!</h1>
@@ -17,20 +21,19 @@
         <a href="register.html" class="cta-button">Registar Agora</a>
     </section>
 
+    
 
     <section class="filme-section">
+        <hr class="barra">
         <h1>
             <p>Exclusivo no Movie Break</p>
         </h1>
-    
         <br>
-    
         <h4>
-                <p class="cor-texto">
-                    Filmes, séries e conteúdo exclusivo que não vais encontrar em nenhum outro lugar.
-                </p>
+            <p class="cor-texto">
+                Filmes, séries e conteúdo exclusivo que não vais encontrar em nenhum outro lugar.
+            </p>
         </h4>
-
         <div class="filme">
             <img src="assets/movie1.png" alt="Título do Filme 1" class="filme-img">
             <img src="assets/movie2.png" alt="Título do Filme 2" class="filme-img">
@@ -40,7 +43,13 @@
             <img src="assets/movie7.png" alt="Título do Filme 7" class="filme-img">
             <img src="assets/movie5.jpg" alt="Título do Filme 7" class="filme-img">
         </div>
-    </section>
-    
+        <section class="filme-section">
+            <div id="slideshow" class="slideshow">
+                <img src="assets\peaky.jpg" alt="Peaky Blinders" class="slide-img">
+                <img src="assets/prison.jpg" alt="Prison Break" class="slide-img">
+            </div>
+        </section>
+
+    <script src="slideshow.js"></script>
 </body>
 </html>
