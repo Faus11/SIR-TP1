@@ -7,12 +7,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-#logo {
-  position: absolute;
-  top: 10px;
-  left: 45px;
-  width: 110px; 
-}
+
 body {
     background-color: #000; 
     font-family: Arial, sans-serif;
@@ -74,7 +69,7 @@ body {
 }
 
 .barra-navegacao {
-  background-color: transparent; /* Define o fundo do header como transparente */
+  background-color: white; /* Define o fundo do header como transparente */
   height: 80px; /* Altura da barra de navegação */
   display: flex;
   align-items: center;
@@ -83,13 +78,10 @@ body {
 }
 
 .login-botao {
-  position: absolute;
-  top: 30px; /* Define a distância do topo */
-  right: 40px; /* Define a distância da esquerda */
+  margin-right: -20px;
   padding: 10px 20px; /* Adapte o preenchimento conforme necessário */
   background-color: #ebb740; /* Cor de fundo do botão */
   color: #000000; /* Cor do texto do botão */
-  text-decoration: none; /* Remove sublinhado padrão */
   border: none;
   font-weight: bold;
   border-radius: 5px; /* Cantos arredondados */
@@ -101,11 +93,7 @@ body {
 }
 
 
-.filme-section {
-  background: linear-gradient(90deg, #000, #242323); /* Define o fundo preto abaixo da barra */
-  padding: 20px; /* Espaçamento interno para separar o conteúdo da barra */
-  position: relative;
-}
+
 
 .filme-img {
   margin: 5px;
@@ -147,4 +135,84 @@ body {
   color: rgb(122, 121, 121);
 }
 
+.texto-formatado {
+  text-align: left;
+  white-space: pre-line;
+ 
+}
+
+.filme-section {
+  background: linear-gradient(90deg, #000, #242323); 
+  padding: 100px; /* Espaçamento interno para separar o conteúdo da barra */
+  position: relative;
+  font-size: 22px; /* Defina o tamanho de letra desejado (por exemplo, 18px) */
+}
+
+
+.imagem-pc {
+  float: right; /* Alinha a imagem à direita */
+  
+  max-width: 100%; /* Ajusta a largura máxima da imagem conforme necessário */
+  max-width: 340px; /* Defina a largura máxima desejada para as imagens */
+  margin-right: 90px; /* Adicione margem direita para mover a imagem para a esquerda */
+  margin-top: -90px; /* Adicione margem superior negativa para mover a imagem para cima */
+}
+.container{
+  max-width: 1920px;
+  width: 100%;
+}
+
+header {
+  position: relative;
+  top :0;
+  height: auto;
+  width: 100%;
+}
+
+nav{
+  position:fixed;
+  top: 0;
+  height: 100px;
+  width: 100%;
+  z-index: 1;
+  background-color: transparent;
+ 
+}
+nav:after{
+  clear:both;
+  content: "";
+  display: block;
+}
+.nav-container{
+  max-width: 1200px;
+  position:relative;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#logo {
+  
+  margin-left: -120px;
+  width: 110px; 
+}
+
+.nav-container ul {
+  float: right;
+  height: 100px;
+  line-height:100px;
+}
+
+.nav-container li {
+  list-style: none;
+  float: left;
+  margin: 0 15px;
+}
+.nav-container li a {
+  text-decoration:none;
+  color: #666;
+  transition: .5s;
+}
+.nav-container li a:hover {
+  color:#3381F3;
+}
 
