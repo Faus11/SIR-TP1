@@ -78,6 +78,7 @@ body {
 }
 
 .login-botao {
+  
   margin-right: -20px;
   padding: 10px 20px; /* Adapte o preenchimento conforme necessário */
   background-color: #ebb740; /* Cor de fundo do botão */
@@ -172,10 +173,10 @@ header {
 nav{
   position:fixed;
   top: 0;
-  height: 100px;
+  height: 80px;
   width: 100%;
   z-index: 1;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.5);
  
 }
 nav:after{
@@ -191,21 +192,22 @@ nav:after{
 }
 
 #logo {
-  
+  margin-top: -15px;
   margin-left: -120px;
   width: 110px; 
 }
 
 .nav-container ul {
   float: right;
-  height: 100px;
-  line-height:100px;
+ margin-top: 30px;
+ margin-right: -75px;
+  
 }
 
 .nav-container li {
   list-style: none;
-  float: left;
-  margin: 0 15px;
+  
+  
 }
 .nav-container li a {
   text-decoration:none;
