@@ -63,10 +63,12 @@ body {
   font-weight: bold;
   font-size: 18px;
   margin-top: 20px;
+  transition: transform 0.2s ease;
 }
 
 .hero .cta-button:hover {
-  background-color: #ebb740;
+  transform: scale(1.05);
+  color:#565050;
 }
 
 /* Estilos responsivos */
@@ -123,7 +125,7 @@ body {
   left: 0;
   right: 0;
   height: 7px; /* Altura da barra */
-  background-color: rgb(47, 45, 45); /* Cor da barra */
+  background-color: rgb(26, 26, 26); /* Cor da barra */
   border: none;
 }
 
@@ -140,6 +142,12 @@ body {
 
 .filme-section {
   background: linear-gradient(90deg, #000, #242323); 
+  padding: 100px; /* Espaçamento interno para separar o conteúdo da barra */
+  position: relative;
+  font-size: 22px; /* Defina o tamanho de letra desejado (por exemplo, 18px) */
+}
+.filme-section1 {
+  background: linear-gradient(90deg, #242323, #000); 
   padding: 100px; /* Espaçamento interno para separar o conteúdo da barra */
   position: relative;
   font-size: 22px; /* Defina o tamanho de letra desejado (por exemplo, 18px) */
@@ -211,7 +219,7 @@ nav:after{
   transition: .5s;
 }
 .nav-container li a:hover {
-  color:#3381F3;
+  color:#565050;
 }
 
 @media (max-width: 768px) {
@@ -245,17 +253,46 @@ nav:after{
 }
 
 footer {
-  background-color: #333; /* Cor de fundo do rodapé */
+  background: linear-gradient(90deg, #242323, #000); 
   color: #fff; /* Cor do texto no rodapé */
   padding: 20px; /* Espaçamento interno do rodapé */
   text-align: center; /* Alinhamento do texto ao centro */
 }
 
 .redes-sociais {
-  text-align: center; /* Alinhe os ícones ao centro */
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
+
 .redes-sociais a {
-  margin: 0 10px; /* Adicione margens entre os ícones para separação */
+  margin-right: 15px; /* Espaço entre as imagens */
+}
+.redes-sociais a:hover {
+  transform: scale(1.2); /* Aumenta o tamanho em 20% no hover */
+}
+
+.redes-sociais img {
+  width: 40px; /* Ajuste o tamanho conforme necessário */
+  height: 40px; /* Ajuste o tamanho conforme necessário */
+}
+
+.termos-e-condicoes {
+  margin-top: 15px;
+ 
+  padding-right: 14px;
+}
+
+.termos-e-condicoes a {
+  text-decoration: none;
+  color: rgb(245, 245, 245);
+  transition: color 0.3s ease;
+  
+}
+
+.termos-e-condicoes a:hover {
+  color: #484a4c;
+ 
 }
 
 
