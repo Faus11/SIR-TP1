@@ -2,23 +2,24 @@
 <html>
 <head>
     <title>Formulário de Contacto</title>
-    
+    <link rel="stylesheet" type="text/css" href="styleforms.css">
 </head>
 <body>
-    <h1>Formulário de Contacto</h1>
-    <p>Preencha o formulário abaixo e entraremos em contacto consigo o mais rápido possível.</p>
+    <h1>Perguntas Frequentes</h1>
 
-    <form action="processar_formulario.php" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
+    <div class="faq">
+        <div class="item">
+            <button class="question">What is the MovieBreak?</button>
+            <p class="answer">MovieBreak is a streaming service that offers a wide variety of movies, TV shows, and documentaries. </p>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <br>
 
-        <label for="mensagem">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+        <div class="item">
+            <button class="question">How much does the Netflix cost?</button>
+            <p class="answer">The Netflix has different plans and pricing. The basic plan is $9.99 per month, the standard plan is $13.99 per month, and the premium plan is $17.99 per month. </p>
+        </div>
 
-        <input type="submit" value="Enviar">
-    </form>
+        <script src="forms.js"></script>
 </body>
 </html>
