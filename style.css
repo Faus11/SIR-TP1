@@ -158,18 +158,24 @@ body {
 }
 
 
-.imagem-pc {
+/* Estilos personalizados */
+.align-right {
   float: right; /* Alinha a imagem à direita */
-  
-  max-width: 100%; 
-  max-width: 340px; 
-  margin-right: 70px; 
-  margin-top: -70px; 
- 
+  margin-left: 20px; /* Ajuste de margem à esquerda (opcional) */
+  max-width: 30%; /* Garante que a imagem não ultrapasse o tamanho do contêiner */
+  height: auto;
+  margin-top: -90px; 
 }
+
+.left-align {
+  text-align: left; /* Alinha o texto à esquerda */
+  margin-bottom: 10px; /* Ajusta a margem inferior (opcional) */
+}
+
 .container{
   max-width: 1920px;
-  width: 100%;
+  width: 120%;
+  margin-left: -12px;
 }
 
 header {
@@ -312,6 +318,30 @@ footer {
 
 .forms-botao a:hover {
   transform: scale(1.2); /* Aumenta o tamanho em 20% no hover */
+}
+
+.faq {
+  font-family: Arial, sans-serif;
+}
+
+.item {
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.question {
+  background-color: #f2f2f2;
+  border: none;
+  color: #000;
+  padding: 10px 20px;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  cursor: pointer;
+}
+
+.answer {
+  display: none;
+  padding: 10px 20px;
 }
 
 
