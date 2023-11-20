@@ -71,20 +71,7 @@ body {
   color:#565050;
 }
 
-/* Estilos responsivos */
-@media (max-width: 768px) {
-  .hero h1 {
-      font-size: 30px;
-  }
 
-  .hero p {
-      font-size: 16px;
-  }
-
-  .hero .cta-button {
-      font-size: 16px;
-  }
-}
 
 
 .barra-navegacao {
@@ -133,39 +120,20 @@ body {
   position: relative;
   font-size: 22px; /* Defina o tamanho de letra desejado (por exemplo, 18px) */
 }
-  .pc-fit-cover {
-    height: auto;
-    display: block;
-  }
+ 
   
   .pc-image {
     max-width: 350px;
-    float: right;
-    margin-left: 20px; 
-    margin-top: -60px;
   }
-.left-align {
-  text-align: left; /* Alinha o texto à esquerda */
-  margin-bottom: 10px; /* Ajusta a margem inferior (opcional) */
-}
 
 
-.col-lg-6.image.text-end {
-  width: 50%;
-  float: right;
-  
-}
+
+
 .texto-formatado {
-  text-align: left;
+ 
   white-space: pre-line;
  
 }
-@media screen and (min-resolution: 170dpi) {
-  .pc-image {
-      display: none !important;
-  }
-}
-
 
 /* Estilos personalizados */
 .align-right {
@@ -176,16 +144,12 @@ body {
   margin-top: -90px; 
 }
 
-
-
 /* Barra de navegação*/
 .container{
   max-width: 2000px;
   width: 120%;
   margin-left: -12px;
 }
-
-
 
 header {
   position: relative;
@@ -214,96 +178,47 @@ nav:after{
   margin-right: auto;
   margin-left: auto;
 
+  padding: 0 24px;
 }
 
+header {
+  top: 0;
+  width: 100%;
+  background-color:#484a4c66
+}
 /* Ajustando a largura para diferentes níveis de zoom */
-@media screen and (max-width: 1920px) {
-  .nav-container {
-    zoom: 1; /* Nível de zoom inicial */
-  }
-}
-
-@media screen and (min-width: 1921px) and (max-width: 2400px) {
-  .nav-container {
-    zoom: 1.1; /* Aumento do zoom em 0.1 */
-  }
-}
-
-
 
 #logo {
-  margin-top: -15px;
-  margin-left: -120px;
-  width: 110px; 
+  width: 100px; 
 }
 
-.nav-container ul {
-  float: right;
- margin-top: 30px;
- margin-right: -75px;
-  
-}
-
-.nav-container li {
-  list-style: none;
-  
-  
-}
-.nav-container li a {
+.nav-container a {
   text-decoration:none;
   color: #000000;
   transition: .5s;
 }
-.nav-container li a:hover {
+.nav-container a:hover {
   color:#565050;
-}
-
-@media screen and (zoom: 110%) {
-  .nav-container {
-    max-width: calc(1200px * 0.91); /* Reduz o max-width proporcionalmente em 9% quando o zoom é 110% */
-  }
 }
 
 /* Continue com mais media queries para cada nível de zoom que deseja controlar */
 
-@media only screen and (max-width: 768px) {
-  .nav-container {
-    max-width: 100%;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-  nav{
-    position:fixed;
-    top: 0;
-    height: 30px;
-    width: 100%;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.5);
-   
-  }
-
-  #logo {
-    margin-left: 0;
-    width: 80px;
-  }
-
-  .nav-container ul {
-    float: none;
-    margin-top: 10px;
-    margin-right: 0;
-    text-align: center;
-  }
-
-  .nav-container li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  .nav-container li a {
-    display: block;
-    padding: 5px 10px;
-  }
+.btns-nav {
+  float: right; /* Alinha o botão à direita */
+  margin-top: 35px; /* Ajuste a margem superior conforme necessário */
 }
+
+.login-botao {
+  text-decoration: none;
+  color: #000000;
+  transition: .5s;
+  padding: 10px 20px; /* Ajuste o preenchimento conforme necessário */
+}
+
+.login-botao:hover {
+  color: #565050;
+}
+
 
 
 /*Fim da Barra de navegação*/
