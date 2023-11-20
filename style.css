@@ -296,7 +296,41 @@ footer {
   padding: 10px 20px;
 }
 
+.separador {
+  height: 10px; /* Altura da barra */
+  background-color: #353433; /* Cor da barra */
+  width: 100%; /* Largura total */
+}
 
+.centralizado {
+  text-align: center;
+  margin: 0 auto;
+  width: 50%;
+  font-weight: bold; /* Adiciona negrito ao texto */
+}
+
+.faq-list {
+  list-style: none;
+  padding: 0;
+  width: 50%;
+  margin: 20px auto;
+}
+
+.question {
+  cursor: pointer;
+  background-color: #ebb740;
+  padding: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #ebb740;
+  border-radius: 5px;
+}
+
+.answer {
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
 
 

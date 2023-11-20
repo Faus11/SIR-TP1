@@ -1,6 +1,9 @@
-document.querySelectorAll('.question').forEach(item => {
-    item.addEventListener('click', () => {
-        const answer = item.nextElementSibling;
-        answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
-    });
-});
+function toggleAnswer(answerId) {
+          var answer = document.getElementById(answerId);
+          if (answer.style.display === "block") {
+            answer.style.display = "none";
+          } else {
+            answer.style.display = "block";
+          }
+}
+  
