@@ -71,9 +71,6 @@ body {
   color:#565050;
 }
 
-
-
-
 .barra-navegacao {
   background-color: white; /* Define o fundo do header como transparente */
   height: 80px; /* Altura da barra de navegação */
@@ -99,12 +96,9 @@ body {
   background-color: #ebb740; /* Cor de fundo do botão ao passar o mouse */
 }
 
-
-
 .cor-texto {
   color: rgb(122, 121, 121);
 }
-
 
 /* Objetivos */
 .filme-section {
@@ -184,7 +178,7 @@ nav:after{
 header {
   top: 0;
   width: 100%;
-  background-color:#484a4c66
+  background-color:#00000066
 }
 /* Ajustando a largura para diferentes níveis de zoom */
 
@@ -218,8 +212,6 @@ header {
 .login-botao:hover {
   color: #565050;
 }
-
-
 
 /*Fim da Barra de navegação*/
 
