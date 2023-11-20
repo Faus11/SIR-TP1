@@ -7,3 +7,12 @@ function toggleAnswer(answerId) {
           }
 }
   
+function mostrarFormulario() {
+    var formulario = document.getElementById('formulario');
+    formulario.classList.toggle('hidden');
+}
+
+function enviarFormulario() {
+    var textoIncomodo = document.getElementById('campoTexto').value;
+    alert('Texto enviado: ' + textoIncomodo);
+}

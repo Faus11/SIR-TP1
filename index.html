@@ -22,7 +22,7 @@
 
 
     <section class="hero">
-        <h1>Gerencia e desfruta de filmes e séries de alta qualidade agora mesmo!</h1>
+        <h1>Gere e desfruta de filmes e séries de alta qualidade agora mesmo!</h1>
         <p>Queres começar? Cliqua no botão abaixo.</p>
         <a href="register.html" class="cta-button">Registar Agora</a>
     </section>
@@ -111,9 +111,11 @@
 
                     <br>
 
-                    <a href="formulario.html">
-                        <button class="forms-botao">Formulário</button>
-                    </a>
+                    <button id="mostrarFormulario" class="forms-botao" onclick="mostrarFormulario()">Formulário</button>
+                    <div id="formulario" class="hidden">
+                        <textarea id="campoTexto" rows="4" cols="50" placeholder="Diz-me aqui o que te incomoda"></textarea>
+                        <button id="enviar" onclick="enviarFormulario()">Enviar</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -259,18 +259,21 @@ footer {
 }
 
 .forms-botao {
-  background-color: #ebb740;
-  color: white;
-  padding: 10px 30px;
+  
+  margin-right: -20px;
+  padding: 10px 20px; /* Adapte o preenchimento conforme necessário */
+  background-color: #ebb740; /* Cor de fundo do botão */
+  color: #000000; /* Cor do texto do botão */
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px; /* Cantos arredondados */
 }
 
-.forms-botao a:hover {
-  transform: scale(1.2); /* Aumenta o tamanho em 20% no hover */
+/* Estilos de hover para o botão (opcional) */
+.forms-botao:hover {
+  background-color: #ebb740; /* Cor de fundo do botão ao passar o mouse */
 }
+
 
 .faq {
   font-family: Arial, sans-serif;
@@ -289,11 +292,13 @@ footer {
   text-align: left;
   outline: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .answer {
   display: none;
   padding: 10px 20px;
+  font-weight: bold;
 }
 
 .separador {
@@ -330,6 +335,47 @@ footer {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.hidden {
+  display: none;
+}
+
+#formulario {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+#campoTexto {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#enviar {
+  background-color: #ebb740;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#enviar:hover {
+  background-color: #ebb740;
+}
+
+.hidden {
+  display: none;
 }
 
 
