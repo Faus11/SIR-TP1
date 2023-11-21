@@ -120,9 +120,6 @@ body {
     max-width: 350px;
   }
 
-
-
-
 .texto-formatado {
  
   white-space: pre-line;
@@ -293,12 +290,16 @@ footer {
   outline: none;
   cursor: pointer;
   font-weight: bold;
+  min-width: 175px;
+  align-items: center;
 }
 
 .answer {
   display: none;
   padding: 10px 20px;
   font-weight: bold;
+  min-width: 175px;
+  align-items: center;
 }
 
 .separador {
@@ -311,7 +312,8 @@ footer {
   text-align: center;
   margin: 0 auto;
   width: 50%;
-  font-weight: bold; /* Adiciona negrito ao texto */
+  font-weight: bold;
+  align-items: center; 
 }
 
 .faq-list {
@@ -328,6 +330,10 @@ footer {
   margin-bottom: 5px;
   border: 1px solid #ebb740;
   border-radius: 5px;
+}
+
+.question-text {
+  
 }
 
 .answer {
