@@ -79,7 +79,6 @@ body {
   justify-content: space-between;
   padding: 0 20px;
 }
-
 .login-botao {
   
   margin-right: -20px;
@@ -95,11 +94,9 @@ body {
 .login-botao:hover {
   background-color: #ebb740; /* Cor de fundo do botão ao passar o mouse */
 }
-
 .cor-texto {
   color: rgb(122, 121, 121);
 }
-
 /* Objetivos */
 .filme-section {
   background: linear-gradient(90deg, #000, #242323); 
@@ -114,8 +111,15 @@ body {
   position: relative;
   font-size: 22px; /* Defina o tamanho de letra desejado (por exemplo, 18px) */
 }
+
+.filme-section2 {
+  background: linear-gradient(90deg, #242323, #000); 
+  position: relative;
+  padding-right: 15px;
+  padding-left: 5px;
+  font-size: 22px; /* Defina o tamanho de letra desejado (por exemplo, 18px) */
+}
  
-  
   .pc-image {
     max-width: 350px;
   }
@@ -203,14 +207,14 @@ header {
   text-decoration: none;
   color: #000000;
   transition: .5s;
-  padding: 10px 20px; /* Ajuste o preenchimento conforme necessário */
+  padding: 10px 20px; 
 }
 
 .login-botao:hover {
   color: #565050;
 }
 
-/*Fim da Barra de navegação*/
+/*Footer*/
 
 footer {
   background: linear-gradient(90deg, #242323, #000); 
@@ -225,29 +229,23 @@ footer {
   margin-top: 10px;
 }
 
-.redes-sociais a {
-  margin-right: 15px; /* Espaço entre as imagens */
-}
 .redes-sociais a:hover {
   transform: scale(1.2); /* Aumenta o tamanho em 20% no hover */
 }
 
 .redes-sociais img {
-  width: 40px; /* Ajuste o tamanho conforme necessário */
-  height: 40px; /* Ajuste o tamanho conforme necessário */
+  width: 40px; 
+  height: 40px; 
+  margin-right: 15px;
 }
 
 .termos-e-condicoes {
   margin-top: 15px;
- 
-  padding-right: 14px;
 }
-
 .termos-e-condicoes a {
   text-decoration: none;
   color: rgb(245, 245, 245);
   transition: color 0.3s ease;
-  
 }
 
 .termos-e-condicoes a:hover {
@@ -271,47 +269,15 @@ footer {
   background-color: #ebb740; /* Cor de fundo do botão ao passar o mouse */
 }
 
-
-.faq {
-  font-family: Arial, sans-serif;
-}
-
-.item {
-  border-bottom: 1px solid #f2f2f2;
-}
-
-.question {
-  background-color: #f2f2f2;
-  border: none;
-  color: #000;
-  padding: 10px 20px;
-  width: 100%;
-  text-align: left;
-  outline: none;
-  cursor: pointer;
-  font-weight: bold;
-  min-width: 175px;
-  align-items: center;
-}
-
-.answer {
-  display: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  min-width: 175px;
-  align-items: center;
-}
-
 .separador {
   height: 10px; /* Altura da barra */
   background-color: #353433; /* Cor da barra */
   width: 100%; /* Largura total */
 }
 
+/*Perguntas frequentes */
 .centralizado {
   text-align: center;
-  margin: 0 auto;
-  width: 50%;
   font-weight: bold;
   align-items: center; 
 }
@@ -319,7 +285,6 @@ footer {
 .faq-list {
   list-style: none;
   padding: 0;
-  width: 50%;
   margin: 20px auto;
 }
 
@@ -330,10 +295,8 @@ footer {
   margin-bottom: 5px;
   border: 1px solid #ebb740;
   border-radius: 5px;
-}
-
-.question-text {
-  
+  color: #000;
+  font-weight: bold;
 }
 
 .answer {
@@ -341,6 +304,8 @@ footer {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-weight: bold;
+  align-items: center;
 }
 
 .hidden {
@@ -348,7 +313,7 @@ footer {
 }
 
 #formulario {
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -359,32 +324,17 @@ footer {
 }
 
 #campoTexto {
+  
   width: 100%;
-  margin-bottom: 10px;
   padding: 8px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
   border-radius: 4px;
 }
-
 #enviar {
   background-color: #ebb740;
   color: #fff;
   padding: 10px 20px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
-
-#enviar:hover {
-  background-color: #ebb740;
-}
-
-.hidden {
-  display: none;
-}
-
-
-
-
-
