@@ -12,7 +12,7 @@ body {
     background-color: #000; 
     font-family: Arial, sans-serif;
     color: #fff; 
-    background-image: url('assets/back.png');
+    background-image: url('../assets/back.png');
     background-size: cover; /* A imagem se ajustará à largura e altura da tela */
     background-repeat: no-repeat; /* Impede a repetição da imagem de fundo */
     background-attachment: fixed; /* Fixa a imagem de fundo para que não role com a página */
