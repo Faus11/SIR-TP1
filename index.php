@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
-// require_once __DIR__ . './setupdatabase.php';
+ require_once __DIR__ . '../setupdatabase.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +20,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
         <div class="nav-container">
             <img id="logo" src="pages/assets/image.png" alt="Logo da Movie Break">
             <div class="btns-nav">
-                <a href="login.html" class="login-botao">Iniciar Sessão</a>
+                <a href="./pages/public/signin.php" class="login-botao">Iniciar Sessão</a>
             </div>
         </div>
     </header>
@@ -29,7 +29,7 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
     <section class="hero">
         <h1>Gere e desfruta de filmes e séries de alta qualidade agora mesmo!</h1>
         <p>Queres começar? Cliqua no botão abaixo.</p>
-        <a href="register.html" class="cta-button">Registar Agora</a>
+        <a href="./pages/public/signup.php" class="cta-button">Registar Agora</a>
     </section>
 
     <div class="separador"></div>

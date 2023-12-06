@@ -4,10 +4,10 @@ require __DIR__ . '/infra/db/connection.php';
 
 #DROP TABLES
 $pdo->exec('DROP TABLE IF EXISTS users;');
-echo 'Table users deleted!' . PHP_EOL;
+
 
 $pdo->exec('DROP TABLE IF EXISTS Role;');
-echo 'Table Role deleted!' . PHP_EOL;
+
 
 #CREATE TABLE Role
 $pdo->exec(
@@ -18,7 +18,7 @@ $pdo->exec(
     updated_at timestamp NULL DEFAULT NULL
     );'
 );
-echo 'Table Role created!' . PHP_EOL;
+
 
 #CREATE TABLE users
 $pdo->exec(
@@ -39,7 +39,37 @@ $pdo->exec(
     );'
 );
 
-echo 'Table users created!' . PHP_EOL;
+
+
+#DEFAULT ROLE TO ADD
+$role = [
+    'role_name' => 'user',
+    'created_at' => null,
+    'updated_at' => null,
+];
+
+#INSERT ROLE
+$sqlCreateRole = "INSERT INTO 
+    Role (
+        role_name,
+        created_at,
+        updated_at
+    ) 
+    VALUES (
+        :role_name,
+        :created_at,
+        :updated_at
+    )";
+    #PREPARE QUERY FOR ROLE
+$PDOStatementRole = $GLOBALS['pdo']->prepare($sqlCreateRole);
+
+#EXECUTE ROLE INSERTION
+$successRole = $PDOStatementRole->execute([
+    ':role_name' => $role['role_name'],
+    ':created_at' => $role['created_at'],
+    ':updated_at' => $role['updated_at'],
+]);
+
 
 
 #DEFAULT USER TO ADD
@@ -61,6 +91,8 @@ $user = [
 #HASH PWD
 $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
 
+
+
 #INSERT USER
 $sqlCreate = "INSERT INTO 
     users (
@@ -78,7 +110,7 @@ $sqlCreate = "INSERT INTO
     VALUES (
         :firstname, 
         :lastname,
-        username,
+        :username, 
         :phoneNumber, 
         :email, 
         :birthdate, 
@@ -88,6 +120,7 @@ $sqlCreate = "INSERT INTO
         :updated_at,
         :deleted_at
     )";
+
 
 #PREPARE QUERY
 $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
@@ -108,4 +141,3 @@ $success = $PDOStatement->execute([
 ]);
 
 
-echo 'Default user created!';
