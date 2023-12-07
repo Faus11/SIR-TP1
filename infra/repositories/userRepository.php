@@ -169,6 +169,7 @@ function deleteUser($id)
 function createNewUser($user)
 {
     $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
+    $user['admin'] = false;
     $sqlCreate = "INSERT INTO 
     users (
         firstname,
@@ -177,7 +178,7 @@ function createNewUser($user)
         phoneNumber, 
         email,
         birthdate,
-        pass 
+        pass, 
         admin) 
     VALUES (
         :firstname,
@@ -192,9 +193,14 @@ function createNewUser($user)
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
     $success = $PDOStatement->execute([
-        ':name' => $user['name'],
+        ':firstname' => $user['firstname'],
+        ':lastname' => $user['lastname'],
+        ':username' => $user['username'],
+        ':phoneNumber' => $user['phoneNumber'],
         ':email' => $user['email'],
-        ':password' => $user['password']
+        ':birthdate' => $user['birthdate'],
+        ':pass' => $user['pass'],
+        ':admin' => $user['admin']
     ]);
 
     if ($success) {

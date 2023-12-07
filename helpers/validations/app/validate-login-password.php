@@ -10,8 +10,8 @@ function isLoginValid($req)
         $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
     }
 
-    if (empty($req['password']) || strlen($req['password']) < 6) {
-        $errors['password'] = 'The Password field cannot be empty and must be at least 6 characters long.';
+    if (empty($req['pass']) || strlen($req['pass']) < 6) {
+        $errors['pass'] = 'The Password field cannot be empty and must be at least 6 characters long.';
     }
 
     if (isset($errors)) {
@@ -31,8 +31,8 @@ function isPasswordValid($req)
             $errors['email'] = 'Wrong email or password.';
         }
 
-        if (!password_verify($req['password'], $user['password'])) {
-            $errors['password'] = 'Wrong email or password.';
+        if (!password_verify($req['pass'], $user['pass'])) {
+            $errors['pass'] = 'Wrong email or password.';
         }
 
         if (isset($errors)) {

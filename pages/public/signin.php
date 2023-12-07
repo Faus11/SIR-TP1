@@ -17,18 +17,22 @@ $title = ' - Sign In';
     }
     ?>
   </section>
+
   <form action="/SIR-TP1/controllers/auth/signin.php" method="post">
     <h1 class="h3 mb-3 fw-normal">Sign In</h1>
     <div class="form-floating mb-2">
+
       <input type="email" class="form-control" id="Email" placeholder="Email" name="email" maxlength="255"
         value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : null ?>">
       <label for="Email">Email</label>
     </div>
+
     <div class="form-floating mb-2">
-      <input type="password" class="form-control" id="password" placeholder="Password" name="password" maxlength="255"
-        value="<?= isset($_REQUEST['password']) ? $_REQUEST['password'] : null ?>">
-      <label for="password">Password</label>
+      <input type="password" class="form-control" id="pass" placeholder="pass" name="pass" maxlength="255"
+        value="<?= isset($_REQUEST['pass']) ? $_REQUEST['pass'] : null ?>">
+      <label for="pass">Password</label>
     </div>
+    
     <div class="checkbox mb-3">
       <label><input type="checkbox" value="remember-me">Remember me</label>
     </div>

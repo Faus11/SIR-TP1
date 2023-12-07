@@ -30,7 +30,7 @@ function login($req)
     } elseif ($user['deleted_at']) {
         $_SESSION['errors'] = "Usuário deletado. Não é possível fazer login.";
         $params = '?' . http_build_query($req);
-        header('location: /php-project/pages/public/signin.php' . $params);
+        header('location: /SIR-TP1/pages/public/signin.php' . $params);
     }
 
 }
@@ -40,7 +40,7 @@ function checkErrors($data, $req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /crud/pages/public/signin.php' . $params);
+        header('location: /SIR-TP1/pages/public/signin.php' . $params);
         return false;
     }
 
