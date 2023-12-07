@@ -17,7 +17,7 @@ $title = ' - Sign In';
     }
     ?>
   </section>
-  <form action="/crud/controllers/auth/signin.php" method="post">
+  <form action="/SIR-TP1/controllers/auth/signin.php" method="post">
     <h1 class="h3 mb-3 fw-normal">Sign In</h1>
     <div class="form-floating mb-2">
       <input type="email" class="form-control" id="Email" placeholder="Email" name="email" maxlength="255"
@@ -34,7 +34,7 @@ $title = ' - Sign In';
     </div>
     <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="login">Sign In</button>
   </form>
-  <a href="/crud"><button class="w-100 btn btn-lg btn-info">Back</button></a>
+  <a href="/SIR-TP1"><button class="w-100 btn btn-lg btn-info">Back</button></a>
 </main>
 <?php
 include_once __DIR__ . '../../../templates/footer.php';

@@ -3,36 +3,43 @@ require_once __DIR__ . '../../db/connection.php';
 
 function createUser($user)
 {
-    $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+    $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
     $sqlCreate = "INSERT INTO 
     users (
-        name, 
-        lastname, 
+        firstname,
+        lastname,
+        username, 
         phoneNumber, 
         email, 
-        foto, 
-        administrator, 
-        password) 
+        birthdate, 
+        pass, 
+        admin,
+        created_at,
+        updated_at) 
     VALUES (
-        :name, 
-        :lastname, 
+        :firstname, 
+        :lastname,
+        :username 
         :phoneNumber, 
         :email, 
-        :foto, 
-        :administrator, 
-        :password
+        :birthdate, 
+        :pass, 
+        :admin,
+        :NOW(),
+        :NOW()
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
     $success = $PDOStatement->execute([
-        ':name' => $user['name'],
+        ':firstname' => $user['firstname'],
         ':lastname' => $user['lastname'],
+        ':username' => $user['username'],
         ':phoneNumber' => $user['phoneNumber'],
         ':email' => $user['email'],
-        ':foto' => $user['foto'],
-        ':administrator' => $user['administrator'],
-        ':password' => $user['password']
+        ':birthdate' => $user['birthdate'],
+        ':pass' => $user['pass'],
+        ':admin' => $user['admin']
     ]);
 
     if ($success) {
@@ -69,97 +76,118 @@ function getAll()
 
 function updateUser($user)
 {
-    if (isset($user['password']) && !empty($user['password'])) {
-        $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+    if (isset($user['pass']) && !empty($user['pass'])) {
+        $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
 
         $sqlUpdate = "UPDATE  
         users SET
-            name = :name, 
-            lastname = :lastname, 
+            firstname = :firstname, 
+            lastname = :lastname,
+            username = username, 
             phoneNumber = :phoneNumber, 
             email = :email, 
-            foto = :foto, 
-            administrator = :administrator, 
-            password = :password
+            birthdate = :birthdate, 
+            pass = :pass, 
+            admin = :admin,
+            update_at = NOW()
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
         return $PDOStatement->execute([
-            ':id' => $user['id'],
-            ':name' => $user['name'],
+            ':firstname' => $user['firstname'],
             ':lastname' => $user['lastname'],
+            ':username' => $user['username'],
             ':phoneNumber' => $user['phoneNumber'],
             ':email' => $user['email'],
-            ':foto' => $user['foto'],
-            ':administrator' => $user['administrator'],
-            ':password' => $user['password']
+            ':birthdate' => $user['birthdate'],
+            ':pass' => $user['pass'],
+            ':admin' => $user['admin']
         ]);
     }
 
     $sqlUpdate = "UPDATE  
     users SET
-        name = :name, 
-        lastname = :lastname, 
-        phoneNumber = :phoneNumber, 
-        email = :email, 
-        foto = :foto, 
-        administrator = :administrator
+            firstname = :firstname, 
+            lastname = :lastname,
+            username = username, 
+            phoneNumber = :phoneNumber, 
+            email = :email, 
+            birthdate = :birthdate, 
+            pass = :pass, 
+            admin = :admin
     WHERE id = :id;";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
     return $PDOStatement->execute([
-        ':id' => $user['id'],
-        ':name' => $user['name'],
-        ':lastname' => $user['lastname'],
-        ':phoneNumber' => $user['phoneNumber'],
-        ':email' => $user['email'],
-        ':foto' => $user['foto'],
-        ':administrator' => $user['administrator']
+            ':firstname' => $user['firstname'],
+            ':lastname' => $user['lastname'],
+            ':username' => $user['username'],
+            ':phoneNumber' => $user['phoneNumber'],
+            ':email' => $user['email'],
+            ':birthdate' => $user['birthdate'],
+            ':pass' => $user['pass'],
+            ':admin' => $user['admin']
     ]);
 }
 
 function updatePassword($user)
 {
-    if (isset($user['password']) && !empty($user['password'])) {
-        $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+    if (isset($user['pass']) && !empty($user['pass'])) {
+        $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
 
         $sqlUpdate = "UPDATE  
-        users SET
-            name = :name, 
-            password = :password
+        users SET 
+            pass = :pass,
+            update_at = NOW()
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
         return $PDOStatement->execute([
             ':id' => $user['id'],
-            ':name' => $user['name'],
-            ':password' => $user['password']
+            ':pass' => $user['pass']
         ]);
     }
 }
 
 function deleteUser($id)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('DELETE FROM users WHERE id = ?;');
-    $PDOStatement->bindValue(1, $id, PDO::PARAM_INT);
-    return $PDOStatement->execute();
+    $sqlUpdate = "UPDATE
+        users SET
+            deleted_at = NOW()
+        WHERE id = :id;";
+
+    $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
+
+    return $PDOStatement->execute([
+        ':id' => $id,
+    ]);
 }
 
 function createNewUser($user)
 {
-    $user['password'] = password_hash($user['password'], PASSWORD_DEFAULT);
+    $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
     $sqlCreate = "INSERT INTO 
     users (
-        name, 
-        email, 
-        password) 
+        firstname,
+        lastname,
+        username,
+        phoneNumber, 
+        email,
+        birthdate,
+        pass 
+        admin) 
     VALUES (
-        :name, 
-        :email, 
-        :password
+        :firstname,
+        :lastname,
+        :username,
+        :phoneNumber, 
+        :email,
+        :birthdate,
+        :pass, 
+        :admin
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);

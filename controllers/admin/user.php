@@ -18,7 +18,7 @@ if (isset($_POST['user'])) {
         updateProfile($_POST);
     }
 
-    if ($_POST['user'] == 'password') {
+    if ($_POST['user'] == 'pass') {
         changePassword($_POST);
     }
 }

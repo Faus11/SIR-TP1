@@ -6,19 +6,6 @@ require __DIR__ . '/infra/db/connection.php';
 $pdo->exec('DROP TABLE IF EXISTS users;');
 
 
-$pdo->exec('DROP TABLE IF EXISTS Role;');
-
-
-#CREATE TABLE Role
-$pdo->exec(
-    'CREATE TABLE Role (
-    id INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    role_name varchar(50),
-    created_at timestamp NULL DEFAULT NULL,
-    updated_at timestamp NULL DEFAULT NULL
-    );'
-);
-
 
 #CREATE TABLE users
 $pdo->exec(
@@ -31,46 +18,12 @@ $pdo->exec(
     email varchar(50) NOT NULL, 
     birthdate date, 
     pass varchar(200),
-    id_role INTEGER UNSIGNED,
-    FOREIGN KEY (id_role) REFERENCES Role(id),
+    admin BOOLEAN NOT NULL DEFAULT false,
     created_at timestamp NULL DEFAULT NULL,
     updated_at timestamp NULL DEFAULT NULL,
     deleted_at timestamp NULL DEFAULT NULL
     );'
 );
-
-
-
-#DEFAULT ROLE TO ADD
-$role = [
-    'role_name' => 'user',
-    'created_at' => null,
-    'updated_at' => null,
-];
-
-#INSERT ROLE
-$sqlCreateRole = "INSERT INTO 
-    Role (
-        role_name,
-        created_at,
-        updated_at
-    ) 
-    VALUES (
-        :role_name,
-        :created_at,
-        :updated_at
-    )";
-    #PREPARE QUERY FOR ROLE
-$PDOStatementRole = $GLOBALS['pdo']->prepare($sqlCreateRole);
-
-#EXECUTE ROLE INSERTION
-$successRole = $PDOStatementRole->execute([
-    ':role_name' => $role['role_name'],
-    ':created_at' => $role['created_at'],
-    ':updated_at' => $role['updated_at'],
-]);
-
-
 
 #DEFAULT USER TO ADD
 $user = [
@@ -81,17 +34,14 @@ $user = [
     'email' => 'nelochapa@gmail.com',
     'birthdate' => '1980-10-09',
     'pass' => '123456',
-    'id_role' => 1, 
-    'created_at' => null,
-    'updated_at' => null, 
+    'admin' => true, 
+    'created_at' => date('Y-m-d H:i:s'),
+    'updated_at' => date('Y-m-d H:i:s'),
     'deleted_at' => null 
-
 ];
 
 #HASH PWD
 $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
-
-
 
 #INSERT USER
 $sqlCreate = "INSERT INTO 
@@ -102,8 +52,8 @@ $sqlCreate = "INSERT INTO
         phoneNumber, 
         email, 
         birthdate, 
-        pass, 
-        id_role,
+        pass,
+        admin,
         created_at,
         updated_at,
         deleted_at) 
@@ -115,7 +65,7 @@ $sqlCreate = "INSERT INTO
         :email, 
         :birthdate, 
         :pass,
-        :id_role, 
+        :admin, 
         :created_at,
         :updated_at,
         :deleted_at
@@ -134,7 +84,7 @@ $success = $PDOStatement->execute([
     ':email' => $user['email'],
     ':birthdate' => $user['birthdate'],
     ':pass' => $user['pass'],
-    ':id_role' => $user['id_role'],
+    ':admin' => $user['admin'],
     ':created_at' => $user['created_at'],
     ':updated_at' => $user['updated_at'],
     ':deleted_at' => $user['deleted_at']

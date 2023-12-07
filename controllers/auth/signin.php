@@ -24,9 +24,15 @@ function login($req)
 
     $user = checkErrors($data, $req);
 
-    if ($user) {
+    if ($user && !$user['deleted_at'])
+    { 
         doLogin($data);
+    } elseif ($user['deleted_at']) {
+        $_SESSION['errors'] = "Usuário deletado. Não é possível fazer login.";
+        $params = '?' . http_build_query($req);
+        header('location: /php-project/pages/public/signin.php' . $params);
     }
+
 }
 
 function checkErrors($data, $req)
@@ -45,12 +51,12 @@ function checkErrors($data, $req)
 function doLogin($data)
 {
     $_SESSION['id'] = $data['id'];
-    $_SESSION['name'] = $data['name'];
+    $_SESSION['firstname'] = $data['firstname'];
 
     setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
-    setcookie("name", $data['name'], time() + (60 * 60 * 24 * 30), "/");
+    setcookie("firstname", $data['firstname'], time() + (60 * 60 * 24 * 30), "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/crud/pages/secure';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/pages/public/teste.php';
     header('Location: ' . $home_url);
 }
 
@@ -67,8 +73,8 @@ function logout()
     }
 
     setcookie('id', '', time() - 3600, "/");
-    setcookie('name', '', time() - 3600, "/");
+    setcookie('firstname', '', time() - 3600, "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/crud';
+    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1';
     header('Location: ' . $home_url);
 }
