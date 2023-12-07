@@ -2,8 +2,26 @@
 #EASY DATABASE SETUP
 require __DIR__ . '/infra/db/connection.php';
 
-#DROP TABLES
-$pdo->exec('DROP TABLE IF EXISTS users;');
+
+$tablesToCheck = ['users'];
+$tablesExist = true;
+
+foreach ($tablesToCheck as $table) {
+    $tableExistQuery = "SHOW TABLES LIKE '$table'";
+    $tableExistStatement = $pdo->query($tableExistQuery);
+
+    if ($tableExistStatement->rowCount() === 0) {
+        $tablesExist = false;
+        break;
+    }
+}
+
+if (!$tablesExist) {
+    $tablesToDrop = ['users'];
+
+    foreach ($tablesToDrop as $table) {
+        $pdo->exec("DROP TABLE IF EXISTS $table;");
+    }
 
 
 
@@ -89,5 +107,5 @@ $success = $PDOStatement->execute([
     ':updated_at' => $user['updated_at'],
     ':deleted_at' => $user['deleted_at']
 ]);
-
+}
 
