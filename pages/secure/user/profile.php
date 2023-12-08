@@ -38,33 +38,53 @@ $user = user();
   <section>
     <form enctype="multipart/form-data" action="/SIR-TP1/controllers/admin/user.php" method="post"
       class="form-control py-3">
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Username</span>
+        <input type="text" class="form-control" name="username" placeholder="username" maxlength="100" size="100"
+          value="<?= isset($_REQUEST['username']) ? $_REQUEST['username'] : $user['username'] ?>" required>
+      </div>
+
       <div class="input-group mb-3">
         <span class="input-group-text">FirstName</span>
-        <input type="text" class="form-control" name="name" placeholder="name" maxlength="100" size="100"
+        <input type="text" class="form-control" name="firstname" placeholder="firstname" maxlength="100" size="100"
           value="<?= isset($_REQUEST['firstname']) ? $_REQUEST['firstname'] : $user['firstname'] ?>" required>
       </div>
+
       <div class="input-group mb-3">
         <span class="input-group-text">Lastname</span>
         <input type="text" class="form-control" name="lastname" placeholder="lastname" maxlength="100" size="100"
           value="<?= isset($_REQUEST['lastname']) ? $_REQUEST['lastname'] : $user['lastname'] ?>" required>
       </div>
+
       <div class="input-group mb-3">
         <span class="input-group-text">Phone Number</span>
         <input type="tel" class="form-control" name="phoneNumber" maxlength="9"
           value="<?= isset($_REQUEST['phoneNumber']) ? $_REQUEST['phoneNumber'] : $user['phoneNumber'] ?>" required>
       </div>
+
       <div class="input-group mb-3">
         <span class="input-group-text">email</span>
         <input type="email" class="form-control" name="email" maxlength="255"
           value="<?= isset($_REQUEST['email']) ? $_REQUEST['email'] : $user['email'] ?>" required>
       </div>
+
+      <div class="input-group mb-3">
+        <span class="input-group-text">Birthdate</span>
+        <input type="date" class="form-control" name="birthdate" maxlength="100"
+          value="<?= isset($_REQUEST['birthdate']) ? $_REQUEST['birthdate'] : $user['birthdate'] ?>" required>
+      </div>
+
+      <!--
       <div class="input-group mb-3">
         <label class="input-group-text" for="inputGroupFile01">Picture</label>
         <input accept="image/*" type="file" class="form-control" id="inputGroupFile01" name="foto" />
-      </div>
+      </div>-->
+      
       <div class="d-grid col-4 mx-auto">
         <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Change</button>
       </div>
+
     </form>
   </section>
 </main>

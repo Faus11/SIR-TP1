@@ -56,11 +56,20 @@ function getById($id)
     return $PDOStatement->fetch();
 }
 
-function getByEmail($email)
+function getByEmail($email, $currentUserId = null)
 {
-    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM users WHERE email = ? LIMIT 1;');
-    $PDOStatement->bindValue(1, $email);
-    $PDOStatement->execute();
+    $sql = 'SELECT * FROM users WHERE email = ?';
+    $params = [$email];
+
+    if ($currentUserId !== null) {
+        $sql .= ' AND id != ?';
+        $params[] = $currentUserId;
+    }
+
+    $sql .= ' LIMIT 1;';
+
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+    $PDOStatement->execute($params);
     return $PDOStatement->fetch();
 }
 
@@ -76,61 +85,51 @@ function getAll()
 
 function updateUser($user)
 {
+    $params = [
+        ':firstname' => $user['firstname'],
+        ':lastname' => $user['lastname'],
+        ':username' => $user['username'],
+        ':phoneNumber' => $user['phoneNumber'],
+        ':email' => $user['email'],
+        ':birthdate' => $user['birthdate'],
+        ':admin' => $user['admin'],
+        ':id' => $user['id']
+    ];
+
     if (isset($user['pass']) && !empty($user['pass'])) {
         $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
+        $params[':pass'] = $user['pass'];
 
         $sqlUpdate = "UPDATE  
-        users SET
+            users SET
             firstname = :firstname, 
             lastname = :lastname,
-            username = username, 
+            username = :username, 
             phoneNumber = :phoneNumber, 
             email = :email, 
             birthdate = :birthdate, 
             pass = :pass, 
             admin = :admin,
             updated_at = NOW()
-        WHERE id = :id;";
-
-        $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
-
-        return $PDOStatement->execute([
-            ':firstname' => $user['firstname'],
-            ':lastname' => $user['lastname'],
-            ':username' => $user['username'],
-            ':phoneNumber' => $user['phoneNumber'],
-            ':email' => $user['email'],
-            ':birthdate' => $user['birthdate'],
-            ':pass' => $user['pass'],
-            ':admin' => $user['admin']
-        ]);
-    }
-
-    $sqlUpdate = "UPDATE  
-    users SET
+            WHERE id = :id;";
+    } else {
+        $sqlUpdate = "UPDATE  
+            users SET
             firstname = :firstname, 
             lastname = :lastname,
-            username = username, 
+            username = :username, 
             phoneNumber = :phoneNumber, 
             email = :email, 
             birthdate = :birthdate, 
-            pass = :pass, 
-            admin = :admin
-    WHERE id = :id;";
+            admin = :admin,
+            updated_at = NOW()
+            WHERE id = :id;";
+    }
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
-
-    return $PDOStatement->execute([
-            ':firstname' => $user['firstname'],
-            ':lastname' => $user['lastname'],
-            ':username' => $user['username'],
-            ':phoneNumber' => $user['phoneNumber'],
-            ':email' => $user['email'],
-            ':birthdate' => $user['birthdate'],
-            ':pass' => $user['pass'],
-            ':admin' => $user['admin']
-    ]);
+    return $PDOStatement->execute($params);
 }
+
 
 function updatePassword($user)
 {

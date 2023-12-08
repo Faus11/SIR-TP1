@@ -22,10 +22,11 @@ function validatedUser($req)
         $errors['email'] = 'The Email field cannot be empty and must have the email format, for example: nome@example.com.';
     }
 
-    if (getByEmail($req['email'])) {
-        $errors['email'] = 'Email already registered in our system.';
-        return ['invalid' => $errors];
-    }
+    $user = user(); 
+if (getByEmail($req['email'], $user['id'])) {
+    $errors['email'] = 'Email already registered in our system.';
+    return ['invalid' => $errors];
+}
 
     if (!empty($req['pass']) && strlen($req['pass']) < 6) {
         $errors['pass'] = 'The Password field cannot be empty and must be at least 6 characters long.';
