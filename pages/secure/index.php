@@ -15,7 +15,7 @@ $title = '- App';
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
         <div class="container-fluid py-5">
             <h1 class="display-5 fw-bold">Hello
-                <?= $user['name'] ?? null ?>!
+                <?= $user['firstname'] ?? null ?>!
             </h1>
             <p class="col-md-8 fs-4">Ready for today?</p>
             <div class="d-flex justify-content">
@@ -36,7 +36,7 @@ $title = '- App';
         </div>
 
         <?php
-        if (isAuthenticated() && $user['administrator']) {
+        if (isAuthenticated() && $user['admin']) {
             echo '<div class="col-md-6">
                     <div class="h-100 p-5 bg-body-tertiary border rounded-3">
                         <h2>Admin</h2>

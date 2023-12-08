@@ -31,10 +31,10 @@ function signUp($req)
 
             setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
             setcookie("firstname", $data['firstname'], time() + (60 * 60 * 24 * 30), "/");
-            header('location: /SIR-TP1/pages/public/teste.php');
+            header('location: /SIR-TP1/pages/secure/index.php');
         } else {
-            $_SESSION['errors'] = "Usuário criado, mas foi eliminado. Não é possível fazer login.";
-            header('location: /SIR-TP1/pages/public/teste.php');
+            $_SESSION['errors'] = "User criado, mas foi eliminado. Não é possível fazer login.";
+            header('location: /SIR-TP1/pages/secure/index.php');
         }
     }
 }

@@ -12,7 +12,7 @@ $user = user();
 </div>
 <main>
   <section class="py-4">
-    <a href="/crud/pages/secure/user/profile.php"><button type="button" class="btn btn-secondary px-5">Back</button></a>
+    <a href="/SIR-TP1/pages/secure/user/profile.php"><button type="button" class="btn btn-secondary px-5">Back</button></a>
   </section>
   <section>
     <?php
@@ -33,22 +33,22 @@ $user = user();
     ?>
   </section>
   <section>
-    <form action="/crud/controllers/admin/user.php" method="post" class="form-control py-3">
+    <form action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
       <div class="input-group mb-3">
         <span class="input-group-text">Name</span>
-        <input type="text" readonly class="form-control" name="name" placeholder="<?= $user['name'] ?>"
-          value="<?= $user['name'] ?>">
+        <input type="text" readonly class="form-control" name="firstname" placeholder="<?= $user['firstname'] ?>"
+          value="<?= $user['firstname'] ?>">
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text">Password</span>
-        <input type="password" class="form-control" name="password" maxlength="255" size="255" required>
+        <input type="password" class="form-control" name="pass" maxlength="255" size="255" required>
       </div>
       <div class="input-group mb-3">
         <span class="input-group-text">Confirm Password</span>
         <input type="password" class="form-control" name="confirm_password" maxlength="255" required>
       </div>
       <div class="d-grid col-4 mx-auto">
-        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="password">Change</button>
+        <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="pass">Change</button>
       </div>
     </form>
   </section>

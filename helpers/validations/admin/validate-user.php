@@ -35,7 +35,7 @@ function validatedUser($req)
         $errors['confirm_password'] = 'The Confirm Password field must not be empty and must be the same as the Password field.';
     }
 
-    $req['administrator'] = !empty($req['administrator']) == 'on' ? true : false;
+    $req['admin'] = !empty($req['admin']) == 'on' ? true : false;
 
     if (isset($errors)) {
         return ['invalid' => $errors];

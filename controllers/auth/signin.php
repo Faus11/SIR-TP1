@@ -28,7 +28,7 @@ function login($req)
     { 
         doLogin($data);
     } elseif ($user['deleted_at']) {
-        $_SESSION['errors'] = "Usuário deletado. Não é possível fazer login.";
+        $_SESSION['errors'] = "Usuário eliminado. Não é possível fazer login.";
         $params = '?' . http_build_query($req);
         header('location: /SIR-TP1/pages/public/signin.php' . $params);
     }
@@ -50,14 +50,22 @@ function checkErrors($data, $req)
 
 function doLogin($data)
 {
+ 
+    $isAdmin = $data['admin'];
+
     $_SESSION['id'] = $data['id'];
     $_SESSION['firstname'] = $data['firstname'];
 
     setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
     setcookie("firstname", $data['firstname'], time() + (60 * 60 * 24 * 30), "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/pages/public/teste.php';
-    header('Location: ' . $home_url);
+    if ($isAdmin) {
+        $admin_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/pages/secure/index.php';
+        header('Location: ' . $admin_url);
+    } else {
+        $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/pages/secure/index.php';
+        header('Location: ' . $home_url);
+    }
 }
 
 function logout()

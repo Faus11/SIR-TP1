@@ -101,7 +101,7 @@ function updateProfile($req)
         } else {
         $user = user(); 
         $data['id'] = $user['id'];
-        $data['administrator'] = $user['administrator'];
+        $data['admin'] = $user['admin'];
 
         $success = updateUser($data);
 
