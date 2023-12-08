@@ -29,9 +29,9 @@ function isPasswordValid($req)
 
         if (!$user) {
             $errors['email'] = 'Wrong email or password.';
-        }
-
-        if (!password_verify($req['pass'], $user['pass'])) {
+        } elseif ($user['deleted_at'] !== NULL) {
+            $errors['deleted'] = 'User is deleted.';
+        } elseif (!password_verify($req['pass'], $user['pass'])) {
             $errors['pass'] = 'Wrong email or password.';
         }
 

@@ -85,6 +85,15 @@ $user = user();
         <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Change</button>
       </div>
 
+      
+
+      <form action="/SIR-TP1/controllers/admin/user.php" method="post">
+  <input type="hidden" name="delete_user" value="true">
+  <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+  <button class="w-100 btn btn-lg btn-danger mb-2" type="submit" name="user" value="delete">Delete</button>
+</form>
+
+
     </form>
   </section>
 </main>

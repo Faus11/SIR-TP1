@@ -21,7 +21,16 @@ if (isset($_POST['user'])) {
     if ($_POST['user'] == 'pass') {
         changePassword($_POST);
     }
-}
+    if ($_POST['user'] == 'delete') {
+        delete_user($_POST);
+        if (isset($_POST['delete_user']) && $_POST['delete_user'] === 'true' && isset($_POST['user_id'])) {
+        $user_id = $_POST['user_id'];
+        delete_user(['id' => $user_id]);
+        header('Location: http://localhost/SIR-TP1/');
+    exit(); 
+    }
+    
+}}
 
 if (isset($_GET['user'])) {
     if ($_GET['user'] == 'update') {
@@ -33,7 +42,7 @@ if (isset($_GET['user'])) {
 
     if ($_GET['user'] == 'delete') {
         $user = getById($_GET['id']);
-        if ($user['administrator']) {
+        if ($user['admin']) {
             $_SESSION['errors'] = ['This user cannot be deleted!'];
             header('location: /SIR-TP1/pages/secure/admin/');
             return false;
@@ -133,6 +142,10 @@ function changePassword($req)
 
 function delete_user($user)
 {
-    $data = deleteUser($user['id']);
-    return $data;
+    if (isset($user['id'])) {
+        $data = deleteUser($user['id']);
+        return $data;
+    } else {
+        return false;
+    }
 }
