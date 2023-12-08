@@ -89,7 +89,7 @@ function updateUser($user)
             birthdate = :birthdate, 
             pass = :pass, 
             admin = :admin,
-            update_at = NOW()
+            updated_at = NOW()
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
@@ -140,7 +140,7 @@ function updatePassword($user)
         $sqlUpdate = "UPDATE  
         users SET 
             pass = :pass,
-            update_at = NOW()
+            updated_at = NOW()
         WHERE id = :id;";
 
         $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
