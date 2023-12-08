@@ -14,7 +14,9 @@ $title = '- App';
     </a>
 
     <div class="btn-group">
-      <button type="button" class="btn btn-danger btn-lg px-4">Logout</button>
+    <form action="../../controllers/auth/signin.php" method="post">
+                    <button class="btn btn-danger btn-lg px-4" type="submit" name="user" value="logout">Logout</button>
+                </form>
       <button type="button" class="btn btn-outline-light btn-lg px-5" data-bs-toggle="dropdown">
         Profile
       </button>
