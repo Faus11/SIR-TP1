@@ -4,6 +4,8 @@ require_once __DIR__ . '/../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../helpers/validations/admin/validate-user.php';
 require_once __DIR__ . '/../../helpers/validations/admin/validate-password.php';
 require_once __DIR__ . '/../../helpers/session.php';
+require_once __DIR__ . '/../../controllers/auth/signin.php';
+
 
 if (isset($_POST['user'])) {
     if ($_POST['user'] == 'create') {
@@ -144,8 +146,16 @@ function delete_user($user)
 {
     if (isset($user['id'])) {
         $data = deleteUser($user['id']);
+
+        // Verifica se a exclusão foi bem-sucedida antes de fazer o logout
+        if ($data) {
+            // Chama a função de logout após excluir o usuário com sucesso
+            logout();
+        }
+
         return $data;
     } else {
         return false;
     }
 }
+

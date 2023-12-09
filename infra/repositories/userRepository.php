@@ -13,6 +13,7 @@ function createUser($user)
         email, 
         birthdate, 
         pass, 
+        avatar,
         admin,
         created_at,
         updated_at) 
@@ -24,6 +25,7 @@ function createUser($user)
         :email, 
         :birthdate, 
         :pass, 
+        :avatar,
         :admin,
         :NOW(),
         :NOW()
@@ -169,6 +171,8 @@ function createNewUser($user)
 {
     $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
     $user['admin'] = false;
+    $user['created_at'] = date('Y-m-d H:i:s'); 
+
     $sqlCreate = "INSERT INTO 
     users (
         firstname,
@@ -178,7 +182,9 @@ function createNewUser($user)
         email,
         birthdate,
         pass, 
-        admin) 
+        admin,
+        created_at  
+    ) 
     VALUES (
         :firstname,
         :lastname,
@@ -187,7 +193,8 @@ function createNewUser($user)
         :email,
         :birthdate,
         :pass, 
-        :admin
+        :admin,
+        :created_at 
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
@@ -199,7 +206,8 @@ function createNewUser($user)
         ':email' => $user['email'],
         ':birthdate' => $user['birthdate'],
         ':pass' => $user['pass'],
-        ':admin' => $user['admin']
+        ':admin' => $user['admin'],
+        ':created_at' => $user['created_at']
     ]);
 
     if ($success) {
@@ -209,3 +217,4 @@ function createNewUser($user)
 
     return false;
 }
+
