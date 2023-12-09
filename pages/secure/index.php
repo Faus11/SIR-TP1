@@ -13,21 +13,13 @@ $title = '- App';
 
     
 
-    <div class="btn-group">
+<div class="btn-group">
     <form action="../../controllers/auth/signin.php" method="post">
         <button class="btn btn-danger btn-lg px-4" type="submit" name="user" value="logout">Logout</button>
     </form>
     <a href="/SIR-TP1/pages/secure/user/profile.php" class="btn btn-outline-light btn-lg px-5 mx-2">Change</a>
-    <div class="dropdown">
-        <button type="button" class="btn btn-outline-light btn-lg px-5 dropdown-toggle" data-bs-toggle="dropdown">
-            Profile
-        </button>
-        <ul class="dropdown-menu dropdown-menu-right">
-            <li><a class="dropdown-item" href="/SIR-TP1/pages/secure/user/profile.php">Change</a></li>
-           
-        </ul>
-    </div>
 </div>
+
 
 
   <div class="container">

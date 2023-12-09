@@ -69,9 +69,7 @@
                 </div>
             </div>
 
-            <div class="p-3">
-                <h2> Content Area </h2>
-            </div>
+            
 
         </div>
     </div>

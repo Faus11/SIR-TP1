@@ -15,6 +15,7 @@ $user = user();
     <div class="d-flex justify-content">
       <a href="/SIR-TP1/"><button type="button" class="btn btn-secondary px-5 me-2">Back</button></a>
       <a href="./password.php"><button class="btn btn-warning px-2 me-2">Change Password</button></a>
+      <a href="./password.php"><button class="btn btn-warning px-2 me-2">Upload avatar</button></a>
     </div>
   </section>
   <section>
