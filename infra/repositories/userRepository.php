@@ -5,31 +5,32 @@ function createUser($user)
 {
     $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
     $sqlCreate = "INSERT INTO 
-    users (
-        firstname,
-        lastname,
-        username, 
-        phoneNumber, 
-        email, 
-        birthdate, 
-        pass, 
-        avatar,
-        admin,
-        created_at,
-        updated_at) 
-    VALUES (
-        :firstname, 
-        :lastname,
-        :username 
-        :phoneNumber, 
-        :email, 
-        :birthdate, 
-        :pass, 
-        :avatar,
-        :admin,
-        :NOW(),
-        :NOW()
-    )";
+        users (
+            firstname,
+            lastname,
+            username, 
+            phoneNumber, 
+            email, 
+            birthdate, 
+            pass, 
+            avatar,
+            admin,
+            created_at,
+            updated_at
+        ) 
+        VALUES (
+            :firstname, 
+            :lastname,
+            :username,
+            :phoneNumber, 
+            :email, 
+            :birthdate, 
+            :pass, 
+            :avatar,
+            :admin,
+            NOW(),    
+            NOW()      
+        )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
 
@@ -41,6 +42,7 @@ function createUser($user)
         ':email' => $user['email'],
         ':birthdate' => $user['birthdate'],
         ':pass' => $user['pass'],
+        ':avatar' => $user['avatar'],
         ':admin' => $user['admin']
     ]);
 
@@ -49,6 +51,7 @@ function createUser($user)
     }
     return $success;
 }
+
 
 function getById($id)
 {

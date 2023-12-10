@@ -20,6 +20,10 @@ if (isset($_POST['user'])) {
         updateProfile($_POST);
     }
 
+    if ($_POST['user'] == 'update_user') {
+        updateUserbyADM($_POST);
+    }
+
     if ($_POST['user'] == 'pass') {
         changePassword($_POST);
     }
@@ -121,6 +125,30 @@ function updateProfile($req)
             $_SESSION['action'] = 'update';
             $params = '?' . http_build_query($data);
             header('location: /SIR-TP1/pages/secure/user/profile.php' . $params);
+        }
+    }
+}
+
+function updateUserbyADM($req)
+{
+    $data = validatedUser($req);
+
+    if (isset($data['invalid'])) {
+        $_SESSION['errors'] = $data['invalid'];
+        $params = '?' . http_build_query($req);
+        header('location: /SIR-TP1/pages/secure/admin/update_user.php' . $params);
+        } else {
+        $user = user(); 
+        $data['id'] = $user['id'];
+        $data['admin'] = $user['admin'];
+
+        $success = updateUser($data);
+
+        if ($success) {
+            $_SESSION['success'] = 'User successfully changed!';
+            $_SESSION['action'] = 'update';
+            $params = '?' . http_build_query($data);
+            header('location: /SIR-TP1/pages/secure/admin/update_user.php' . $params);
         }
     }
 }

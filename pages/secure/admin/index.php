@@ -42,7 +42,7 @@ $title = ' - Admin management';
         <table class="table">
           <thead class="table-secondary">
             <tr>
-              <th scope="col">Name</th>
+              <th scope="col">FirstName</th>
               <th scope="col">Lastname</th>
               <th scope="col">Phone Number</th>
               <th scope="col">Email</th>
@@ -56,7 +56,7 @@ $title = ' - Admin management';
               ?>
               <tr>
                 <th scope="row">
-                  <?= $user['name'] ?>
+                  <?= $user['firstname'] ?>
                 </th>
                 <td>
                   <?= $user['lastname'] ?>
@@ -68,13 +68,13 @@ $title = ' - Admin management';
                   <?= $user['email'] ?>
                 </td>
                 <td>
-                  <?= $user['administrator'] == '1' ? 'Yes' : 'No' ?>
+                  <?= $user['admin'] == '1' ? 'Yes' : 'No' ?>
                 </td>
                 <td>
                   <div class="d-flex justify-content">
-                    <a href="/crud/controllers/admin/user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
+                    <a href="/SIR-TP1/pages/secure/admin/update_user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
                         class="btn btn-primary me-2">update</button></a>
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal"
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
                       data-bs-target="#delete<?= $user['id'] ?>">delete</button>
                   </div>
                 </td>
@@ -92,7 +92,7 @@ $title = ' - Admin management';
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <a href="/crud/controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
+                      <a href="/SIR-TP1/controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
                           class="btn btn-danger">Confirm</button></a>
                     </div>
                   </div>
