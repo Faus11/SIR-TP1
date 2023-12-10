@@ -1,0 +1,72 @@
+body {
+    background: url('../../pages/assets/back.png');
+    background-size: cover;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+main {
+    margin-top: 80px;
+    /* Center the content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100% of the viewport height */
+    max-width: 800px; /* Set a fixed maximum width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navbar {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    background-color: rgba(0, 0, 0, 0.2) !important; /* Adjust the opacity if needed */
+    backdrop-filter: blur(6px); /* Add the blur effect */
+}
+
+.rounded-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20px; /* Increase the border-radius for a bigger rounded box */
+    padding: 40px; /* Adjust the padding for a bigger rounded box */
+    width: 80%; /* Ajuste a largura conforme necessário */
+    margin: 0 auto; /* Centralize a caixa horizontalmente */
+    margin-left: -10%; /* Ajuste o valor negativo para alargar para o lado esquerdo */
+}
+
+h2 {
+    color: #f39c12;
+}
+
+.btn-stream {
+    background-color: #f39c12;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.5s;
+    padding: 10px 20px;
+    margin-right: 10px;
+}
+
+.btn-stream:hover {
+    color: #565050;
+}
+
+.navbar-brand img {
+    height: 40px; /* Adjust the height as needed */
+    margin-right: 10px; /* Add some spacing between logo and text */
+}
+
+.navbar-nav {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-nav .nav-item {
+    margin-top: 0 !important;
+}
+
+.navbar-nav .btn-logout {
+    margin-top: 0 !important;
+}
+
+#logo {
+    width: 75px; 
+}
