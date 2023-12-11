@@ -1,15 +1,18 @@
 <?php
-    require_once __DIR__ . '/../../db/connection.php';
+// delete_user.php
 
-    if (isset($_GET['id'])) {
-    $id = $_GET['id'];
+require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
 
-    // Defina a data/hora atual como deleted_at
-    $stmt = $pdo->prepare("UPDATE users SET deleted_at = NOW() WHERE id = ?");
-    $stmt->execute([$id]);
-
-    // Redirecione de volta à página de usuários após a exclusão
-    header("Location: display-users.php?success=1");
-    exit();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['id'])) {
+        $id = $_POST['id'];
+        if (deleteUser($id)) {
+            // Redireciona para a página principal após a exclusão bem-sucedida
+            header('Location: index.php');
+            exit();
+        } else {
+            echo "Erro ao excluir o usuário.";
+        }
+    }
 }
 ?>

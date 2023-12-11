@@ -58,7 +58,7 @@ $title = ' - Admin management';
         }
 
         form {
-            padding: 20px;
+          
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(30px);
@@ -149,9 +149,11 @@ $title = ' - Admin management';
                                         <div class="d-flex justify-content">
                                             <a href="/SIR-TP1/pages/secure/admin/update_user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
                                                     class="btn btn-primary me-2">update</button></a>
-                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#delete<?= $user['id'] ?>">delete</button>
-                                        </div>
+                                                    <form method="POST" action="delete_user.php">
+    <input type="hidden" name="id" value="<?= $user['id'] ?>">
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta conta?')">Delete </button>
+</form>
+                                            </div>
                                     </td>
                                 </tr>
                                 <div class="modal fade" id="delete<?= $user['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
