@@ -1,95 +1,211 @@
 <?php
 require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
-require_once __DIR__ . '../../../templates/header.php';
+
 
 $title = ' - Content';
 ?>
 
-<main>
-  <section class="py-4">
-    <a href="./"><button type="button" class="btn btn-secondary px-5">Back</button></a>
-  </section>
-  <section>
-    <?php
-    if (isset($_SESSION['success'])) {
-      echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-      echo $_SESSION['success'] . '<br>';
-      echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-      unset($_SESSION['success']);
-    }
-    if (isset($_SESSION['errors'])) {
-      echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-      foreach ($_SESSION['errors'] as $error) {
-        echo $error . '<br>';
-      }
-      echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-      unset($_SESSION['errors']);
-    }
-    ?>
-  </section>
-  <section class="pb-4">
-  <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post" class="form-control py-3">
-    <div class="input-group mb-3">
-        <span class="input-group-text">Title</span>
-        <input type="text" class="form-control" name="title" maxlength="255" value="<?= isset($_REQUEST['title']) ? $_REQUEST['title'] : '' ?>" required>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">Image</span>
-        <input type="file" class="form-control" name="image" accept="image/*">
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $title ?></title>
+    <!-- Add your CSS styles here or link to an external stylesheet -->
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-    <div class="input-group mb-3">
-    <span class="input-group-text">Restricted</span>
-    <input type="text" class="form-control" name="restricted" maxlength="3" required
-        value="<?= isset($_REQUEST['restricted']) ? $_REQUEST['restricted'] : null ?>">
-</div>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            color: white;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
+        main {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">Seasons</span>
-        <input type="number" class="form-control" name="seasons" min="1" value="<?= isset($_REQUEST['seasons']) ? $_REQUEST['seasons'] : '' ?>">
-    </div>
+        section {
+            margin-bottom: 20px;
+        }
 
-    <div class="form-floating mb-2">
-        <textarea class="form-control" name="description" placeholder="Description" style="height: 100px;"><?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?></textarea>
-        <label for="description">Description</label>
-    </div>
+        .btn-secondary,
+        .btn-warning,
+        .btn-success,
+        .btn-danger {
+            margin-bottom: 10px;
+        }
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">Cast</span>
-        <input type="text" class="form-control" name="cast" value="<?= isset($_REQUEST['cast']) ? $_REQUEST['cast'] : '' ?>">
-    </div>
+        form {
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(30px);
+            background: transparent;
+        }
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">Release Date</span>
-        <input type="date" class="form-control" name="release_date" value="<?= isset($_REQUEST['release_date']) ? $_REQUEST['release_date'] : '' ?>">
-    </div>
+        input,
+        select {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background: transparent;
+            border: none;
+            outline: none;
+            border: 2px solid rgba(255, 255, 255, .2);
+            border-radius: 40px;
+            font-size: 16px;
+            color: #fff;
+        }
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">End Date</span>
-        <input type="date" class="form-control" name="end_date" value="<?= isset($_REQUEST['end_date']) ? $_REQUEST['end_date'] : '' ?>">
-    </div>
+        .btn {
+            cursor: pointer;
+            width: 100%;
+            height: 45px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            font-size: 16px;
+            font-weight: 600;
+        }
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">Category ID</span>
-        <input type="number" class="form-control" name="category_id" min="1" value="<?= isset($_REQUEST['category_id']) ? $_REQUEST['category_id'] : '' ?>">
-    </div>
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
 
-    <div class="input-group mb-3">
-        <span class="input-group-text">Format ID</span>
-        <input type="number" class="form-control" name="format_id" min="1" value="<?= isset($_REQUEST['format_id']) ? $_REQUEST['format_id'] : '' ?>">
-    </div>
+        .btn-success {
+            background-color: #e3c624;
+            color: #fff;
+        }
 
-    <div class="d-grid col-4 mx-auto">
-        <button type="submit" class="btn btn-success" name="content" value="create">Create Content</button>
-    </div>
-</form>
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
 
-  </section>
-</main>
+        .form-floating textarea {
+            height: 100px;
+        }
+        #logo {
+            width: 75px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
 
+<body>
+<a href="/SIR-TP1/pages/secure">
+        <img id="logo" src="../../pages/assets/image.png" alt="Logo">
+            </a>
+    <main>
+        <section>
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                }
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                unset($_SESSION['errors']);
+            }
+            ?>
+        </section>
+        <section class="pb-4">
+            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post" class="form-control py-3">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Title</span>
+                    <input type="text" class="form-control" name="title" maxlength="255" value="<?= isset($_REQUEST['title']) ? $_REQUEST['title'] : '' ?>" required>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Image</span>
+                    <input type="file" class="form-control" name="image" accept="image/*">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Restricted</span>
+                    <input type="text" class="form-control" name="restricted" maxlength="3" required
+                        value="<?= isset($_REQUEST['restricted']) ? $_REQUEST['restricted'] : null ?>">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Seasons</span>
+                    <input type="number" class="form-control" name="seasons" min="1" value="<?= isset($_REQUEST['seasons']) ? $_REQUEST['seasons'] : '' ?>">
+                </div>
+
+                <div class="form-floating mb-2">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" name="description" placeholder="Description" style="height: 100px;"><?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?></textarea>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Cast</span>
+                    <input type="text" class="form-control" name="cast" value="<?= isset($_REQUEST['cast']) ? $_REQUEST['cast'] : '' ?>">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Release Date</span>
+                    <input type="date" class="form-control" name="release_date" value="<?= isset($_REQUEST['release_date']) ? $_REQUEST['release_date'] : '' ?>">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">End Date</span>
+                    <input type="date" class="form-control" name="end_date" value="<?= isset($_REQUEST['end_date']) ? $_REQUEST['end_date'] : '' ?>">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Category ID</span>
+                    <input type="number" class="form-control" name="category_id" min="1" value="<?= isset($_REQUEST['category_id']) ? $_REQUEST['category_id'] : '' ?>">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Format ID</span>
+                    <input type="number" class="form-control" name="format_id" min="1" value="<?= isset($_REQUEST['format_id']) ? $_REQUEST['format_id'] : '' ?>">
+                </div>
+
+                <div class="d-grid col-4 mx-auto">
+                    <button type="submit" class="btn btn-success" name="content" value="create">Create Content</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+
+</html>
 <?php
-require_once __DIR__ . '../../../templates/footer.php';
 ?>

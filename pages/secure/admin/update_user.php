@@ -24,15 +24,105 @@ $id = $_GET['id'];
 $user = getById($id);
 ?>
 
-<form method="POST">
-    <input type="hidden" name="id" value="<?= $user['id'] ?>">
-    <label>First Name: <input type="text" name="firstname" value="<?= $user['firstname'] ?>"></label><br>
-    <label>Last Name: <input type="text" name="lastname" value="<?= $user['lastname'] ?>"></label><br>
-    <label>Username: <input type="text" name="username" value="<?= $user['username'] ?>"></label><br>
-    <label>Phone Number: <input type="text" name="phoneNumber" value="<?= $user['phoneNumber'] ?>"></label><br>
-    <label>Email: <input type="email" name="email" value="<?= $user['email'] ?>"></label><br>
-    <label>Birthdate: <input type="date" name="birthdate" value="<?= $user['birthdate'] ?>"></label><br>
-    <label>Admin: <input type="checkbox" name="admin" <?= $user['admin'] == '1' ? 'checked' : '' ?>></label><br>
-    <label>Password: <input type="password" name="pass"></label><br>
-    <input type="submit" value="Update">
-</form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Update</title>
+    <!-- Add your CSS styles here or link to an external stylesheet -->
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+            color: white;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        checkbox {
+            margin-top: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        #logo {
+            width: 75px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+    </style>
+</head>
+        <a href="/SIR-TP1/pages/secure/admin">
+            <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
+        </a>
+<body>
+    <form method="POST">
+        <input type="hidden" name="id" value="<?= $user['id'] ?>">
+        <label>First Name: <input type="text" name="firstname" value="<?= $user['firstname'] ?>"></label><br>
+        <label>Last Name: <input type="text" name="lastname" value="<?= $user['lastname'] ?>"></label><br>
+        <label>Username: <input type="text" name="username" value="<?= $user['username'] ?>"></label><br>
+        <label>Phone Number: <input type="text" name="phoneNumber" value="<?= $user['phoneNumber'] ?>"></label><br>
+        <label>Email: <input type="email" name="email" value="<?= $user['email'] ?>"></label><br>
+        <label>Birthdate: <input type="date" name="birthdate" value="<?= $user['birthdate'] ?>"></label><br>
+        <label>Admin: <input type="checkbox" name="admin" <?= $user['admin'] == '1' ? 'checked' : '' ?>></label><br>
+        <label>Password: <input type="password" name="pass"></label><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+</html>

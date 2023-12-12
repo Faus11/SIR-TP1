@@ -15,8 +15,8 @@ renderNavbar($user);
     <div class="row justify-content-center">
         <div class="col-md-14">
             <div class="rounded-box text-center mx-auto">
-                <h2 class="mb-4">Hello, <?= $user['username'] ?? null ?>!</h2>
-                <a href="#" class="btn btn-stream btn-lg px-4 mx-2">Start</a>
+                <h2 class="mb-4">Welcome, <?= $user['username'] ?? null ?>!</h2>
+                <h3> Let's get started!</h3>
             </div>
         </div>
     </div>

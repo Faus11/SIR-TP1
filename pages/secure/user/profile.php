@@ -190,7 +190,7 @@ $user = user();
 </head>
 
 <body>
-<a href="/SIR-TP1">
+<a href="/SIR-TP1/pages/secure">
         <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
             </a>
     <main>

@@ -20,6 +20,7 @@ $user = user();
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
+            color: white;
         }
 
         body {
@@ -36,10 +37,10 @@ $user = user();
         }
 
         main {
-            max-width: 800px;
+            max-width: 400px;
             margin: auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(0, 0, 0, 0.12);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
@@ -109,7 +110,7 @@ $user = user();
         }
 
         .btn-success {
-            background-color: #28a745;
+            background-color: #e3c624;
             color: #fff;
         }
 
@@ -138,13 +139,22 @@ $user = user();
             font-size: 24px;
             cursor: pointer;
         }
+
+        #logo {
+            width: 75px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
     </style>
 </head>
 <body>
+<a href="/SIR-TP1/pages/secure/user/profile.php">
+        <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
+            </a>
     <main>
-        <section class="py-4">
-            <span class="back-icon" onclick="history.go(-1)">&#8593;</span>
-        </section>
         <section>
             <?php
             if (isset($_SESSION['success'])) {

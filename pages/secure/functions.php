@@ -30,6 +30,9 @@ function renderNavbar($user) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+            <li class="nav-item">
+                        <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Content</a>
+                    </li>
                 <ul class="navbar-nav ms-auto">
                     <?php if (isAuthenticated()) { ?>
                         <?php if ($user['admin']) { ?>
@@ -38,9 +41,6 @@ function renderNavbar($user) {
                             </li>
                         <?php } ?>
                     <?php } ?>
-                    <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Content</a>
-                    </li>
                     <li class="nav-item">
                         <a href="/SIR-TP1/pages/secure/user/profile.php" class="btn btn-outline-light btn-lg px-4 mx-2">Change</a>
                     </li>
