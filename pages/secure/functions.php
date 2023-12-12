@@ -39,6 +39,9 @@ function renderNavbar($user) {
                         <?php } ?>
                     <?php } ?>
                     <li class="nav-item">
+                        <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Content</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/SIR-TP1/pages/secure/user/profile.php" class="btn btn-outline-light btn-lg px-4 mx-2">Change</a>
                     </li>
                     <li class="nav-item">

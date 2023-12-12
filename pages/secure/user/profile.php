@@ -7,6 +7,7 @@ $user = user();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,7 @@ $user = user();
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
+            color: white;
         }
 
         body {
@@ -36,16 +38,16 @@ $user = user();
         }
 
         main {
-            max-width: 800px;
+            max-width: 400px;
             margin: auto;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(0, 0, 0, 0.12);
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
 
-        section {
+        section {       
             margin-bottom: 20px;
         }
 
@@ -96,13 +98,8 @@ $user = user();
             color: #fff;
         }
 
-        .btn-warning {
-            background-color: #ffc107;
-            color: #212529;
-        }
-
         .btn-success {
-            background-color: #28a745;
+            background-color: #e3c624;
             color: #fff;
         }
 
@@ -140,16 +137,62 @@ $user = user();
             top: 20px;
             right: 20px;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Change to row to place buttons side by side */
             align-items: flex-end;
         }
 
         .top-right-buttons a {
-            margin-bottom: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .top-right-buttons .btn {
+            width: auto;
+            background-color: transparent;
+            border: 2px solid transparent;
+            border-radius: 20px; /* Adjust the border-radius for rounded corners */
+            transition: all 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        .top-right-buttons .btn:hover {
+            color: #000;
+            background-color: #f8f9fa; /* Change to your desired hover background color */
+            border-color: #fff; /* Set the border color to white */
+            backdrop-filter: blur(10px); /* Add blur effect on hover */
+        }
+
+        .btn-outline-light.btn-lg {
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: transparent;
+            border: 2px solid #fff; /* Set the border color to white */
+            border-radius: 20px; /* Adjust the border-radius for rounded corners */
+            transition: all 0.3s ease; /* Add a smooth transition effect */
+        }
+
+        .btn-outline-light.btn-lg:hover {
+            color: #000;
+            background-color: #f8f9fa; /* Change to your desired hover background color */
+            border-color: #fff; /* Set the border color to white */
+            backdrop-filter: blur(10px); /* Add blur effect on hover */
+        }
+
+        #logo {
+            width: 75px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
+
 <body>
+<a href="/SIR-TP1">
+        <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
+            </a>
     <main>
         <section>
             <?php
@@ -170,8 +213,7 @@ $user = user();
             ?>
         </section>
         <section>
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/admin/user.php" method="post"
-                class="form-control py-3">
+            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Username</span>
@@ -208,7 +250,7 @@ $user = user();
                     <input type="date" class="form-control" name="birthdate" maxlength="100"
                         value="<?= isset($_REQUEST['birthdate']) ? $_REQUEST['birthdate'] : $user['birthdate'] ?>" required>
                 </div>
-
+                
                 <!--
                 <div class="input-group mb-3">
                     <label for="avatar" class="form-label">Choose an avatar:</label>
@@ -229,13 +271,13 @@ $user = user();
         </section>
         <section class="py-4">
             <div class="top-right-buttons">
-                <a href="./password.php"><button class="btn btn-warning px-2 me-2">Change Password</button></a>
-                <a href="./password.php"><button class="btn btn-warning px-2 me-2">Upload avatar</button></a>
+                <a href="./password.php"><button class="btn-outline-light btn-lg px-4 mx-2">Change Password</button></a>
+                <a href="./password.php"><button class="btn-outline-light btn-lg px-4 mx-2">Upload avatar</button></a>
             </div>
-            <span class="back-icon" onclick="history.go(-1)">&#8592;</span>
         </section>
     </main>
 </body>
+
 </html>
 <?php
 ?>
