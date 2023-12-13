@@ -221,3 +221,14 @@ function createNewUser($user)
     return false;
 }
 
+function getCurrentUserId()
+{
+  
+    if (isset($_SESSION['user']['id'])) {
+        return $_SESSION['user']['id'];
+    }
+
+    return null;
+}
+
+

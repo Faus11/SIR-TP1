@@ -1,8 +1,7 @@
 <?php
-
-// index.php
-
 require_once 'functions.php';
+require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
+
 
 $user = user();
 $title = '- App';
@@ -20,6 +19,40 @@ renderNavbar($user);
             </div>
         </div>
     </div>
+
+    <?php
+   
+    if ($user) {
+   
+        $contents = getContentByUserId($user['id']);
+
+        
+        if ($contents) {
+            echo '<div class="row">';
+            
+           
+            foreach ($contents as $content) {
+                echo '<div class="col-md-4">';
+                echo '<div class="card">';
+                
+                echo '<div class="card-body">';
+                echo '<h5 class="card-title">' . $content['title'] . '</h5>';
+                echo '<p class="card-text">' . $content['description'] . '</p>';
+             
+                echo '</div>';
+                echo '</div>';
+                echo '</div>';
+            }
+            
+            echo '</div>';
+        } else {
+            echo '<p>No content available for this user.</p>';
+        }
+    } else {
+        echo '<p>User not logged in.</p>';
+    }
+    ?>
+
 </main>
 
 <?php

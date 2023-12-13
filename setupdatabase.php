@@ -79,10 +79,12 @@ $pdo->exec(
         created_at timestamp NULL DEFAULT NULL,
         updated_at timestamp NULL DEFAULT NULL,
         deleted_at timestamp NULL DEFAULT NULL,
-        category_id INTEGER UNSIGNED, -- Adicionando a coluna category_id
-        format_id INTEGER UNSIGNED, -- Adicionando a coluna format_id
+        category_id INTEGER UNSIGNED, 
+        format_id INTEGER UNSIGNED,
+        user_id INTEGER UNSIGNED,
         CONSTRAINT visual_content_category_id_foreign FOREIGN KEY (category_id) REFERENCES category_format(id),
-        CONSTRAINT visual_content_format_id_foreign FOREIGN KEY (format_id) REFERENCES content_format(id)
+        CONSTRAINT visual_content_format_id_foreign FOREIGN KEY (format_id) REFERENCES content_format(id),
+        CONSTRAINT visual_content_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id)
     );'
 );
 
@@ -248,7 +250,10 @@ $visualContent = [
     'updated_at' => date('Y-m-d H:i:s'),
     'deleted_at' => null,
     'category_id' => 1, 
-    'format_id' => 1 
+    'format_id' => 1,
+    'user_id' => 1,
+
+
 ];
 
 #INSERT VISUAL CONTENT
@@ -266,7 +271,8 @@ $sqlCreateVisualContent = "INSERT INTO
         updated_at,
         deleted_at,
         category_id,
-        format_id
+        format_id,
+        user_id
     ) 
     VALUES (
         :title, 
@@ -281,7 +287,8 @@ $sqlCreateVisualContent = "INSERT INTO
         :updated_at,
         :deleted_at,
         :category_id,
-        :format_id
+        :format_id,
+        :user_id
     )";
 
 #PREPARE QUERY
@@ -301,6 +308,9 @@ $successVisualContent = $PDOStatementVisualContent->execute([
     ':updated_at' => $visualContent['updated_at'],
     ':deleted_at' => $visualContent['deleted_at'],
     ':category_id' => $visualContent['category_id'],
-    ':format_id' => $visualContent['format_id']
+    ':format_id' => $visualContent['format_id'],
+    ':user_id' => $visualContent['user_id']
+
+
 ]);
 }

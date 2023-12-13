@@ -143,6 +143,7 @@ $title = ' - Content';
                 echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
                 unset($_SESSION['errors']);
             }
+            
             ?>
         </section>
         <section class="pb-4">
@@ -169,8 +170,8 @@ $title = ' - Content';
                 </div>
 
                 <div class="form-floating mb-2">
-                    <label for="description">Description</label>
-                    <textarea class="form-control" name="description" placeholder="Description" style="height: 100px;"><?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?></textarea>
+                    <label for="input-group-text">Description</label>
+                    <input class="form-control" name="description" placeholder="Description" style="height: 100px;"><?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?></input>
                 </div>
 
                 <div class="input-group mb-3">
@@ -198,7 +199,15 @@ $title = ' - Content';
                     <input type="number" class="form-control" name="format_id" min="1" value="<?= isset($_REQUEST['format_id']) ? $_REQUEST['format_id'] : '' ?>">
                 </div>
 
-                <div class="d-grid col-4 mx-auto">
+                <?php
+
+            if (isset($_SESSION['id'])) {
+                $user_id = $_SESSION['id'];
+            }
+            ?>
+            <input type="hidden" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly>
+
+                            <div class="d-grid col-4 mx-auto">
                     <button type="submit" class="btn btn-success" name="content" value="create">Create Content</button>
                 </div>
             </form>

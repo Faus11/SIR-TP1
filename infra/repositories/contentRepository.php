@@ -17,7 +17,8 @@ function createContent($visualContent)
         created_at,
         updated_at,
         category_id,
-        format_id
+        format_id,
+        user_id
     ) 
     VALUES (
         :title, 
@@ -31,7 +32,8 @@ function createContent($visualContent)
         NOW(),    
         NOW(),
         :category_id,
-        :format_id
+        :format_id,
+        :user_id
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
@@ -46,7 +48,9 @@ function createContent($visualContent)
         ':description' => $visualContent['description'],
         ':cast' => $visualContent['cast'],
         ':category_id' => $visualContent['category_id'],
-        ':format_id' => $visualContent['format_id']
+        ':format_id' => $visualContent['format_id'],
+        ':user_id' => $visualContent['user_id']
+
     ]);
 
     if ($success) {
@@ -77,6 +81,7 @@ function updateContent($visualContent)
         ':cast' => $visualContent['cast'],
         ':category_id' => $visualContent['category_id'],
         ':format_id' => $visualContent['format_id'],
+        ':user_id' => $visualContent['user_id'],
         ':id' => $visualContent['id']
     ];
 
@@ -93,7 +98,8 @@ function updateContent($visualContent)
             :cast = :cast,
             updated_at = NOW()    
             :category_id = :category_id,
-            :format_id = :format_id
+            :format_id = :format_id,
+            :user_id = :user_id,
             WHERE id = :id;";
         
 
@@ -130,7 +136,8 @@ function createNewContent($visualContent)
         cast,
         created_at,
         category_id,
-        format_id
+        format_id,
+        user_id
     ) 
     VALUES (
         :title, 
@@ -143,7 +150,8 @@ function createNewContent($visualContent)
         :cast,
         :created_at,
         :category_id,
-        :format_id
+        :format_id,
+        :user_id
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
@@ -159,12 +167,26 @@ function createNewContent($visualContent)
         ':cast' => $visualContent['cast'],
         ':created_at' => $visualContent['created_at'],
         ':category_id' => $visualContent['category_id'],
-        ':format_id' => $visualContent['format_id']
+        ':format_id' => $visualContent['format_id'],
+        ':user_id' => $visualContent['user_id']
     ]);
 
     if ($success) {
         $visualContent['id'] = $GLOBALS['pdo']->lastInsertId();
     }
     return $success;
-
 }
+function getContentByUserId($userId)
+{
+    $sql = "SELECT * FROM visual_content WHERE user_id = :user_id";
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+    $PDOStatement->execute([':user_id' => $userId]);
+
+    $visualContent = [];
+    while ($content = $PDOStatement->fetch()) {
+        $visualContent[] = $content;
+    }
+
+    return $visualContent;
+}
+
