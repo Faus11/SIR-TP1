@@ -166,15 +166,15 @@ $success = $PDOStatement->execute([
 
 
 
-# DEFAULT DATA TO ADD TO content_format
-$contentFormat = [
-    'name' => 'TV Show', 
-    'created_at' => date('Y-m-d H:i:s'),
-    'updated_at' => date('Y-m-d H:i:s'),
-    'deleted_at' => null 
+$contentFormats = [
+    ['name' => 'TV Show'],
+    ['name' => 'Movie'],
+    ['name' => 'Documentary'],
+    ['name' => 'Short Film'],
+    ['name' => 'Series']
+    
 ];
 
-# INSERT INTO content_format
 $sqlCreateContentFormat = "INSERT INTO 
     content_format (
         name, 
@@ -189,26 +189,37 @@ $sqlCreateContentFormat = "INSERT INTO
         :deleted_at
     )";
 
-# PREPARE QUERY
 $PDOStatementContentFormat = $GLOBALS['pdo']->prepare($sqlCreateContentFormat);
 
-# EXECUTE
-$successContentFormat = $PDOStatementContentFormat->execute([
-    ':name' => $contentFormat['name'],
-    ':created_at' => $contentFormat['created_at'],
-    ':updated_at' => $contentFormat['updated_at'],
-    ':deleted_at' => $contentFormat['deleted_at']
-]);
+foreach ($contentFormats as $format) {
+    $format['created_at'] = date('Y-m-d H:i:s');
+    $format['updated_at'] = date('Y-m-d H:i:s');
+    $format['deleted_at'] = null;
 
-# DEFAULT DATA TO ADD TO category_format
-$categoryFormat = [
-    'name' => 'Drama', // Replace with the desired category format name
-    'created_at' => date('Y-m-d H:i:s'),
-    'updated_at' => date('Y-m-d H:i:s'),
-    'deleted_at' => null 
+    $successContentFormat = $PDOStatementContentFormat->execute([
+        ':name' => $format['name'],
+        ':created_at' => $format['created_at'],
+        ':updated_at' => $format['updated_at'],
+        ':deleted_at' => $format['deleted_at']
+    ]);
+}
+
+
+$categoryFormats = [
+    ['name' => 'Drama'],
+    ['name' => 'Romance'],
+    ['name' => 'Action'],
+    ['name' => 'Comedy'],
+    ['name' => 'Adventure'],
+    ['name' => 'Terror'],
+    ['name' => 'Science Fiction'],
+    ['name' => 'Crime'],
+    ['name' => 'Animation'],
+    ['name' => 'Thriller'],
+    ['name' => 'Supernatural'],
+    ['name' => 'Sports']
 ];
 
-# INSERT INTO category_format
 $sqlCreateCategoryFormat = "INSERT INTO 
     category_format (
         name, 
@@ -223,16 +234,20 @@ $sqlCreateCategoryFormat = "INSERT INTO
         :deleted_at
     )";
 
-# PREPARE QUERY
 $PDOStatementCategoryFormat = $GLOBALS['pdo']->prepare($sqlCreateCategoryFormat);
 
-# EXECUTE
-$successCategoryFormat = $PDOStatementCategoryFormat->execute([
-    ':name' => $categoryFormat['name'],
-    ':created_at' => $categoryFormat['created_at'],
-    ':updated_at' => $categoryFormat['updated_at'],
-    ':deleted_at' => $categoryFormat['deleted_at']
-]);
+foreach ($categoryFormats as $category) {
+    $category['created_at'] = date('Y-m-d H:i:s');
+    $category['updated_at'] = date('Y-m-d H:i:s');
+    $category['deleted_at'] = null;
+
+    $successCategoryFormat = $PDOStatementCategoryFormat->execute([
+        ':name' => $category['name'],
+        ':created_at' => $category['created_at'],
+        ':updated_at' => $category['updated_at'],
+        ':deleted_at' => $category['deleted_at']
+    ]);
+}
 
 
 

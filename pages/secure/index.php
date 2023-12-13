@@ -21,37 +21,37 @@ renderNavbar($user);
     </div>
 
     <?php
-   
-    if ($user) {
-   
-        $contents = getContentByUserId($user['id']);
+if ($user) {
+    $contents = getContentByUserId($user['id']);
 
-        
-        if ($contents) {
-            echo '<div class="row">';
+    if ($contents) {
+        echo '<div class="card" style="background-color: black; color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); transition: 0.3s;">';
+        echo '<div class="container" style="padding: 2px 16px;">';
+        echo '<h4><b>User Content</b></h4>';
+
+        foreach ($contents as $content) {
+            echo '<div class="col-md-4">';
+            echo '<div class="card mb-3" style="background-color: black; color: white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); transition: 0.3s;">';
             
-           
-            foreach ($contents as $content) {
-                echo '<div class="col-md-4">';
-                echo '<div class="card">';
-                
-                echo '<div class="card-body">';
-                echo '<h5 class="card-title">' . $content['title'] . '</h5>';
-                echo '<p class="card-text">' . $content['description'] . '</p>';
-             
-                echo '</div>';
-                echo '</div>';
-                echo '</div>';
-            }
-            
+            echo '<div class="container" style="padding: 2px 16px;">';
+            echo '<h4><b>' . $content['title'] . '</b></h4>';
+            echo '<p>' . $content['description'] . '</p>';
+         
             echo '</div>';
-        } else {
-            echo '<p>No content available for this user.</p>';
+            echo '</div>';
+            echo '</div>';
         }
+        
+        echo '</div>';
+        echo '</div>';
     } else {
-        echo '<p>User not logged in.</p>';
+        echo '<p>No content available for this user.</p>';
     }
-    ?>
+} else {
+    echo '<p>User not logged in.</p>';
+}
+?>
+
 
 </main>
 

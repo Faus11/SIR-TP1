@@ -190,14 +190,33 @@ $title = ' - Content';
                 </div>
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text">Category ID</span>
-                    <input type="number" class="form-control" name="category_id" min="1" value="<?= isset($_REQUEST['category_id']) ? $_REQUEST['category_id'] : '' ?>">
-                </div>
+            <label for="category">Category</label>
+            <select class="form-select" name="category_id">
+                <option value="1">Drama</option>
+                <option value="2">Romance</option>
+                <option value="3">Action</option>
+                <option value="4">Comedy</option>
+                <option value="5">Adventure</option>
+                <option value="6">Terror</option>
+                <option value="7">Science Fiction</option>
+                <option value="8">Crime</option>
+                <option value="9">Animation</option>
+                <option value="10">Thriller</option>
+                <option value="11">Supernatural</option>
+                <option value="12">Sports</option>
+              </select>
+              </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Format ID</span>
-                    <input type="number" class="form-control" name="format_id" min="1" value="<?= isset($_REQUEST['format_id']) ? $_REQUEST['format_id'] : '' ?>">
-                </div>
+              <div class="input-group mb-3">
+            <label for="category">Format</label>
+            <select class="form-select" name="format_id">
+                <option value="1">TV Show</option>
+                <option value="2">Movie</option>
+                <option value="3">Documentary</option>
+                <option value="4">Short Film</option>
+                <option value="5">Series</option>
+              </select>
+              </div>
 
                 <?php
 

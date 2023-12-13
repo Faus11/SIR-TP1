@@ -2,6 +2,7 @@
 require_once __DIR__ . '../../db/connection.php';
 
 function createContent($visualContent)
+
 {
     
     $sqlCreate = "INSERT INTO 
@@ -37,6 +38,7 @@ function createContent($visualContent)
     )";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
+    
 
     $success= $PDOStatement->execute([
         ':title' => $visualContent['title'],
