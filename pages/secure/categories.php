@@ -33,49 +33,31 @@ renderNavbar($user);
 $allCategories = getAllCategories();
 
 if ($allCategories) {
-    foreach ($allCategories as $category) {
-      $category_id = $category['id'];
-      $categoryName = $category['name'];
+  foreach ($allCategories as $category) {
+    $category_id = $category['id'];
+    $categoryName = $category['name'];
 
-      $contentByCategory = getContentByUserIdAndCategory($user['id']);
+   
+    $categoryLink = "category.php?category_id=$category_id"; 
 
-      echo '<div class="col-md-4 mb-4">';
-      echo '<div class="card" style="width: 18rem;" onclick="toggleContent(' . $category_id . ')">';
-      echo '<div class="card-body">';
-      echo "<h5 class='card-title'>$categoryName</h5>";
-      echo '</div>';
-      echo '</div>';
-
-      echo "<div class='content-list mt-3' id='category_$category_id' style='display: none;'>";
-
-      $hasContent = false;
-      if ($contentByCategory && isset($contentByCategory[$category_id])) {
-        foreach ($contentByCategory[$category_id] as $content) {
-          $hasContent = true;
-          echo '<div class="card mt-2">';
-          echo '<div class="card-body">';
-          echo '<h5 class="card-title"><b>' . $content['title'] . '</b></h5>';
-          echo '<p class="card-text">' . $content['description'] . '</p>';
-          echo '</div>';
-          echo '</div>';
-        }
-      }
-
-      if (!$hasContent) {
-        echo "<p class='mt-2'>No content available for this category.</p>";
-      }
-
-      echo '</div>';
-      echo '</div>';
-    }
-  } else {
-    echo '<p>No categories found.</p>';
+    echo '<div class="col-md-4 mb-4">';
+    echo '<div class="card" style="width: 18rem;height: 12rem;">';
+    echo '<img class="card-img-top" src="..." alt="Card image cap">'; // Insira a URL da imagem desejada
+    echo '<div class="card-body">';
+    echo "<h5 class='card-title text-dark'>$categoryName</h5>"; // Adicionando a classe text-dark para tornar o texto preto
+    echo '<p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'; // Adicionando a classe text-dark para tornar o texto preto
+    echo "<a href='$categoryLink' class='btn btn-primary link-no-underline'>Go somewhere</a>"; // Adicionando uma classe personalizada para os links
+    echo '</div>';
+    echo '</div>';
+    echo '</div>';
   }
-  ?>
+  echo '</div>'; 
+} else {
+  echo '<p>No categories found.</p>';
+}
+?>
 </div>
 </main>
-
-<script src="js/script.js"></script>
 
 <?php
 
