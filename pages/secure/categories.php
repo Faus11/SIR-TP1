@@ -41,11 +41,11 @@ if ($allCategories) {
     $categoryLink = "category.php?category_id=$category_id"; 
 
     echo '<div class="col-md-4 mb-4">';
-    echo '<div class="card" style="width: 18rem;height: 12rem;">';
+    echo '<div class="card" style="width: 13rem;height=8rem">';
     echo '<img class="card-img-top" src="..." alt="Card image cap">'; // Insira a URL da imagem desejada
     echo '<div class="card-body">';
     echo "<h5 class='card-title text-dark'>$categoryName</h5>"; // Adicionando a classe text-dark para tornar o texto preto
-    echo '<p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card\'s content.</p>'; // Adicionando a classe text-dark para tornar o texto preto
+    echo '<p class="card-text text-dark">nao</p>'; // Adicionando a classe text-dark para tornar o texto preto
     echo "<a href='$categoryLink' class='btn btn-primary link-no-underline'>Go somewhere</a>"; // Adicionando uma classe personalizada para os links
     echo '</div>';
     echo '</div>';
