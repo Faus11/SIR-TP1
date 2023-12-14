@@ -192,3 +192,43 @@ function getContentByUserId($userId)
     return $visualContent;
 }
 
+function getContentByUserIdAndCategory($userId)
+{
+    $sql = "SELECT * FROM visual_content WHERE user_id = :user_id";
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+    $PDOStatement->execute([':user_id' => $userId]);
+
+    $visualContentByCategory = [];
+    while ($content = $PDOStatement->fetch()) {
+        $category_id = $content['category_id'];
+        if (!isset($visualContentByCategory[$category_id])) {
+            $visualContentByCategory[$category_id] = [];
+        }
+        $visualContentByCategory[$category_id][] = $content;
+    }
+
+    return $visualContentByCategory;
+}
+function getCategoryNameById($categoryId) {
+    
+    $categories = [
+        1 => 'Drama',
+        2 => 'Romance',
+        3 => 'Action',
+        4 => 'Comedy',
+        5 => 'Adventure',
+        6 => 'Terror',
+        7 => 'Science Fiction',
+        8 => 'Crime',
+        9 => 'Animation',
+        10 => 'Thriller',
+        11 => 'Spernatural',
+        12 => 'Sports',
+        
+      
+    ];
+
+   
+    return $categories[$categoryId] ?? 'Unknown';
+}
+
