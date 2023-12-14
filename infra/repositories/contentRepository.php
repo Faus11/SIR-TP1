@@ -5,6 +5,7 @@ function createContent($visualContent)
 
 {
     
+    
     $sqlCreate = "INSERT INTO 
          visual_content (
         title, 
@@ -231,4 +232,14 @@ function getCategoryNameById($categoryId) {
    
     return $categories[$categoryId] ?? 'Unknown';
 }
+
+function getInfoByIdContent($contentId)
+{
+    $sql = "SELECT * FROM visual_content WHERE id = :content_id";
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+    $PDOStatement->execute([':content_id' => $contentId]);
+
+    return $PDOStatement->fetch();
+}
+
 

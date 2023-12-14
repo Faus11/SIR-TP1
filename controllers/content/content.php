@@ -22,14 +22,15 @@ if (isset($_POST['content'])) {
 function create($data)
 {
 
-
     $success = createContent($data);
-     if ($success) {
-         $_SESSION['success'] = 'Conteúdo criado com sucesso!';
-         header('location: /SIR-TP1/pages/secure/content.php');
-     } else {
-         $_SESSION['errors'] = ['Erro ao criar conteúdo'];
-         header('location: /SIR-TP1/pages/secure/content.php');
+    
+
+    if ($success) {
+        $_SESSION['success'] = 'Conteúdo criado com sucesso!';
+        header('location: /SIR-TP1/pages/secure/content.php');
+    } else {
+        $_SESSION['errors'] = ['Erro ao criar conteúdo'];
+        header('location: /SIR-TP1/pages/secure/content.php');
     }
 }
 

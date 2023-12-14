@@ -20,22 +20,7 @@ renderNavbar($user);
     </div>
 
     <?php
-    if ($user) {
-        $contents = getContentByUserId($user['id']);
-
-        if ($contents) {
-            foreach ($contents as $content) {
-                echo '<div class="content">
-                        <h3><b>' . $content['title'] . '</b></h3>
-                        <p>' . $content['description'] . '</p>
-                    </div>';
-            }
-        } else {
-            echo '<p class="no-content">No content available for this user.</p>';
-        }
-    } else {
-        echo '<p class="not-logged-in">User not logged in.</p>';
-    }
+   
     ?>
 </main>
 

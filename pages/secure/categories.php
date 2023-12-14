@@ -42,7 +42,6 @@ if ($allCategories) {
 
     echo '<div class="col-md-4 mb-4">';
     echo '<div class="card" style="width: 13rem;height=8rem">';
-    echo '<img class="card-img-top" src="..." alt="Card image cap">'; // Insira a URL da imagem desejada
     echo '<div class="card-body">';
     echo "<h5 class='card-title text-dark'>$categoryName</h5>"; // Adicionando a classe text-dark para tornar o texto preto
     echo '<p class="card-text text-dark">nao</p>'; // Adicionando a classe text-dark para tornar o texto preto
