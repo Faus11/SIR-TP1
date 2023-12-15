@@ -4,9 +4,9 @@ require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../controllers/content/content.php';
 
 $user = user();
+$userId = $user['id']; 
+$contents = getContentByUserId($userId);
 
-
-$contents = getAllContent(); 
 
 $events = [];
 foreach ($contents as $content) {
