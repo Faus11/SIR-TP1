@@ -184,10 +184,6 @@ $title = ' - Content';
                     <input type="date" class="form-control" name="release_date" value="<?= isset($_REQUEST['release_date']) ? $_REQUEST['release_date'] : '' ?>">
                 </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">End Date</span>
-                    <input type="date" class="form-control" name="end_date" value="<?= isset($_REQUEST['end_date']) ? $_REQUEST['end_date'] : '' ?>">
-                </div>
 
                 <div class="input-group mb-3">
             <label for="category">Category</label>

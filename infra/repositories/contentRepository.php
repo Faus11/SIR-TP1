@@ -233,9 +233,9 @@ function getCategoryNameById($categoryId) {
 
 function getInfoByIdContent($contentId)
 {
-    $sql = "SELECT * FROM visual_content WHERE id = :content_id";
+    $sql = "SELECT * FROM visual_content WHERE id = :id";
     $PDOStatement = $GLOBALS['pdo']->prepare($sql);
-    $PDOStatement->execute([':content_id' => $contentId]);
+    $PDOStatement->execute([':id' => $contentId]);
 
     return $PDOStatement->fetch();
 }
@@ -246,6 +246,23 @@ function getByIdContent($contentId)
     $PDOStatement->bindValue(1, $contentId, PDO::PARAM_INT); 
     $PDOStatement->execute();
     return $PDOStatement->fetch();
+}
+
+function insertEndDate($contentId, $endDate)
+{
+    $checkSql = "SELECT COUNT(*) AS count FROM visual_content WHERE id = :id AND end_date IS NULL";
+    $checkStatement = $GLOBALS['pdo']->prepare($checkSql);
+    $checkStatement->execute([':id' => $contentId]);
+    $result = $checkStatement->fetch(PDO::FETCH_ASSOC);
+
+    if ($result['count'] > 0) {
+        $sql = "UPDATE visual_content SET end_date = :end_date WHERE id = :id";
+        $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+        $success = $PDOStatement->execute([':end_date' => $endDate, ':id' => $contentId]);
+        return $success;
+    }
+
+    return false; 
 }
 
 

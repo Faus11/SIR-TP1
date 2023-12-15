@@ -73,7 +73,7 @@ $pdo->exec(
         image longblob NULL,
         seasons INTEGER, 
         release_date date, 
-        end_date date, 
+        end_date date NULL, 
         description varchar(200),
         cast varchar(200),
         created_at timestamp NULL DEFAULT NULL,

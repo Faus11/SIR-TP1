@@ -16,7 +16,10 @@ if (isset($_POST['content'])) {
     if ($_POST['content'] == 'delete') {
         delete($_POST);
     }
-  
+    if ($_POST['content'] == 'add_date') {
+        addEndDate($_POST); 
+    }
+   
 }
 
 function create($data)
@@ -66,3 +69,22 @@ function delete($data)
          header('location: /SIR-TP1/pages/secure/content.php');
      }
 }
+function addEndDate($data)
+{
+    $contentId = $_POST['id']; 
+
+    $endDate = $data['end_date']; 
+
+    $success = insertEndDate($contentId, $endDate);
+
+    if ($success) {
+        $_SESSION['success'] = 'Data de término adicionada com sucesso!';
+    } else {
+        $_SESSION['errors'] = ['Erro ao adicionar a data de término.'];
+    }
+
+    header('location: /SIR-TP1/pages/secure/content.php');
+}
+
+
+
