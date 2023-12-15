@@ -10,13 +10,14 @@ renderNavbar($user);
 
 $category_id = $_GET['category_id'] ?? null;
 
-
+ echo '  <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post" ">';
 if (!is_numeric($category_id)) {
   echo 'Invalid category ID.';
 } else {
 
   $contentByCategory = getContentByUserIdAndCategory($user['id']);
-
+ 
+  echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">';
   echo '<div class="container d-flex justify-content-center align-items-center vh-100">';
   echo '<div class="row">';
   
@@ -39,16 +40,20 @@ if (!is_numeric($category_id)) {
   
         echo '<br>';
   
-        echo '<button type="submit" class="btn btn-danger btn-block">Delete</button>';
+        echo '<form action="/SIR-TP1/controllers/content/content.php" method="post">';
+        echo '<input type="hidden" name="id" value="' . $contentId . '">';
+        echo '<button type="submit" class="btn btn-danger btn-block" name="content" value="delete">Delete</button>';
+        echo '</form>';
   
         echo '<br>';
   
-        echo '<a href="updateContent.php?content_id=' . $contentId . '" class="btn btn-info btn-block">Update</a>';
+        echo '<a href="updateContent.php?id=' . $contentId . '" class="btn btn-info btn-block">Update</a>';
 
-        echo '</div>'; // Close d-flex
-        echo '</div>'; // Close card-body
-        echo '</div>'; // Close card
-        echo '</div>'; // Close col-md-7
+        echo '</div>'; 
+        echo '</div>'; 
+        echo '</div>'; 
+        echo '</div>'; 
+        echo '</form>';
   
   }
   

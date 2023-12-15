@@ -109,19 +109,18 @@ function updateContent($visualContent)
     return $PDOStatement->execute($params);
 }
 
-function deleteContent($id)
+function deleteContent($contentId)
 {
-    $sqlUpdate = "UPDATE
-        visual_content SET
-            deleted_at = NOW()
-        WHERE id = :id;";
+    $sqlDelete = "DELETE FROM visual_content WHERE id = :id";
 
-    $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
+    $PDOStatement = $GLOBALS['pdo']->prepare($sqlDelete);
 
     return $PDOStatement->execute([
-        ':id' => $id,
+        ':id' => $contentId, 
     ]);
 }
+
+
 function createNewContent($visualContent)
 {
     $user['created_at'] = date('Y-m-d H:i:s'); 
@@ -238,6 +237,14 @@ function getInfoByIdContent($contentId)
     $PDOStatement = $GLOBALS['pdo']->prepare($sql);
     $PDOStatement->execute([':content_id' => $contentId]);
 
+    return $PDOStatement->fetch();
+}
+
+function getByIdContent($contentId)
+{
+    $PDOStatement = $GLOBALS['pdo']->prepare('SELECT * FROM visual_content WHERE id = ?;');
+    $PDOStatement->bindValue(1, $contentId, PDO::PARAM_INT); 
+    $PDOStatement->execute();
     return $PDOStatement->fetch();
 }
 

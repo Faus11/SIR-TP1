@@ -1,10 +1,37 @@
 <?php
-require_once __DIR__ . '../../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
+require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
+require_once __DIR__ . '/../../templates/header.php'; 
 
 
-$title = ' - Content';
-?>
+
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+   
+         $visualContent = [
+            'id' => $_POST['id'],
+            'title' => $_POST['title'],
+            'restricted' => $_POST['restricted'],
+            'image' => $_FILES['image']['name'],
+            'seasons' => $_POST['seasons'],
+            'release_date' => $_POST['release_date'],
+            'end_date' => $_POST['end_date'],
+            'description' => $_POST['description'],
+            'cast' => $_POST['cast'],
+            'category_id' => $_POST['category_id'],
+            'format_id' => $_POST['format_id'],
+            'user_id' => $_POST['user_id']
+        ];
+        
+        updateContent($visualContent);
+        header('Location: ./index.php');
+        exit();
+    }
+
+    $contentId = $_GET['id'];
+    $visualContent = getByIdContent($contentId);
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,230 +39,75 @@ $title = ' - Content';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
+    <title>User Update</title>
     <!-- Add your CSS styles here or link to an external stylesheet -->
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-            color: white;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        main {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.12);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        section {
-            margin-bottom: 20px;
-        }
-
-        .btn-secondary,
-        .btn-warning,
-        .btn-success,
-        .btn-danger {
-            margin-bottom: 10px;
-        }
-
-        form {
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(30px);
-            background: transparent;
-        }
-
-        input,
-        select {
-            margin-bottom: 10px;
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            background: transparent;
-            border: none;
-            outline: none;
-            border: 2px solid rgba(255, 255, 255, .2);
-            border-radius: 40px;
-            font-size: 16px;
-            color: #fff;
-        }
-
-        .btn {
-            cursor: pointer;
-            width: 100%;
-            height: 45px;
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .btn-secondary {
-            background-color: #6c757d;
-            color: #fff;
-        }
-
-        .btn-success {
-            background-color: #e3c624;
-            color: #fff;
-        }
-
-        .btn-danger {
-            background-color: #dc3545;
-            color: #fff;
-        }
-
-        .form-floating textarea {
-            height: 100px;
-        }
-        #logo {
-            width: 75px;
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            opacity: 1;
-            transition: opacity 0.3s ease-in-out;
-        }
-    </style>
 </head>
-
+        
 <body>
-<a href="/SIR-TP1/pages/secure">
-        <img id="logo" src="../../pages/assets/image.png" alt="Logo">
-            </a>
-    <main>
-        <section>
+    <form method="POST">
+    <input type="hidden" name="id" value="<?= $visualContent['id'] ?>">
+    <label>Title: <input type="text" name="title" value="<?= $visualContent['title'] ?>"></label><br>
+    <label>Restricted: <input type="text" name="restricted" value="<?= $visualContent['restricted'] ?>"></label><br>
+    <label>Image: <input type="file" name="image"></label><br>
+    <label>Seasons: <input type="text" name="seasons" value="<?= $visualContent['seasons'] ?>"></label><br>
+    <label>Release Date: <input type="date" name="release_date" value="<?= $visualContent['release_date'] ?>"></label><br>
+    <label>End Date: <input type="date" name="end_date" value="<?= $visualContent['end_date'] ?>"></label><br>
+    <label>Description: <input type="text" name="description" value="<?= $visualContent['description'] ?>"></label><br>
+    <label>Cast: <input type="text" name="cast" value="<?= $visualContent['cast'] ?>"></label><br>
+    <label>Category: 
+        <select name="category_id">
             <?php
-            if (isset($_SESSION['success'])) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                echo $_SESSION['success'] . '<br>';
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                unset($_SESSION['success']);
-            }
-            if (isset($_SESSION['errors'])) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                foreach ($_SESSION['errors'] as $error) {
-                    echo $error . '<br>';
-                }
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                unset($_SESSION['errors']);
-            }
+          $categories = [
+            1 => 'Drama',
+            2 => 'Romance',
+            3 => 'Action',
+            4 => 'Comedy',
+            5 => 'Adventure',
+            6 => 'Terror',
+            7 => 'Science Fiction',
+            8 => 'Crime',
+            9 => 'Animation',
+            10 => 'Thriller',
+            11 => 'Supernatural',
+            12 => 'Sports',
+           
+        ];
             
-            ?>
-        </section>
-        <section class="pb-4">
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post" class="form-control py-3">
-            <input type="text" name="id" value="<?php echo $visualContent['id']; ?>">
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Title</span>
-                    <input type="text" class="form-control" name="title" maxlength="255" value="<?= isset($_REQUEST['title']) ? $visualContent['title'] : '' ?>" required>
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Image</span>
-                    <input type="file" class="form-control" name="image" accept="image/*">
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Restricted</span>
-                    <input type="text" class="form-control" name="restricted" maxlength="3" required
-                        value="<?= isset($_REQUEST['restricted']) ? $_REQUEST['restricted'] : null ?>">
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Seasons</span>
-                    <input type="number" class="form-control" name="seasons" min="1" value="<?= isset($_REQUEST['seasons']) ? $_REQUEST['seasons'] : '' ?>">
-                </div>
-
-                <div class="form-floating mb-2">
-                    <label for="input-group-text">Description</label>
-                    <input class="form-control" name="description" placeholder="Description" style="height: 100px;"><?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?></input>
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Cast</span>
-                    <input type="text" class="form-control" name="cast" value="<?= isset($_REQUEST['cast']) ? $_REQUEST['cast'] : '' ?>">
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Release Date</span>
-                    <input type="date" class="form-control" name="release_date" value="<?= isset($_REQUEST['release_date']) ? $_REQUEST['release_date'] : '' ?>">
-                </div>
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">End Date</span>
-                    <input type="date" class="form-control" name="end_date" value="<?= isset($_REQUEST['end_date']) ? $_REQUEST['end_date'] : '' ?>">
-                </div>
-
-                <div class="input-group mb-3">
-            <label for="category">Category</label>
-            <select class="form-select" name="category_id">
-                <option value="1">Drama</option>
-                <option value="2">Romance</option>
-                <option value="3">Action</option>
-                <option value="4">Comedy</option>
-                <option value="5">Adventure</option>
-                <option value="6">Terror</option>
-                <option value="7">Science Fiction</option>
-                <option value="8">Crime</option>
-                <option value="9">Animation</option>
-                <option value="10">Thriller</option>
-                <option value="11">Supernatural</option>
-                <option value="12">Sports</option>
-              </select>
-              </div>
-
-              <div class="input-group mb-3">
-            <label for="category">Format</label>
-            <select class="form-select" name="format_id">
-                <option value="1">TV Show</option>
-                <option value="2">Movie</option>
-                <option value="3">Documentary</option>
-                <option value="4">Short Film</option>
-                <option value="5">Series</option>
-              </select>
-              </div>
-
-                <?php
-
-            if (isset($_SESSION['id'])) {
-                $user_id = $_SESSION['id'];
+            foreach ($categories as $id => $category) {
+                $selected = ($visualContent['category_id'] == $id) ? 'selected' : '';
+                echo "<option value=\"$id\" $selected>$category</option>";
             }
             ?>
-            <input type="hidden" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly>
+        </select>
+    </label><br>
+    <label>Format: 
+        <select name="format_id">
+            <?php
+           $formats = [
+            1 => 'TV Show',
+            2 => 'Movie',
+            3 => 'Documentary',
+            4 => 'Short Film',
+            5 => 'Series',
+          
+           ];        
+            
+            foreach ($formats as $id => $format) {
+                $selected = ($visualContent['format_id'] == $id) ? 'selected' : '';
+                echo "<option value=\"$id\" $selected>$format</option>";
+            }
+            ?>
+        </select>
+    </label><br>
+    <?php
 
-                            <div class="d-grid col-4 mx-auto">
-                        <button type="submit" class="btn btn-success" name="content" value="update">Update Content</button>
-                </div>
-            </form>
-        </section>
-    </main>
+if (isset($_SESSION['id'])) {
+    $user_id = $_SESSION['id'];
+}
+?>
+<label>User ID: <input type="text" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly></label><br>
+    <input type="submit" value="Update">
+</form>
 </body>
 
 </html>
-<?php
-?>

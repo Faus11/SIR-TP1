@@ -58,8 +58,9 @@ function delete($data)
 {
     $success = deleteContent($data['id']);
      if ($success) {
-         $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
-        header('location: /SIR-TP1/pages/secure/content.php');
+        $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
+        
+        header('Location: /SIR-TP1/pages/secure/categories.php');
     } else {
          $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
          header('location: /SIR-TP1/pages/secure/content.php');
