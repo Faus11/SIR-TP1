@@ -28,8 +28,8 @@ if (!is_numeric($contentId)) {
     // Adicione aqui outras informações do conteúdo que você deseja exibir
 }
 
-echo '</div>'; // Fecha div com text-align: center
-echo '</div>'; // Fecha div com estilos de centralização vertical e horizontal
+echo '</div>'; 
+echo '</div>'; 
 ?>
 
 
