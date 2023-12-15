@@ -43,7 +43,8 @@ if (!is_numeric($category_id)) {
   
         echo '<br>';
   
-        echo '<a href="update_content.php?content_id=<?= $contentId ?>" class="btn btn-info btn-block">Update</a>';
+        echo '<a href="updateContent.php?content_id=' . $contentId . '" class="btn btn-info btn-block">Update</a>';
+
         echo '</div>'; // Close d-flex
         echo '</div>'; // Close card-body
         echo '</div>'; // Close card

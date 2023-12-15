@@ -21,6 +21,13 @@ if (isset($_POST['content'])) {
 
 function create($data)
 {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $data12 = file_get_contents($_FILES['image']['tmp_name']);
+        $receiptImageEncoded = base64_encode($data12);
+        $data['image'] = $receiptImageEncoded;
+    } else {
+        $data['image'] = null;
+    }
 
     $success = createContent($data);
     

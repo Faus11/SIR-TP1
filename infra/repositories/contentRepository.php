@@ -89,22 +89,21 @@ function updateContent($visualContent)
     ];
 
 
-        $sqlUpdate = "UPDATE  
-           visual_content SET
-            :title = :title, 
-            :restricted= :restricted,
-            :image = :image,
-            :seasons = :seasons,
-            :release_date = :release_date, 
-            :end_date = :end_date, 
-            :description = :description,
-            :cast = :cast,
-            updated_at = NOW()    
-            :category_id = :category_id,
-            :format_id = :format_id,
-            :user_id = :user_id,
-            WHERE id = :id;";
-        
+    $sqlUpdate = "UPDATE visual_content SET
+    title = :title, 
+    restricted = :restricted,
+    image = :image,
+    seasons = :seasons,
+    release_date = :release_date, 
+    end_date = :end_date, 
+    description = :description,
+    cast = :cast,
+    category_id = :category_id,
+    format_id = :format_id,
+    user_id = :user_id,
+    updated_at = NOW()
+    WHERE id = :id";
+
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
     return $PDOStatement->execute($params);
