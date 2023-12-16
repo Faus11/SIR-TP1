@@ -273,4 +273,17 @@ function insertEndDate($contentId, $endDate)
     return false; 
 }
 
+function getTitleByName($title)
+{
+    $sql = "SELECT title FROM visual_content WHERE title LIKE :title";
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+    $PDOStatement->bindValue(':title', "%$title%", PDO::PARAM_STR);
+    $PDOStatement->execute();
 
+    $titles = [];
+    while ($result = $PDOStatement->fetch(PDO::FETCH_ASSOC)) {
+        $titles[] = $result['title'];
+    }
+
+    return $titles;
+}

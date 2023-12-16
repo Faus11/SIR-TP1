@@ -31,9 +31,10 @@ function renderNavbar($user) {
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Content</a>
+                        <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Create Content</a>
                         <a href="/SIR-TP1/pages/secure/categories.php" class="btn btn-outline-light btn-lg px-4 mx-2">Categories</a>
                         <a href="/SIR-TP1/pages/secure/schedule.php" class="btn btn-outline-light btn-lg px-4 mx-2">Schedule</a>
+                        <a href="/SIR-TP1/pages/secure/search.php" class="btn btn-outline-light btn-lg px-4 mx-2">Search</a>
                     </li>
                 <ul class="navbar-nav ms-auto">
                     <?php if (isAuthenticated()) { ?>
