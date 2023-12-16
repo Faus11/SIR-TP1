@@ -180,6 +180,11 @@ $title = ' - Content';
                 </div>
 
                 <div class="input-group mb-3">
+                    <span class="input-group-text">attachments</span>
+                    <input type="text" class="form-control" name="trailer" value="<?= isset($_REQUEST['trailer']) ? $_REQUEST['trailer'] : '' ?>">
+                </div>
+
+                <div class="input-group mb-3">
                     <span class="input-group-text">Release Date</span>
                     <input type="date" class="form-control" name="release_date" value="<?= isset($_REQUEST['release_date']) ? $_REQUEST['release_date'] : '' ?>">
                 </div>

@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'end_date' => $_POST['end_date'],
             'description' => $_POST['description'],
             'cast' => $_POST['cast'],
+            'trailer' => $_POST['trailer'],
             'category_id' => $_POST['category_id'],
             'format_id' => $_POST['format_id'],
             'user_id' => $_POST['user_id']
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>End Date: <input type="date" name="end_date" value="<?= $visualContent['end_date'] ?>"></label><br>
     <label>Description: <input type="text" name="description" value="<?= $visualContent['description'] ?>"></label><br>
     <label>Cast: <input type="text" name="cast" value="<?= $visualContent['cast'] ?>"></label><br>
+    <label>Attachments: <input type="text" name="trailer" value="<?= $visualContent['trailer'] ?>"></label><br>
     <label>Category: 
         <select name="category_id">
             <?php

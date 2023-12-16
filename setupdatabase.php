@@ -3,7 +3,7 @@
 require __DIR__ . '/infra/db/connection.php';
 
 
-$tablesToCheck = ['users','visual_content','content_format','category_format'];
+$tablesToCheck = ['users','visual_content','content_format','category_format', 'content_review' ]; 
 $tablesExist = true;
 
 foreach ($tablesToCheck as $table) {
@@ -17,7 +17,7 @@ foreach ($tablesToCheck as $table) {
 }
 
 if (!$tablesExist) {
-    $tablesToDrop = ['users','visual_content','content_format','category_format'];
+    $tablesToDrop = ['users','visual_content','content_format','category_format', 'content_review']; 
 
     foreach ($tablesToDrop as $table) {
         $pdo->exec("DROP TABLE IF EXISTS $table;");
@@ -76,6 +76,7 @@ $pdo->exec(
         end_date date NULL, 
         description varchar(200),
         cast varchar(200),
+        trailer LONGTEXT NULL,
         created_at timestamp NULL DEFAULT NULL,
         updated_at timestamp NULL DEFAULT NULL,
         deleted_at timestamp NULL DEFAULT NULL,
@@ -94,14 +95,13 @@ $pdo->exec(
         id_review INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
         comment text, 
         rating INTEGER, 
-        image longblob NULL,
         date_hour date, 
         created_at timestamp NULL DEFAULT NULL,
         updated_at timestamp NULL DEFAULT NULL,
         content_id INTEGER UNSIGNED,
         user_id INTEGER UNSIGNED,
         CONSTRAINT content_review_content_id_foreign FOREIGN KEY (content_id) REFERENCES visual_content(id),
-        CONSTRAINT visual_content_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id)
+        CONSTRAINT content_review_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id)
     );'
 );
 
@@ -275,6 +275,7 @@ $visualContent = [
     'end_date' => '2023-12-20',
     'description' => 'An amazing TV show with thrilling episodes.',
     'cast' => 'John Doe, Jane Smith, etc.',
+    'trailer' => 'https://www.youtube.com/watch?v=pgSyI2_fLHo&pp=ygUUbGluayBhd2Vzb21lIHR2IHNob3c%3D',
     'created_at' => date('Y-m-d H:i:s'),
     'updated_at' => date('Y-m-d H:i:s'),
     'deleted_at' => null,
@@ -296,6 +297,7 @@ $sqlCreateVisualContent = "INSERT INTO
         end_date, 
         description,
         cast,
+        trailer,
         created_at,
         updated_at,
         deleted_at,
@@ -312,6 +314,7 @@ $sqlCreateVisualContent = "INSERT INTO
         :end_date, 
         :description,
         :cast,
+        :trailer,
         :created_at,
         :updated_at,
         :deleted_at,
@@ -333,6 +336,7 @@ $successVisualContent = $PDOStatementVisualContent->execute([
     ':end_date' => $visualContent['end_date'],
     ':description' => $visualContent['description'],
     ':cast' => $visualContent['cast'],
+    ':trailer' => $visualContent['trailer'],
     ':created_at' => $visualContent['created_at'],
     ':updated_at' => $visualContent['updated_at'],
     ':deleted_at' => $visualContent['deleted_at'],
@@ -341,5 +345,55 @@ $successVisualContent = $PDOStatementVisualContent->execute([
     ':user_id' => $visualContent['user_id']
 
 
+]);
+
+#DEFAULT REVIEW TO ADD
+$review = [
+    'comment' => 'Serie mt top recomendo',
+    'rating' => 5,
+    'date_hour' => date('Y-m-d H:i:s'),
+    'created_at' => date('Y-m-d H:i:s'),
+    'updated_at' => date('Y-m-d H:i:s'),
+    'content_id' => 1,
+    'user_id' => 1
+
+    
+];
+
+
+
+#INSERT REVIEW
+$sqlCreate = "INSERT INTO 
+    content_review (
+        comment, 
+        rating,
+        date_hour, 
+        created_at,
+        updated_at,
+        content_id,
+        user_id) 
+    VALUES (
+        :comment, 
+        :rating,
+        :date_hour, 
+        :created_at,
+        :updated_at,
+        :content_id,
+        :user_id
+    )";
+
+
+#PREPARE QUERY
+$PDOStatement = $GLOBALS['pdo']->prepare($sqlCreate);
+
+#EXECUTE
+$success = $PDOStatement->execute([
+    ':comment' => $review['comment'],
+    ':rating' => $review['rating'],
+    ':date_hour' => $review['date_hour'],
+    ':created_at' => $review['created_at'],
+    ':updated_at' => $review['updated_at'],
+    ':content_id' => $review['content_id'],
+    ':user_id' => $review['user_id']
 ]);
 }
