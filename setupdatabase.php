@@ -88,8 +88,22 @@ $pdo->exec(
     );'
 );
 
-
-
+#CREATE TABLE content_review
+$pdo->exec(
+    'CREATE TABLE content_review (
+        id_review INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+        comment text, 
+        rating INTEGER, 
+        image longblob NULL,
+        date_hour date, 
+        created_at timestamp NULL DEFAULT NULL,
+        updated_at timestamp NULL DEFAULT NULL,
+        content_id INTEGER UNSIGNED,
+        user_id INTEGER UNSIGNED,
+        CONSTRAINT content_review_content_id_foreign FOREIGN KEY (content_id) REFERENCES visual_content(id),
+        CONSTRAINT visual_content_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id)
+    );'
+);
 
 
 
