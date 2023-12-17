@@ -3,7 +3,7 @@
 require __DIR__ . '/infra/db/connection.php';
 
 
-$tablesToCheck = ['users','visual_content','content_format','category_format', 'content_review' ]; 
+$tablesToCheck = ['users','visual_content','content_format','category_format', 'content_review','share_content']; 
 $tablesExist = true;
 
 foreach ($tablesToCheck as $table) {
@@ -17,7 +17,7 @@ foreach ($tablesToCheck as $table) {
 }
 
 if (!$tablesExist) {
-    $tablesToDrop = ['users','visual_content','content_format','category_format', 'content_review']; 
+    $tablesToDrop = ['users','visual_content','content_format','category_format', 'content_review','share_content']; 
 
     foreach ($tablesToDrop as $table) {
         $pdo->exec("DROP TABLE IF EXISTS $table;");
@@ -104,6 +104,10 @@ $pdo->exec(
         CONSTRAINT content_review_user_id_foreign FOREIGN KEY (user_id) REFERENCES users(id)
     );'
 );
+
+
+
+
 
 
 
@@ -396,4 +400,25 @@ $success = $PDOStatement->execute([
     ':content_id' => $review['content_id'],
     ':user_id' => $review['user_id']
 ]);
+
+#CREATE TABLE share_content
+$pdo->exec(
+    'CREATE TABLE share_content (
+        id_share INTEGER UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
+        receiver_user_id INTEGER UNSIGNED NOT NULL,
+        sharer_user_id INTEGER UNSIGNED NOT NULL,
+        content_id INTEGER UNSIGNED,
+        created_at TIMESTAMP NULL DEFAULT NULL,
+        updated_at TIMESTAMP NULL DEFAULT NULL,
+       
+        KEY share_content_receiver_user_id_foreign (receiver_user_id),
+        KEY share_content_sharer_user_id_foreign (sharer_user_id),
+        KEY share_content_content_id_foreign (content_id),
+
+        CONSTRAINT share_content_receiver_user_id_foreign FOREIGN KEY (receiver_user_id) REFERENCES users (id),
+        CONSTRAINT share_content_sharer_user_id_foreign FOREIGN KEY (sharer_user_id) REFERENCES users (id),
+        CONSTRAINT share_content_content_id_foreign FOREIGN KEY (content_id) REFERENCES visual_content(id),
+        CONSTRAINT unique_users CHECK (receiver_user_id <> sharer_user_id)
+    );'
+);
 }
