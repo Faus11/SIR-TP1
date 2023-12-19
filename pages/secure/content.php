@@ -122,7 +122,7 @@ $title = ' - Content';
 
     select[name="category_id"] option,
     select[name="format_id"] option {
-      color: black; /* Define a cor do texto para preto */
+      color: black; 
     }
     </style>
 </head>

@@ -60,9 +60,10 @@ $user = getById($id);
             max-width: 400px;
             margin: auto;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.12);
-            border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(30px);
+            background: transparent;
+            border-radius: 8px;
             margin-top: 20px;
         }
 
@@ -87,13 +88,17 @@ $user = getById($id);
         }
 
         input[type="submit"] {
-            background-color: #28a745;
-            color: white;
             cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #218838;
+            width: 100%;
+            height: 45px;
+            border: none;
+            outline: none;
+            border-radius: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            font-size: 16px;
+            font-weight: 600;
+            background-color: #e3c624;
+            color: #fff;
         }
 
         #logo {
@@ -126,3 +131,4 @@ $user = getById($id);
 </body>
 
 </html>
+
