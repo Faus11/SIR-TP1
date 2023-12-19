@@ -1,5 +1,4 @@
 <?php
-
 require_once 'functions.php';
 require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
 require_once __DIR__ . '/../../infra/repositories/reviewRepository.php';
@@ -9,137 +8,127 @@ $userId = $user['id'];
 $title = 'Content Details';
 renderHeader($title);
 renderNavbar($user);
+?>
 
-
-    echo '<style>';
-    echo '.comment-container {
+<style>
+    .comment-container {
         position: relative;
         border: 1px solid #ccc;
         padding: 10px;
         margin-bottom: 10px;
-    }';
+    }
 
-    echo '.comment-buttons {
+    .comment-buttons {
         position: absolute;
         top: 5px;
         right: 5px;
-    }';
+    }
 
-    echo '.comment-buttons form {
+    .comment-buttons form {
         display: inline;
         margin-right: 5px;
-    }';
-    echo '</style>';
-  
-$contentId = $_GET['id'] ?? null;
+    }
+</style>
 
-echo '<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">';
-echo '<div style="text-align: left;">'; 
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div style="text-align: left;"> 
+        <?php
+        $contentId = $_GET['id'] ?? null;
 
-if (!is_numeric($contentId)) {
-    echo '<h3>Invalid content ID.</h3>';
-} else {
-    $contentInfo = getInfoByIdContent($contentId);
+        if (!is_numeric($contentId)) {
+            ?>
+            <h3>Invalid content ID.</h3>
+            <?php
+        } else {
+            $contentInfo = getInfoByIdContent($contentId);
+            ?>
+            <h2 style="font-size: 35px;"><strong><?= $contentInfo['title'] ?></strong></h2>
+            <p style="font-size: 25px;"><strong>Release Date:</strong> <?= $contentInfo['release_date'] ?></p>
+            <p style="font-size: 25px;"><strong>Description:</strong> <?= $contentInfo['description'] ?></p>
+            <p style="font-size: 25px;"><strong>Cast:</strong> <?= $contentInfo['cast'] ?></p>
+            <p style="font-size: 25px;"><strong>Attachments:</strong> <?= $contentInfo['trailer'] ?></p>
+            <p style="font-size: 25px;"><strong>Seasons:</strong> <?= $contentInfo['seasons'] ?></p>
 
-    echo '<h2 style="font-size: 35px;"><strong>' . $contentInfo['title'] . '</strong></h2>';
-    echo '<p style="font-size: 25px;"><strong>Release Date:</strong> ' . $contentInfo['release_date'] . '</p>';
-    echo '<p style="font-size: 25px;"><strong>Description:</strong> ' . $contentInfo['description'] . '</p>';
-    echo '<p style="font-size: 25px;"><strong>Cast:</strong> ' . $contentInfo['cast'] . '</p>';
-    echo '<p style="font-size: 25px;"><strong>Attachments:</strong> ' . $contentInfo['trailer'] . '</p>';
-    echo '<p style="font-size: 25px;"><strong>Seasons:</strong> ' . $contentInfo['seasons'] . '</p>';
-    
-    
+            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
+                <label for="end_date">Calendariar Filme:</label>
+                <input type="date" id="end_date" name="end_date">
+                <input type="hidden" name="id" value="<?= $contentId ?>">
+                <input type="submit" name="content" value="add_date">
+            </form>
+            <?php
+        }
+        ?>
 
-   
-  
+        <form enctype="multipart/form-data" action="/SIR-TP1/controllers/sharee/share.php" method="post" style="margin-top: 10px;">
+            <input type="hidden" name="content_id" value="<?= $contentId ?>">
+            <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">
+            <label for="receiver_email">Partilhar com o Utilizador (Email):</label>
+            <input type="email" name="receiver_email" id="receiver_email" required>
+            <button type="submit" name="share" value="create" class="btn btn-primary">Share</button>
+        </form>
+    </div>
+</div>
 
+<hr>
 
-    echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post" ">';
-    echo '<label for="end_date">Calendariar Filme:</label>';
-    echo '<input type="date" id="end_date" name="end_date">';
-    echo '<input type="hidden" name="id" value="' . $contentId . '">';
-    echo '<input type="submit" name="content" value="add_date">';
-    echo '</form>';
-}
-
-echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/sharee/share.php" method="post" style="margin-top: 10px;">';
-echo '<input type="hidden" name="content_id" value="' . $contentId . '">';
-echo '<input type="hidden" name="sharer_user_id" value="' . $userId . '">';
-echo '<label for="receiver_email">Partilhar com o Utilizador (Email):</label>';
-echo '<input type="email" name="receiver_email" id="receiver_email" required>';
-echo '<button type="submit" name="share" value="create" class="btn btn-primary">Share</button>';
-echo '</form>';
-
-
-
-
-
-
-echo '</div>'; 
-echo '</div>'; 
-
-
-echo '<hr>'; 
-
-
-
+<?php
 $reviews = getReviewsByUserAndContent($userId, $contentId);
 
 if (count($reviews) > 0) {
-    echo '<h3>Comentários:</h3>';
+    ?>
+    <h3>Comentários:</h3>
+    <?php
     foreach ($reviews as $review) {
-        echo '<div class="comment-container">';
-        echo '<div class="comment-content">';
-        echo '<p>Comentário: ' . $review['comment'] . '</p>';
-        echo '<p>Rating: ' . $review['rating'] . '</p>';
-        echo '</div>';
+        ?>
+        <div class="comment-container">
+            <div class="comment-content">
+                <p>Comentário: <?= $review['comment'] ?></p>
+                <p>Rating: <?= $review['rating'] ?></p>
+            </div>
 
-        echo '<div class="comment-buttons">';
-        echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post">';
-        echo '<input type="hidden" name="id_review" value="' . $review['id_review'] . '">';
-        echo '<button type="submit" class="btn btn-info name="review" value="edit">Edit</button>';
-        echo '</form>';
+            <div class="comment-buttons">
+                <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post">
+                    <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>">
+                    <button type="submit" class="btn btn-info" name="review" value="edit">Edit</button>
+                </form>
 
-        echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post">';
-        echo '<input type="hidden" name="id_review" value="' . $review['id_review'] . '">';
-        echo '<button type="submit" class="btn btn-danger name="review" value="delete">Delete</button>';
-        echo '</form>';
-        echo '</div>'; 
-
-        echo '</div>'; 
+                <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post">
+                    <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>">
+                    <button type="submit" class="btn btn-danger" name="review" value="delete">Delete</button>
+                </form>
+            </div>
+        </div>
+        <?php
     }
 } else {
-    echo '<p>Não há comentários para este conteúdo.</p>';
+    ?>
+    <p>Não há comentários para este conteúdo.</p>
+    <?php
 }
-
-
-
-echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post" class="form-control py-3">';
-echo '<h3>Adicionar Comentário:</h3>';
-
-
-echo '<div class="input-group mb-3">';
-echo '<span class="input-group-text">Comentário</span>';
-echo '<textarea class="form-control" name="comment" rows="4" placeholder="Escreva seu comentário aqui" required>';
-echo isset($_REQUEST['comment']) ? $_REQUEST['comment'] : '';
-echo '</textarea>';
-echo '</div>';
-
-echo '<div class="input-group mb-3">';
-echo '<span class="input-group-text">Rating</span>';
-echo '<input type="number" class="form-control" name="rating" min="1" max="5" required value="';
-echo isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '';
-echo '">';
-echo '</div>';
-
-echo '<input type="hidden" name="content_id" value="' . $contentId . '">';
-echo '<input type="hidden" name="user_id" value="' . $userId . '">';
-echo '<input type="submit" name="review" value="create">';
-echo '</form>';
-
-echo '</div>'; 
-echo '</div>'; 
 ?>
+
+<form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post" class="form-control py-3">
+    <h3>Adicionar Comentário:</h3>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Comentário</span>
+        <textarea class="form-control" name="comment" rows="4" placeholder="Escreva seu comentário aqui" required><?= isset($_REQUEST['comment']) ? $_REQUEST['comment'] : '' ?></textarea>
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text">Rating</span>
+        <input type="number" class="form-control" name="rating" min="1" max="5" required value="<?= isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '' ?>">
+    </div>
+
+    <input type="hidden" name="content_id" value="<?= $contentId ?>">
+    <input type="hidden" name="user_id" value="<?= $userId ?>">
+    <input type="submit" name="review" value="create">
+</form>
+
+
+</div>
+</div>
+
 
 
 
