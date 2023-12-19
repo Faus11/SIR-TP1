@@ -119,6 +119,11 @@ $title = ' - Content';
             opacity: 1;
             transition: opacity 0.3s ease-in-out;
         }
+
+    select[name="category_id"] option,
+    select[name="format_id"] option {
+      color: black; /* Define a cor do texto para preto */
+    }
     </style>
 </head>
 
@@ -180,7 +185,7 @@ $title = ' - Content';
                 </div>
 
                 <div class="input-group mb-3">
-                    <span class="input-group-text">attachments</span>
+                    <span class="input-group-text">Attachments</span>
                     <input type="text" class="form-control" name="trailer" value="<?= isset($_REQUEST['trailer']) ? $_REQUEST['trailer'] : '' ?>">
                 </div>
 

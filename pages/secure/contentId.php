@@ -62,6 +62,19 @@ if (!is_numeric($contentId)) {
     echo '</form>';
 }
 
+echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/sharee/share.php" method="post" style="margin-top: 10px;">';
+echo '<input type="hidden" name="content_id" value="' . $contentId . '">';
+echo '<input type="hidden" name="sharer_user_id" value="' . $userId . '">';
+echo '<label for="receiver_email">Partilhar com o Utilizador (Email):</label>';
+echo '<input type="email" name="receiver_email" id="receiver_email" required>';
+echo '<button type="submit" name="share" value="create" class="btn btn-primary">Share</button>';
+echo '</form>';
+
+
+
+
+
+
 echo '</div>'; 
 echo '</div>'; 
 
