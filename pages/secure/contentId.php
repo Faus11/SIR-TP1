@@ -34,7 +34,7 @@
             justify-content: space-between;
             padding: 15px;
             width: 70%;
-            margin-top: 60px;
+            margin-top: 660px;
             border-radius: 15px;
         }
 
