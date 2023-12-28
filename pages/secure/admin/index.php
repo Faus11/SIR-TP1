@@ -58,7 +58,6 @@ $title = ' - Admin management';
         }
 
         form {
-          
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             backdrop-filter: blur(30px);
@@ -93,15 +92,30 @@ $title = ' - Admin management';
         .modal-title {
             font-size: 1.5rem;
         }
+
+        .btn-yellow {
+        background-color: #e3c624;
+        color: #fff;
+        cursor: pointer;
+        width: 100%;
+        height: 45px;
+        border: none;
+        outline: none;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+        font-size: 14px;
+        font-weight: 500;
+        }
+        
     </style>
 </head>
 
 <body>
-        <main class="bg-light">
+        <main style="padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); backdrop-filter: blur(30px); background: transparent;">
             <section class="py-4">
-                <div class="d-flex justify-content">
+                <div class="d-flex justify-content-between">
                     <a href="/SIR-TP1/pages/secure/"><button class="btn btn-secondary px-5 me-2">Back</button></a>
-                    <a href="./user.php"><button class="btn btn-success px-4 me-2">Create user</button></a>
+                    <a href="./user.php"><button class="btn-yellow px-4 ms-auto">Create user</button></a>
                 </div>
             </section>
             <section>
