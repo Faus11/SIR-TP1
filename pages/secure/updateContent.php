@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'id' => $_POST['id'],
         'title' => $_POST['title'],
         'restricted' => $_POST['restricted'],
-        'image' => $_FILES['image']['name'],
+        
         'seasons' => $_POST['seasons'],
         'release_date' => $_POST['release_date'],
         'end_date' => $_POST['end_date'],
@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'format_id' => $_POST['format_id'],
         'user_id' => $_POST['user_id']
     ];
-
+    unset($visualContent['image']);
     updateContent($visualContent);
     header('Location: ./index.php');
     exit();
@@ -163,10 +163,8 @@ $visualContent = getByIdContent($contentId);
         <input type="hidden" name="id" value="<?= $visualContent['id'] ?>">
         <label>Title: <input type="text" name="title" value="<?= $visualContent['title'] ?>"></label><br>
         <label>Restricted: <input type="text" name="restricted" value="<?= $visualContent['restricted'] ?>"></label><br>
-        <label>Image: <input type="file" name="image"></label><br>
         <label>Seasons: <input type="text" name="seasons" value="<?= $visualContent['seasons'] ?>"></label><br>
         <label>Release Date: <input type="date" name="release_date" value="<?= $visualContent['release_date'] ?>"></label><br>
-        <label>End Date: <input type="date" name="end_date" value="<?= $visualContent['end_date'] ?>"></label><br>
         <label>Description: <input type="text" name="description" value="<?= $visualContent['description'] ?>"></label><br>
         <label>Cast: <input type="text" name="cast" value="<?= $visualContent['cast'] ?>"></label><br>
         <label>Attachments: <input type="text" name="trailer" value="<?= $visualContent['trailer'] ?>"></label><br>
@@ -218,7 +216,7 @@ $visualContent = getByIdContent($contentId);
             $user_id = $_SESSION['id'];
         }
         ?>
-        <label>User ID: <input type="text" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly></label><br>
+        <label> <input type="hidden" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly></label><br>
         <input type="submit" class="btn btn-success" value="Update">
     </form>
 </body>

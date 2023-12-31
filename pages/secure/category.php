@@ -57,9 +57,9 @@ if (!is_numeric($category_id)) {
     foreach ($contentByCategory[$category_id] as $content) {
         $contentId = $content['id'];
         $contentLink = "content.php?id=$contentId";
-        echo '<div class="col-md-8 mb-7">'; 
-        echo '<div class="card card-transparent">'; // Adicionada uma classe card-transparent
-        echo '<img class="card-img-top" src="data:image/webp;base64,' . $content['image'] . '" alt="Card image cap">';
+        echo '<div class="col-md-6 mb-5">'; 
+        echo '<div class="card card-transparent">'; 
+        echo '<img class="card-img-top"  src="data:image/webp;base64,' . $content['image'] . '" alt="Card image cap">';
         echo '<div class="card-body text-center">';
         echo '<h5 class="card-title text-dark">
         <b>Title:' . $content['title'] . '</b>

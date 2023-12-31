@@ -21,17 +21,22 @@ if (isset($_POST['review'])) {
 }
 
 function create($data)
+
 {
-  $success = createReview($data);
+    $success = createReview($data);
     
     if ($success) {
         $_SESSION['success'] = 'Comment criado com sucesso!';
-        header('location: /SIR-TP1/pages/secure/category.php');
+        
+        
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        $_SESSION['errors'] = ['Erro ao criar '];
-        header('location: /SIR-TP1/pages/secure/index.php');
+        $_SESSION['errors'] = ['Erro ao criar'];
+        header('Location: /SIR-TP1/pages/secure/index.php');
     }
 }
+
+
 
 function update($data)
 {
@@ -49,13 +54,14 @@ function update($data)
 function delete($data)
 {
     $success = deleteReview($data['id_review']);
-     if ($success) {
+    if ($success) {
         $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
         
-        header('Location: /SIR-TP1/pages/secure/categories.php');
+        
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-         $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
-         header('location: /SIR-TP1/pages/secure/index.php');
-     }
+        $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
+        header('Location: /SIR-TP1/pages/secure/content.php');
+    }
 }
 

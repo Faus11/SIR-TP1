@@ -60,19 +60,19 @@ function update($data)
 function delete($data)
 {
     $success = deleteContent($data['id']);
-     if ($success) {
+    if ($success) {
         $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
         
-        header('Location: /SIR-TP1/pages/secure/categories.php');
+        
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-         $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
-         header('location: /SIR-TP1/pages/secure/content.php');
-     }
+        $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
+        header('Location: /SIR-TP1/pages/secure/content.php');
+    }
 }
 function addEndDate($data)
 {
     $contentId = $_POST['id']; 
-
     $endDate = $data['end_date']; 
 
     $success = insertEndDate($contentId, $endDate);
@@ -83,8 +83,10 @@ function addEndDate($data)
         $_SESSION['errors'] = ['Erro ao adicionar a data de término.'];
     }
 
-    header('location: /SIR-TP1/pages/secure/content.php');
+    // Redirecionar de volta para a página anterior
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
+
 
 
 

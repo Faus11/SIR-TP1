@@ -171,14 +171,15 @@ renderNavbar($user);
             <p class="content-details"><strong>Release Date:</strong> <?= $contentInfo['release_date'] ?></p>
             <p class="content-details"><strong>Description:</strong> <?= $contentInfo['description'] ?></p>
             <p class="content-details"><strong>Cast:</strong> <?= $contentInfo['cast'] ?></p>
-            <p class="content-details"><strong>Attachments:</strong> <?= $contentInfo['trailer'] ?></p>
+            <p class="content-details"><strong>Attachments:</strong><a href="<?= $contentInfo['trailer'] ?>" target="_blank"><?= $contentInfo['trailer'] ?></a></p>
+
             <p class="content-details"><strong>Seasons:</strong> <?= $contentInfo['seasons'] ?></p>
 
             <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
-                <label for="end_date">Calendariar Filme:</label>
+                <label for="end_date">Calendarize Content:</label>
                 <input type="date" id="end_date" name="end_date">
                 <input type="hidden" name="id" value="<?= $contentId ?>">
-                <input type="submit" name="content" value="add_date">
+                <button type="submit" name="content" value="add_date" class="btn btn-warning">Calendarize</button>
             </form>
 
             <!-- Partilhar com o utilizador -->
@@ -259,7 +260,7 @@ renderNavbar($user);
 
         <input type="hidden" name="content_id" value="<?= $contentId ?>">
         <input type="hidden" name="user_id" value="<?= $userId ?>">
-        <input type="submit" name="review" value="create">
+        <button type="submit" name="review" value="create"class="btn btn-warning">Add Comment</button>
     </form>
 
 </div>
