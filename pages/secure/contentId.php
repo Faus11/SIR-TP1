@@ -5,8 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Content Details</title>
+  
+  
+
 
     <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
         * {
             margin: 0;
             padding: 0;
@@ -174,13 +178,18 @@ renderNavbar($user);
             <p class="content-details"><strong>Attachments:</strong><a href="<?= $contentInfo['trailer'] ?>" target="_blank"><?= $contentInfo['trailer'] ?></a></p>
 
             <p class="content-details"><strong>Seasons:</strong> <?= $contentInfo['seasons'] ?></p>
+          
 
             <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
                 <label for="end_date">Calendarize Content:</label>
                 <input type="date" id="end_date" name="end_date">
                 <input type="hidden" name="id" value="<?= $contentId ?>">
                 <button type="submit" name="content" value="add_date" class="btn btn-warning">Calendarize</button>
-            </form>
+                <?php if (!empty($contentInfo['end_date'])) : ?>
+            <button type="submit" name="content" value="delete_date" class="btn btn-danger">Delete</button>
+        <?php endif; ?>
+    </form>
+
 
             <!-- Partilhar com o utilizador -->
             <form enctype="multipart/form-data" action="/SIR-TP1/controllers/sharee/share.php" method="post" style="margin-top: 10px;">
@@ -188,7 +197,7 @@ renderNavbar($user);
                 <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">
                 <label for="receiver_email">Partilhar com o Utilizador (Email):</label>
                 <input type="email" name="receiver_email" id="receiver_email" required>
-                <button type="submit" name="share" value="create" class="btn btn-primary">Share</button>
+                <button type="submit" name="share" value="create" class="btn btn-warning">Share</button>
             </form>
         </div>
 
@@ -219,7 +228,6 @@ renderNavbar($user);
                         <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php"
                               method="post">
                             <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>">
-                            <button type="submit" class="btn btn-info" name="review" value="edit">Edit</button>
                         </form>
 
                         <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php"

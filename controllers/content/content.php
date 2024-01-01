@@ -19,6 +19,9 @@ if (isset($_POST['content'])) {
     if ($_POST['content'] == 'add_date') {
         addEndDate($_POST); 
     }
+    if ($_POST['content'] == 'delete_date') {
+        deleteEndDate($_POST); 
+    }
    
 }
 
@@ -83,7 +86,22 @@ function addEndDate($data)
         $_SESSION['errors'] = ['Erro ao adicionar a data de término.'];
     }
 
-    // Redirecionar de volta para a página anterior
+ 
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+}
+
+function deleteEndDate($data)
+{
+    $contentId = $_POST['id']; 
+
+    $success = removeEndDate($contentId);
+
+    if ($success) {
+        $_SESSION['success'] = 'Data de término removida com sucesso!';
+    } else {
+        $_SESSION['errors'] = ['Erro ao remover a data de término.'];
+    }
+
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 

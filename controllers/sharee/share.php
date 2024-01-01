@@ -32,14 +32,14 @@ function create($data)
 
         if ($success) {
             $_SESSION['success'] = 'Conteúdo partilhado com sucesso!';
-            header('Location: /SIR-TP1/pages/secure/category.php');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
             $_SESSION['errors'] = ['Erro ao partilhar conteúdo'];
-            header('Location: /SIR-TP1/pages/secure/index.php');
+            header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     } else {
         $_SESSION['errors'] = ['Email do destinatário não encontrado'];
-        header('Location: /SIR-TP1/pages/secure/index.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
 
@@ -50,10 +50,10 @@ function delete($data)
      if ($success) {
         $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
         
-        header('Location: /SIR-TP1/pages/secure/categories.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
          $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
-         header('location: /SIR-TP1/pages/secure/index.php');
+         header('Location: ' . $_SERVER['HTTP_REFERER']);
      }
 }
 

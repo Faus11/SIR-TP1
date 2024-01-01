@@ -272,6 +272,14 @@ function insertEndDate($contentId, $endDate)
 
     return false; 
 }
+function removeEndDate($contentId)
+{
+    $sql = "UPDATE visual_content SET end_date = NULL WHERE id = :id";
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+    $success = $PDOStatement->execute([':id' => $contentId]);
+    return $success;
+}
+
 
 function getTitleByName($title)
 {
