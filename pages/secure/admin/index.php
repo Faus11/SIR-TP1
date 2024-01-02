@@ -23,6 +23,7 @@ $title = ' - Admin management';
             padding: 0;
             box-sizing: border-box;
             font-family: "Poppins", sans-serif;
+            color: white;
         }
 
         body {
@@ -94,109 +95,117 @@ $title = ' - Admin management';
         }
 
         .btn-yellow {
-        background-color: #e3c624;
-        color: #fff;
-        cursor: pointer;
-        width: 100%;
-        height: 45px;
-        border: none;
-        outline: none;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, .1);
-        font-size: 14px;
-        font-weight: 500;
+            background-color: #e3c624;
+            color: #fff;
+            cursor: pointer;
+            width: 100%;
+            height: 45px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+            font-size: 14px;
+            font-weight: 500;
         }
-        
+
+        #logo {
+            width: 75px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
+        }
     </style>
 </head>
 
 <body>
-        <main style="padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); backdrop-filter: blur(30px); background: transparent;">
-            <section class="py-4">
-                <div class="d-flex justify-content-between">
-                    <a href="/SIR-TP1/pages/secure/"><button class="btn btn-secondary px-5 me-2">Back</button></a>
-                    <a href="./user.php"><button class="btn-yellow px-4 ms-auto">Create user</button></a>
-                </div>
-            </section>
-            <section>
-                <?php
-                if (isset($_SESSION['success'])) {
-                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
-                    echo $_SESSION['success'] . '<br>';
-                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                    unset($_SESSION['success']);
+    <a href="/SIR-TP1/pages/secure">
+        <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
+    </a>
+    <main style="padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); backdrop-filter: blur(30px); background: transparent;">
+        <section class="py-4" style="display: flex; justify-content: center;">
+            <div class="d-flex justify-content-between">
+                <a href="./user.php"><button class="btn-yellow px-4">Create user</button></a>
+            </div>
+        </section>
+        <section>
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
                 }
-                if (isset($_SESSION['errors'])) {
-                    echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
-                    foreach ($_SESSION['errors'] as $error) {
-                        echo $error . '<br>';
-                    }
-                    echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-                    unset($_SESSION['errors']);
-                }
-                ?>
-            </section>
-            <section>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead class="table-secondary">
+                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                unset($_SESSION['errors']);
+            }
+            ?>
+        </section>
+        <section>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Number</th>
+                        <th>Email</th>
+                        <th>Admin</th>
+                        <th>Manage</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($users as $user) {
+                            ?>
                             <tr>
-                                <th scope="col">FirstName</th>
-                                <th scope="col">Lastname</th>
-                                <th scope="col">Phone Number</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Administrator</th>
-                                <th scope="col">Manage</th>
+                                <td><?= $user['firstname'] ?></td>
+                                <td><?= $user['lastname'] ?></td>
+                                <td><?= $user['phoneNumber'] ?></td>
+                                <td><?= $user['email'] ?></td>
+                                <td><?= $user['admin'] == '1' ? 'Yes' : 'No' ?></td>
+                                <td>
+                                    <div class="d-flex justify-content">
+                                        <a href="/SIR-TP1/pages/secure/admin/update_user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
+                                                class="btn btn-primary me-2">update</button></a>
+                                        <form method="POST" action="delete_user.php">
+                                            <input type="hidden" name="id" value="<?= $user['id'] ?>">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta conta?')">Delete </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($users as $user) {
-                                ?>
-                                <tr>
-                                    <th scope="row"><?= $user['firstname'] ?></th>
-                                    <td><?= $user['lastname'] ?></td>
-                                    <td><?= $user['phoneNumber'] ?></td>
-                                    <td><?= $user['email'] ?></td>
-                                    <td><?= $user['admin'] == '1' ? 'Yes' : 'No' ?></td>
-                                    <td>
-                                        <div class="d-flex justify-content">
-                                            <a href="/SIR-TP1/pages/secure/admin/update_user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
-                                                    class="btn btn-primary me-2">update</button></a>
-                                                    <form method="POST" action="delete_user.php">
-    <input type="hidden" name="id" value="<?= $user['id'] ?>">
-    <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta conta?')">Delete </button>
-</form>
-                                            </div>
-                                    </td>
-                                </tr>
-                                <div class="modal fade" id="delete<?= $user['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete user</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete this user?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <a href="/SIR-TP1/controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
-                                                        class="btn btn-danger">Confirm</button></a>
-                                            </div>
+                            <div class="modal fade" id="delete<?= $user['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete user</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this user?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <a href="/SIR-TP1/controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
+                                                    class="btn btn-danger">Confirm</button></a>
                                         </div>
                                     </div>
                                 </div>
-                                <?php
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </main>
+                            </div>
+                            <?php
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
     </div>
     <?php
     ?>
