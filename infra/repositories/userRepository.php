@@ -172,9 +172,7 @@ function deleteUser($id)
 
 function createNewUser($user)
 {
-    $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
-    $user['admin'] = false;
-    $user['created_at'] = date('Y-m-d H:i:s'); 
+
 
     $sqlCreate = "INSERT INTO 
     users (
@@ -184,7 +182,7 @@ function createNewUser($user)
         phoneNumber, 
         email,
         birthdate,
-        pass, 
+        pass,
         admin,
         created_at  
     ) 

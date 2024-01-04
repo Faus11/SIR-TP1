@@ -251,13 +251,11 @@ $user = user();
                         value="<?= isset($_REQUEST['birthdate']) ? $_REQUEST['birthdate'] : $user['birthdate'] ?>" required>
                 </div>
                 
-                
                 <div class="input-group mb-3">
                     <label for="avatar" class="form-label">Choose an avatar:</label>
                     <input type="file" class="form-control" id="avatar" name="avatar" accept="image/*" required>
                 </div>
                 
-
                 <div class="d-grid col-4 mx-auto">
                     <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Change</button>
                 </div>

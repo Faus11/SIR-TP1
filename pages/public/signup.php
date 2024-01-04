@@ -166,7 +166,7 @@ $title = ' - Sign Up';
             ?>
         </section>
 
-        <form action="/SIR-TP1/controllers/auth/signup.php" method="post">
+        <form action="/SIR-TP1/controllers/auth/signup.php" method="post" enctype="multipart/form-data">
 
             <div class="form-floating mb-2">
                 <input type="text" class="form-control" name="firstname" placeholder="First Name" maxlength="100"
