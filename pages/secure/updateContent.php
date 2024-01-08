@@ -3,12 +3,12 @@ require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
 require_once __DIR__ . '/../../templates/header.php'; 
 
+$previousPage = $_SERVER['HTTP_REFERER'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $visualContent = [
         'id' => $_POST['id'],
         'title' => $_POST['title'],
         'restricted' => $_POST['restricted'],
-        
         'seasons' => $_POST['seasons'],
         'release_date' => $_POST['release_date'],
         'end_date' => $_POST['end_date'],
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
     unset($visualContent['image']);
     updateContent($visualContent);
-    header('Location: ./index.php');
+    header("Location: $previousPage");
     exit();
 }
 
@@ -155,7 +155,7 @@ $visualContent = getByIdContent($contentId);
             transition: opacity 0.3s ease-in-out;
         }
     </style>
-    <!-- Add your CSS styles here or link to an external stylesheet -->
+   
 </head>
 
 <body>

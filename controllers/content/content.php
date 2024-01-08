@@ -53,10 +53,10 @@ function update($data)
      $success = updateContent($data);
    if ($success) {
         $_SESSION['success'] = 'Conteúdo atualizado com sucesso!';
-        header('location: /SIR-TP1/pages/secure/content.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
      } else {
         $_SESSION['errors'] = ['Erro ao atualizar conteúdo'];
-         header('location: /SIR-TP1/pages/secure/content.php');
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
      }
 }
 

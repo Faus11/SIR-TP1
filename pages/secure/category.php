@@ -78,8 +78,8 @@ if (!is_numeric($category_id)) {
         echo '</div>';
       }
   
-      echo '</div>'; // Fecha row
-      echo '</div>'; // Fecha container
+      echo '</div>';
+      echo '</div>'; 
       echo '</div>'; 
   } else {
       echo "<div class='col-md-12 text-center'>";

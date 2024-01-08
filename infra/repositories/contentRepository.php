@@ -116,14 +116,15 @@ function updateContent($visualContent)
 
 function deleteContent($contentId)
 {
-    $sqlDelete = "DELETE FROM visual_content WHERE id = :id";
+    $sqlUpdate = "UPDATE visual_content SET deleted_at = NOW() WHERE id = :id";
 
-    $PDOStatement = $GLOBALS['pdo']->prepare($sqlDelete);
+    $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
     return $PDOStatement->execute([
         ':id' => $contentId, 
     ]);
 }
+
 
 
 function createNewContent($visualContent)
@@ -201,7 +202,7 @@ function getContentByUserId($userId)
 
 function getContentByUserIdAndCategory($userId)
 {
-    $sql = "SELECT * FROM visual_content WHERE user_id = :user_id";
+    $sql = "SELECT * FROM visual_content WHERE user_id = :user_id AND deleted_at IS NULL";
     $PDOStatement = $GLOBALS['pdo']->prepare($sql);
     $PDOStatement->execute([':user_id' => $userId]);
 
