@@ -58,8 +58,8 @@ if (!is_numeric($category_id)) {
         $contentId = $content['id'];
         $contentLink = "content.php?id=$contentId";
         echo '<div class="col-md-6 mb-5">'; 
-        echo '<div class="card card-transparent">'; 
-        echo '<img class="card-img-top"  src="data:image/webp;base64,' . $content['image'] . '" alt="Card image cap">';
+        echo '<div class="card card-transparent" style="width: 100%;">'; 
+        echo '<img class="card-img-top" src="data:image/webp;base64,' . $content['image'] . '" alt="Card image cap" style="max-width: 100%;">'; 
         echo '<div class="card-body text-center">';
         echo '<h5 class="card-title text-dark">
         <b>Title:' . $content['title'] . '</b>
