@@ -38,7 +38,7 @@
             justify-content: space-between;
             padding: 15px;
             width: 70%;
-            margin-top: 660px;
+            margin-top: 260px;
             border-radius: 15px;
         }
 
@@ -125,7 +125,7 @@
         .comment-form textarea {
             width: 100%;
             padding: 10px;
-            margin-bottom: 15px;
+            
             border: 1px solid #ddd;
             border-radius: 4px;
         }
@@ -141,6 +141,30 @@
         .comment-form input[type="submit"] {
             width: 150px;
         }
+        .rating {
+        unicode-bidi: bidi-override;
+        direction: ltr;
+    }
+
+    .star {
+        cursor: pointer;
+        display: inline-block;
+        font-size: 30px;
+    }
+
+    .star:hover:before,
+    .star.filled:before {
+        content: '★';
+        color: gold;
+    }
+
+    .star:before {
+        content: '☆';
+    }
+
+    input[type="hidden"] {
+    display: none;
+    }
     </style>
 </head>
 <body>
@@ -260,11 +284,18 @@ renderNavbar($user);
                       placeholder="Escreva seu comentário aqui" required><?= isset($_REQUEST['comment']) ? $_REQUEST['comment'] : '' ?></textarea>
         </div>
 
-        <div class="input-group mb-3">
-            <span class="input-group-text">Rating</span>
-            <input type="number" class="form-control" name="rating" min="1" max="5" required
-                   value="<?= isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '' ?>">
+        <div class="rating" style="display: flex; align-items: center;">
+        <p style="margin-right: 10px; margin-bottom: 10;">Rating:</p>
+        <div style="display: flex; align-items: center; margin-top: -15px;">
+            <span class="star" data-value="1"></span>
+            <span class="star" data-value="2"></span>
+            <span class="star" data-value="3"></span>
+            <span class="star" data-value="4"></span>
+            <span class="star" data-value="5"></span>
         </div>
+        <input type="hidden" name="rating" class="form-control" value="<?= isset($_REQUEST['rating']) ? $_REQUEST['rating'] : '0' ?>">
+    </div>
+
 
         <input type="hidden" name="content_id" value="<?= $contentId ?>">
         <input type="hidden" name="user_id" value="<?= $userId ?>">
@@ -272,6 +303,31 @@ renderNavbar($user);
     </form>
 
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.querySelector('input[name="rating"]');
+    
+    stars.forEach(star => {
+        star.addEventListener('mouseover', function() {
+            const value = this.getAttribute('data-value');
+            ratingInput.value = value;
 
+            // Remover estrelas preenchidas
+            stars.forEach(s => {
+                s.classList.remove('filled');
+            });
+
+            // Preencher estrelas até a clicada
+            this.classList.add('filled');
+            let prev = this.previousElementSibling;
+            while (prev !== null) {
+                prev.classList.add('filled');
+                prev = prev.previousElementSibling;
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>
