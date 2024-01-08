@@ -226,7 +226,26 @@ function getCurrentUserId()
         return $_SESSION['user']['id'];
     }
 
-    return null;
+    return null;   
+}
+function countUsers($isAdmin = null)
+{
+    $sql = 'SELECT COUNT(*) AS user_count FROM users';
+
+    if ($isAdmin !== null) {
+        $sql .= ' WHERE admin = :isAdmin';
+    }
+
+    $PDOStatement = $GLOBALS['pdo']->prepare($sql);
+
+    if ($isAdmin !== null) {
+        $PDOStatement->bindParam(':isAdmin', $isAdmin, PDO::PARAM_INT);
+    }
+
+    $PDOStatement->execute();
+    $result = $PDOStatement->fetch(PDO::FETCH_ASSOC);
+
+    return $result['user_count'];
 }
 
 

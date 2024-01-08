@@ -93,6 +93,14 @@ function getUserIdByEmail($email)
     }
 
     return null;
-}
 
+
+    
+}
+    function countShares()
+    {
+        $PDOStatement = $GLOBALS['pdo']->query('SELECT COUNT(*) AS share_count FROM share_content;');
+        $result = $PDOStatement->fetch(PDO::FETCH_ASSOC);
+        return $result['share_count'];
+    }
 

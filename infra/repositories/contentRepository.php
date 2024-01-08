@@ -295,4 +295,13 @@ function getTitleByName($title)
     }
 
     return $titles;
+
+
+    
 }
+    function countContents()
+    {
+        $PDOStatement = $GLOBALS['pdo']->query('SELECT COUNT(*) AS content_count FROM visual_content;');
+        $result = $PDOStatement->fetch(PDO::FETCH_ASSOC);
+        return $result['content_count'];
+    }

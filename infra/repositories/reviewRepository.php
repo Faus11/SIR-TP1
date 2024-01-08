@@ -141,4 +141,12 @@ function getReviewsByUserAndContent($userId, $contentId)
     }
 
     return $reviews;
+
+
+}
+    function countReviews()
+{
+    $PDOStatement = $GLOBALS['pdo']->query('SELECT COUNT(*) AS review_count FROM content_review;');
+    $result = $PDOStatement->fetch(PDO::FETCH_ASSOC);
+    return $result['review_count'];
 }

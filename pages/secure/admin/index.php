@@ -127,6 +127,7 @@ $title = ' - Admin management';
         <section class="py-4" style="display: flex; justify-content: center;">
             <div class="d-flex justify-content-between">
                 <a href="./user.php"><button class="btn-yellow px-4">Create user</button></a>
+                <a href="./user_stats.php"><button class="btn-yellow px-4">Statistics</button></a>
             </div>
         </section>
         <section>

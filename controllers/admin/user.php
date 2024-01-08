@@ -175,9 +175,9 @@ function delete_user($user)
     if (isset($user['id'])) {
         $data = deleteUser($user['id']);
 
-        // Verifica se a exclusão foi bem-sucedida antes de fazer o logout
+
         if ($data) {
-            // Chama a função de logout após excluir o usuário com sucesso
+       
             logout();
         }
 
