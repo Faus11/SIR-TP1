@@ -71,7 +71,7 @@ if (!is_numeric($category_id)) {
         echo '<input type="hidden" name="id" value="' . $contentId . '">';
         echo '<button type="submit" class="btn btn-danger btn-block" name="content" value="delete">Delete</button>';
         echo '</form>';
-        echo '<a href="updateContent.php?id=' . $contentId . '" class="btn btn-info btn-block">Update</a>';
+        echo '<a href="updateContent.php?id=' . $contentId . '" class="btn btn-info btn-block">Edit</a>';
         echo '</div>'; 
         echo '</div>'; 
         echo '</div>'; 

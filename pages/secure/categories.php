@@ -72,7 +72,7 @@ renderNavbar($user);
         $categoryLink = "category.php?category_id=$category_id"; 
 
         echo '<div class="col-md-4 mb-4">';
-        echo '<div class="card card-transparent">'; // Adicionada uma classe card-transparent
+        echo '<div class="card card-transparent">';
         echo '<div class="card-body">';
         echo "<h5 class='card-title'>$categoryName</h5>";
         echo "<p class='card-text'>$categoryDescription</p>"; 
