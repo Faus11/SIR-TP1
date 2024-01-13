@@ -8,17 +8,22 @@ renderHeader($title);
 renderNavbar($user);
 
 $category_id = $_GET['category_id'] ?? null;
+?>
 
-echo '<form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">';
+<form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
+
+<?php
 if (!is_numeric($category_id)) {
-  echo 'Invalid category ID.';
+  ?>
+  Invalid category ID.
+  <?php
 } else {
   $contentByCategory = getContentByUserIdAndCategory($user['id']);
- 
-  echo '<style>';
-  echo '@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");';
+?>
 
-  echo '
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
     * {
       margin: 0;
       padding: 0;
@@ -35,7 +40,14 @@ if (!is_numeric($category_id)) {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      width: 200%; /* Ajuste a largura conforme necessÃ¡rio */
+      width: 200%; 
+      min-height: 400px; 
+    }
+
+    .card-img-top {
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
     }
 
     .card-body {
@@ -47,44 +59,55 @@ if (!is_numeric($category_id)) {
       border-color: #e3c624;
       margin-top: auto;
     }
-  ';
-  echo '</style>';
+    .custom-margin-top {
+      margin-top: 370px; 
+    }
+</style>
 
-  echo '<div class="container d-flex justify-content-center align-items-center vh-100">';
-  echo '<div class="row">';
-  
-  if ($contentByCategory && isset($contentByCategory[$category_id])) {
-    foreach ($contentByCategory[$category_id] as $content) {
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="row">
+
+<?php
+if ($contentByCategory && isset($contentByCategory[$category_id])) {
+    foreach ($contentByCategory[$category_id] as $index => $content) {
         $contentId = $content['id'];
         $contentLink = "content.php?id=$contentId";
-        echo '<div class="col-md-6 mb-5">'; 
-        echo '<div class="card card-transparent" style="width: 100%;">'; 
-        echo '<img class="card-img-top" src="data:image/webp;base64,' . $content['image'] . '" alt="Card image cap" style="max-width: 100%;">'; 
-        echo '<div class="card-body text-center">';
-        echo '<h5 class="card-title text-dark">
-        <b>Title:' . $content['title'] . '</b>
-        </h5>';
-        echo '<p class="card-text text-white">Release Date:' . $content['release_date'] . '</p>';
-        echo '<div class="d-flex justify-content-between mt-3">';
-        echo '<a href="contentId.php?id=' . $contentId . '" class="btn btn-warning btn-block">View</a>';
-        echo '<form action="/SIR-TP1/controllers/content/content.php" method="post">';
-        echo '<input type="hidden" name="id" value="' . $contentId . '">';
-        echo '<button type="submit" class="btn btn-danger btn-block" name="content" value="delete">Delete</button>';
-        echo '</form>';
-        echo '<a href="updateContent.php?id=' . $contentId . '" class="btn btn-info btn-block">Edit</a>';
-        echo '</div>'; 
-        echo '</div>'; 
-        echo '</div>'; 
-        echo '</div>';
-      }
-  
-      echo '</div>';
-      echo '</div>'; 
-      echo '</div>'; 
+        $customMarginClass = in_array($index, [0, 1]) ? 'custom-margin-top' : '';
+?>
+
+        <div class="col-md-6 mb-5 <?= $customMarginClass ?>">
+          <div class="card card-transparent" style="width: 100%;">
+            <img class="card-img-top" src="data:image/webp;base64,<?= $content['image'] ?>" alt="Card image cap">
+            <div class="card-body text-center">
+              <h5 class="card-title text-dark"><b>Title: <?= $content['title'] ?></b></h5>
+              <p class="card-text text-white">Release Date: <?= $content['release_date'] ?></p>
+              <div class="d-flex justify-content-between mt-3">
+                <a href="contentId.php?id=<?= $contentId ?>" class="btn btn-warning btn-block">View</a>
+                <form action="/SIR-TP1/controllers/content/content.php" method="post">
+                  <input type="hidden" name="id" value="<?= $contentId ?>">
+                  <button type="submit" class="btn btn-danger btn-block" name="content" value="delete">Delete</button>
+                </form>
+                <a href="updateContent.php?id=<?= $contentId ?>" class="btn btn-info btn-block">Edit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<?php
+    }
+
+    ?>
+    </div>
+    </div> 
+    </div> 
+    <?php
   } else {
-      echo "<div class='col-md-12 text-center'>";
-      echo "No content available for this category.";
-      echo "</div>";
+    ?>
+    <div class='col-md-12 text-center'>
+      No content available for this category.
+    </div>
+    <?php
   }
 }
 ?>
+

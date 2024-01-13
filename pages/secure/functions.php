@@ -15,6 +15,9 @@ function renderHeader($title) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?= $title ?></title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-..." crossorigin="anonymous"></script>
+
         <link rel="stylesheet" type="text/css" href="../../pages/secure/style.css">
     </head>
     <body>
@@ -30,12 +33,18 @@ function renderNavbar($user) {
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <li class="nav-item">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
                         <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Create Content</a>
-                        <a href="/SIR-TP1/pages/secure/categories.php" class="btn btn-outline-light btn-lg px-4 mx-2">Categories</a>
-                        <a href="/SIR-TP1/pages/secure/schedule.php" class="btn btn-outline-light btn-lg px-4 mx-2">Schedule</a>
-                        <a href="/SIR-TP1/pages/secure/search.php" class="btn btn-outline-light btn-lg px-4 mx-2">Search</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/SIR-TP1/pages/secure/categories.php" class="btn btn-outline-light btn-lg px-4 mx-2">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/SIR-TP1/pages/secure/schedule.php" class="btn btn-outline-light btn-lg px-4 mx-2">Schedule</a>
+                    </li>
+                   
+                </ul>
                 <ul class="navbar-nav ms-auto">
                     <?php if (isAuthenticated()) { ?>
                         <?php if ($user['admin']) { ?>
@@ -56,6 +65,15 @@ function renderNavbar($user) {
             </div>
         </div>
     </nav>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var navbarToggler = document.querySelector('.navbar-toggler');
+        navbarToggler.addEventListener('click', function () {
+            var navbarNav = document.querySelector('.navbar-nav');
+            navbarNav.classList.toggle('show');
+        });
+    });
+</script>
     <?php
 }
 

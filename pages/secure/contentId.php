@@ -170,6 +170,22 @@
 <body>
 
 <?php
+
+
+function getFormatNameById($formatId) {
+    
+    $formatNames = [
+        1 => 'TV Show',
+        2 => 'Movie',
+        3 => 'Documentary',
+        4 => 'Short Film',
+        5 => 'Serie',
+    ];
+
+    
+    return $formatNames[$formatId] ?? 'Unknown';
+}
+
 require_once 'functions.php';
 require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
 require_once __DIR__ . '/../../infra/repositories/reviewRepository.php';
@@ -194,14 +210,14 @@ renderNavbar($user);
         <div class="card-header">
             <h2 style="font-size: 30px;"><strong><?= $contentInfo['title'] ?></strong></h2>
         </div>
-
+  
         <div class="card-content">
             <p class="content-details"><strong>Release Date:</strong> <?= $contentInfo['release_date'] ?></p>
             <p class="content-details"><strong>Description:</strong> <?= $contentInfo['description'] ?></p>
             <p class="content-details"><strong>Cast:</strong> <?= $contentInfo['cast'] ?></p>
             <p class="content-details"><strong>Attachments:</strong><a href="<?= $contentInfo['trailer'] ?>" target="_blank"><?= $contentInfo['trailer'] ?></a></p>
-
             <p class="content-details"><strong>Seasons:</strong> <?= $contentInfo['seasons'] ?></p>
+            <p class="content-details"><strong>Format:</strong> <?= getFormatNameById($contentInfo['format_id']) ?></p>
           
 
             <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
@@ -219,7 +235,7 @@ renderNavbar($user);
             <form enctype="multipart/form-data" action="/SIR-TP1/controllers/sharee/share.php" method="post" style="margin-top: 10px;">
                 <input type="hidden" name="content_id" value="<?= $contentId ?>">
                 <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">
-                <label for="receiver_email">Partilhar com o Utilizador (Email):</label>
+                <label for="receiver_email">Share with user (Email):</label>
                 <input type="email" name="receiver_email" id="receiver_email" required>
                 <button type="submit" name="share" value="create" class="btn btn-warning">Share</button>
             </form>
@@ -236,7 +252,7 @@ renderNavbar($user);
         ?>
 
         <div class="comments-section">
-            <h3>Comentários:</h3>
+            <h3>Comments:</h3>
 
             <?php
             foreach ($reviews as $review) {
@@ -244,7 +260,7 @@ renderNavbar($user);
 
                 <div class="comment-container">
                     <div class="comment-content">
-                        <p>Comentário: <?= $review['comment'] ?></p>
+                        <p>Comment: <?= $review['comment'] ?></p>
                         <p>Rating: <?= $review['rating'] ?></p>
                     </div>
 
@@ -276,12 +292,12 @@ renderNavbar($user);
 
     <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post"
           class="comment-form">
-        <h3>Adicionar Comentário:</h3>
+        <h3>Add Comment:</h3>
 
         <div class="input-group mb-3">
-            <span class="input-group-text">Comentário</span>
+            <span class="input-group-text">Comment</span>
             <textarea class="form-control" name="comment" rows="4"
-                      placeholder="Escreva seu comentário aqui" required><?= isset($_REQUEST['comment']) ? $_REQUEST['comment'] : '' ?></textarea>
+                      placeholder="Write your comment here" required><?= isset($_REQUEST['comment']) ? $_REQUEST['comment'] : '' ?></textarea>
         </div>
 
         <div class="rating" style="display: flex; align-items: center;">
