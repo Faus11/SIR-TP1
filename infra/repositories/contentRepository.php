@@ -305,3 +305,17 @@ function getTitleByName($title)
         $result = $PDOStatement->fetch(PDO::FETCH_ASSOC);
         return $result['content_count'];
     }
+
+    function getSearchedShows($searchInput)
+{
+    $sql = 'SELECT id FROM visual_content WHERE user_id = :user_id AND title LIKE :searchInput';
+
+    $stmt = $GLOBALS['pdo']->prepare($sql);
+    $searchTermWithWildcards = '%' . $searchInput['searchInput']. '%';
+    $stmt->bindParam(':searchInput', $searchTermWithWildcards, PDO::PARAM_STR);
+    $stmt->bindParam(':user_id', $searchInput['user_id'], PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    return $result;
+}

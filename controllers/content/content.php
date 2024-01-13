@@ -105,6 +105,37 @@ function deleteEndDate($data)
     header('Location: ' . $_SERVER['HTTP_REFERER']);
 }
 
+if (isset($_GET['submitSearch'])) { 
+        $searchInput = array(
+            'searchInput' => trim($_GET['searchInput']),
+            'user_id' => $_POST['user_id'],
+        );
+        if (!empty($searchInput)) {
+            getShows($searchInput); 
+        }
+        else{
+            header('Location: /SIR-TP1/pages/secure/index.php');
+        }
+    }
+
+
+function getShows($searchInput)
+{
+    $searchResults = getSearchedShows($searchInput);
+    
+    if ($searchResults) {
+        $searchResultsJson = json_encode($searchResults);
+
+        $params = '?searchResults=' . urlencode($searchResultsJson);
+        header('Location: /SIR-TP1/pages/secure/searchResults.php' . $params);
+        exit;
+    } else {
+        $_SESSION['errors'] = ['No shows found for the search query!'];
+        header('Location: /SIR-TP1/pages/secure/admin/index.php');
+        exit;
+    }
+}
+
 
 
 

@@ -43,6 +43,9 @@ function renderNavbar($user) {
                     <li class="nav-item">
                         <a href="/SIR-TP1/pages/secure/schedule.php" class="btn btn-outline-light btn-lg px-4 mx-2">Schedule</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/SIR-TP1/pages/secure/search.php" class="btn btn-outline-light btn-lg px-4 mx-2">Search</a>
+                    </li>
                    
                 </ul>
                 <ul class="navbar-nav ms-auto">

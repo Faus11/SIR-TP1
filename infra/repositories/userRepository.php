@@ -183,7 +183,6 @@ function createNewUser($user)
         email,
         birthdate,
         pass,
-        admin,
         created_at  
     ) 
     VALUES (
@@ -194,7 +193,6 @@ function createNewUser($user)
         :email,
         :birthdate,
         :pass, 
-        :admin,
         :created_at 
     )";
 
@@ -207,7 +205,6 @@ function createNewUser($user)
         ':email' => $user['email'],
         ':birthdate' => $user['birthdate'],
         ':pass' => $user['pass'],
-        ':admin' => $user['admin'],
         ':created_at' => $user['created_at']
     ]);
 

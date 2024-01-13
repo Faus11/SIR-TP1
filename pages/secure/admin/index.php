@@ -108,6 +108,10 @@ $title = ' - Admin management';
             font-weight: 500;
         }
 
+        .spacer {
+            width: 20px;
+        }
+
         #logo {
             width: 75px;
             position: absolute;
@@ -127,6 +131,7 @@ $title = ' - Admin management';
         <section class="py-4" style="display: flex; justify-content: center;">
             <div class="d-flex justify-content-between">
                 <a href="./user.php"><button class="btn-yellow px-4">Create user</button></a>
+                <div class="spacer"></div> <!-- Spacer between buttons -->
                 <a href="./user_stats.php"><button class="btn-yellow px-4">Statistics</button></a>
             </div>
         </section>
