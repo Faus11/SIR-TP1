@@ -173,7 +173,7 @@ function deleteUser($id)
 function createNewUser($user)
 {
 
-
+    $user['pass'] = password_hash($user['pass'], PASSWORD_DEFAULT);
     $sqlCreate = "INSERT INTO 
     users (
         firstname,

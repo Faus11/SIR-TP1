@@ -166,7 +166,9 @@ $title = ' - Admin management';
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($users as $user) {
+                       foreach ($users as $user) {
+                        
+                        if ($user['deleted_at'] === null || strtotime($user['deleted_at']) > time()) {
                             ?>
                             <tr>
                                 <td><?= $user['firstname'] ?></td>
@@ -205,6 +207,7 @@ $title = ' - Admin management';
                                 </div>
                             </div>
                             <?php
+                         }
                         }
                         ?>
                     </tbody>
