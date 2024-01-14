@@ -251,7 +251,10 @@ $user = user();
                         value="<?= isset($_REQUEST['birthdate']) ? $_REQUEST['birthdate'] : $user['birthdate'] ?>" required>
                 </div>
                 
-               
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Avatar</span>
+                    <input type="file" class="form-control" name="avatar" accept="image/*" value= "<?= isset($_REQUEST['avatar']) ? $_REQUEST['avatar'] : $user['avatar'] ?>">
+                </div>
                 
                 <div class="d-grid col-4 mx-auto">
                     <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Change</button>
@@ -267,7 +270,6 @@ $user = user();
         <section class="py-4">
             <div class="top-right-buttons">
                 <a href="./password.php"><button class="btn-outline-light btn-lg px-4 mx-2">Change Password</button></a>
-                <a href="./avatar.php"><button class="btn-outline-light btn-lg px-4 mx-2">Upload avatar</button></a>
             </div>
         </section>
     </main>

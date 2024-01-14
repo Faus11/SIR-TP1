@@ -288,11 +288,11 @@ require_once __DIR__ . '/../../controllers/content/content.php';
                     <?php $show = getByIdContent($result['id']) ?>
                     <form action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
                         <!-- Add your form elements here with values from $show -->
+                        <img class="card-img-top" src="data:image/webp;base64,<?= $show['image'] ?>" alt="Card image cap">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Show Title</span>
                             <input type="text" class="form-control" name="show_title" placeholder="Show Title" value="<?= $show['title'] ?>" readonly>
                         </div>
-
                         <div class="input-group mb-3">
                             <span class="input-group-text">Release Date</span>
                             <input type="text" class="form-control" name="release_date" placeholder="Release Date" value="<?= $show['release_date'] ?>" readonly>

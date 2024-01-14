@@ -24,6 +24,7 @@ renderNavbar($user);
     <div class="row justify-content-center">
         <div class="col-md-12"> 
             <div class="rounded-box text-center mx-auto">
+            <img class="card-img-top" src="data:image/webp;base64,<?= $user['avatar'] ?> "alt="Card image cap">
                 <h2 class="mb-4">Welcome, <?= $user['username'] ?? null ?>!</h2>
                 <h3>Let's get started!</h3>
             </div>

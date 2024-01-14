@@ -91,7 +91,6 @@ function update($req)
         $_SESSION['action'] = 'update';
         $params = '?' . http_build_query($req);
         header('location: /SIR-TP1/pages/secure/admin/user.php' . $params);
-
         return false;
     }
 
@@ -103,6 +102,9 @@ function update($req)
         $params = '?' . http_build_query($data);
         header('location: /SIR-TP1/pages/secure/admin/user.php' . $params);
     }
+    else {
+        header('location: /SIR-TP1/pages/secure/admin/index.php');
+    }
 }
 
 function updateProfile($req)
@@ -113,12 +115,22 @@ function updateProfile($req)
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
         header('location: /SIR-TP1/pages/secure/user/profile.php' . $params);
+    } else {
+        // Adicione a lógica para lidar com o upload da imagem
+        if (isset($_FILES['avatar']) && $_FILES['avatar']['error'] === UPLOAD_ERR_OK) {
+            $imageData = file_get_contents($_FILES['avatar']['tmp_name']);
+            $imageBase64 = base64_encode($imageData);
+            $data['avatar'] = $imageBase64;
         } else {
-        $user = user(); 
+            $data['avatar'] = null;
+        }
+
+        $user = user();
         $data['id'] = $user['id'];
         $data['admin'] = $user['admin'];
 
         $success = updateUser($data);
+        unset($data['avatar']);
 
         if ($success) {
             $_SESSION['success'] = 'User successfully changed!';
@@ -128,6 +140,7 @@ function updateProfile($req)
         }
     }
 }
+
 
 function updateUserbyADM($req)
 {

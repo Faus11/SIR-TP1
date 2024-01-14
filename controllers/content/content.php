@@ -106,12 +106,11 @@ function deleteEndDate($data)
 }
 
 if (isset($_GET['submitSearch'])) { 
-        $searchInput = array(
-            'searchInput' => trim($_GET['searchInput']),
-            'user_id' => $_POST['user_id'],
-        );
+        $searchInput = trim($_GET['searchInput']);
+        $user_id = ($_GET['user_id']);
+
         if (!empty($searchInput)) {
-            getShows($searchInput); 
+            getShows($searchInput, $user_id);
         }
         else{
             header('Location: /SIR-TP1/pages/secure/index.php');
@@ -119,9 +118,9 @@ if (isset($_GET['submitSearch'])) {
     }
 
 
-function getShows($searchInput)
+function getShows($searchInput, $user_id)
 {
-    $searchResults = getSearchedShows($searchInput);
+    $searchResults = getSearchedShows($searchInput, $user_id);
     
     if ($searchResults) {
         $searchResultsJson = json_encode($searchResults);

@@ -97,6 +97,7 @@ function updateUser($user)
         ':phoneNumber' => $user['phoneNumber'],
         ':email' => $user['email'],
         ':birthdate' => $user['birthdate'],
+        ':avatar' => $user['avatar'],
         ':admin' => $user['admin'],
         ':id' => $user['id']
     ];
@@ -113,7 +114,8 @@ function updateUser($user)
             phoneNumber = :phoneNumber, 
             email = :email, 
             birthdate = :birthdate, 
-            pass = :pass, 
+            pass = :pass,
+            avatar = :avatar, 
             admin = :admin,
             updated_at = NOW()
             WHERE id = :id;";
@@ -125,7 +127,8 @@ function updateUser($user)
             username = :username, 
             phoneNumber = :phoneNumber, 
             email = :email, 
-            birthdate = :birthdate, 
+            birthdate = :birthdate,
+            avatar = :avatar, 
             admin = :admin,
             updated_at = NOW()
             WHERE id = :id;";
