@@ -26,7 +26,7 @@ $user = user();
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -190,7 +190,7 @@ $user = user();
 </head>
 
 <body>
-<a href="/SIR-TP1/pages/secure">
+<a href="../../../pages/secure">
         <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
             </a>
     <main>
@@ -213,7 +213,7 @@ $user = user();
             ?>
         </section>
         <section>
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
+            <form enctype="multipart/form-data" action="../../../controllers/admin/user.php" method="post" class="form-control py-3">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Username</span>
@@ -260,7 +260,7 @@ $user = user();
                     <button class="w-100 btn btn-lg btn-success mb-2" type="submit" name="user" value="profile">Change</button>
                 </div>
 
-                <form action="/SIR-TP1/controllers/admin/user.php" method="post">
+                <form action="../../../controllers/admin/user.php" method="post">
                     <input type="hidden" name="delete_user" value="true">
                     <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
                     <button class="w-100 btn btn-lg btn-danger mb-2" type="submit" name="user" value="delete">Delete</button>

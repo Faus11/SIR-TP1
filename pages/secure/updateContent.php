@@ -49,7 +49,7 @@ $visualContent = getByIdContent($contentId);
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -159,7 +159,7 @@ $visualContent = getByIdContent($contentId);
 </head>
 
 <body>
-    <form method="POST">
+    <form method="POST" class="text-white">
         <input type="hidden" name="id" value="<?= $visualContent['id'] ?>">
         <label>Title: <input type="text" name="title" value="<?= $visualContent['title'] ?>"></label><br>
         <label>Restricted: <input type="text" name="restricted" value="<?= $visualContent['restricted'] ?>"></label><br>
@@ -217,7 +217,7 @@ $visualContent = getByIdContent($contentId);
         }
         ?>
         <label> <input type="hidden" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly></label><br>
-        <input type="submit" class="btn btn-success" value="Update">
+        <input type="submit" class="btn btn-warning" value="Update">
     </form>
 </body>
 

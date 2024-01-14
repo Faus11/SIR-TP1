@@ -26,7 +26,7 @@ $title = ' - Content';
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -128,7 +128,7 @@ $title = ' - Content';
 </head>
 
 <body>
-<a href="/SIR-TP1/pages/secure">
+<a href="../../pages/secure">
         <img id="logo" src="../../pages/assets/image.png" alt="Logo">
             </a>
     <main>
@@ -152,7 +152,7 @@ $title = ' - Content';
             ?>
         </section>
         <section class="pb-4">
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post" class="form-control py-3">
+            <form enctype="multipart/form-data" action="../../controllers/content/content.php" method="post" class="form-control py-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Title</span>
                     <input type="text" class="form-control" name="title" maxlength="255" value="<?= isset($_REQUEST['title']) ? $_REQUEST['title'] : '' ?>" required>

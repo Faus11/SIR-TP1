@@ -10,7 +10,7 @@ renderNavbar($user);
 $category_id = $_GET['category_id'] ?? null;
 ?>
 
-<form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
+<form enctype="multipart/form-data" action="../../controllers/content/content.php" method="post">
 
 <?php
 if (!is_numeric($category_id)) {
@@ -83,7 +83,7 @@ if ($contentByCategory && isset($contentByCategory[$category_id])) {
               <p class="card-text text-white">Release Date: <?= $content['release_date'] ?></p>
               <div class="d-flex justify-content-between mt-3">
                 <a href="contentId.php?id=<?= $contentId ?>" class="btn btn-warning btn-block">View</a>
-                <form action="/SIR-TP1/controllers/content/content.php" method="post">
+                <form action="../../controllers/content/content.php" method="post">
                   <input type="hidden" name="id" value="<?= $contentId ?>">
                   <button type="submit" class="btn btn-danger btn-block" name="content" value="delete">Delete</button>
                 </form>

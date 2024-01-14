@@ -40,10 +40,10 @@ function create($data)
 
     if ($success) {
         $_SESSION['success'] = 'Conteúdo criado com sucesso!';
-        header('location: /SIR-TP1/pages/secure/content.php');
+        header('location: ../../pages/secure/content.php');
     } else {
         $_SESSION['errors'] = ['Erro ao criar conteúdo'];
-        header('location: /SIR-TP1/pages/secure/content.php');
+        header('location: ../../pages/secure/content.php');
     }
 }
 
@@ -70,7 +70,7 @@ function delete($data)
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
         $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
-        header('Location: /SIR-TP1/pages/secure/content.php');
+        header('Location: ../../pages/secure/content.php');
     }
 }
 function addEndDate($data)
@@ -113,7 +113,7 @@ if (isset($_GET['submitSearch'])) {
             getShows($searchInput, $user_id);
         }
         else{
-            header('Location: /SIR-TP1/pages/secure/index.php');
+            header('Location: ../../pages/secure/index.php');
         }
     }
 
@@ -126,11 +126,11 @@ function getShows($searchInput, $user_id)
         $searchResultsJson = json_encode($searchResults);
 
         $params = '?searchResults=' . urlencode($searchResultsJson);
-        header('Location: /SIR-TP1/pages/secure/searchResults.php' . $params);
+        header('Location: ../../pages/secure/searchResults.php' . $params);
         exit;
     } else {
         $_SESSION['errors'] = ['No shows found for the search query!'];
-        header('Location: /SIR-TP1/pages/secure/admin/index.php');
+        header('Location: ../../pages/secure/admin/index.php');
         exit;
     }
 }

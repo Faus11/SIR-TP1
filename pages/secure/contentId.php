@@ -220,7 +220,7 @@ renderNavbar($user);
             <p class="content-details"><strong>Format:</strong> <?= getFormatNameById($contentInfo['format_id']) ?></p>
           
 
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/content/content.php" method="post">
+            <form enctype="multipart/form-data" action="../../controllers/content/content.php" method="post">
                 <label for="end_date">Calendarize Content:</label>
                 <input type="date" id="end_date" name="end_date">
                 <input type="hidden" name="id" value="<?= $contentId ?>">
@@ -232,7 +232,7 @@ renderNavbar($user);
 
 
             <!-- Partilhar com o utilizador -->
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/sharee/share.php" method="post" style="margin-top: 10px;">
+            <form enctype="multipart/form-data" action="../../controllers/sharee/share.php" method="post" style="margin-top: 10px;">
                 <input type="hidden" name="content_id" value="<?= $contentId ?>">
                 <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">
                 <label for="receiver_email">Share with user (Email):</label>
@@ -265,12 +265,12 @@ renderNavbar($user);
                     </div>
 
                     <div class="comment-buttons">
-                        <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php"
+                        <form enctype="multipart/form-data" action="../../controllers/review/review.php"
                               method="post">
                             <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>">
                         </form>
 
-                        <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php"
+                        <form enctype="multipart/form-data" action="../../controllers/review/review.php"
                               method="post">
                             <input type="hidden" name="id_review" value="<?= $review['id_review'] ?>">
                             <button type="submit" class="btn btn-danger" name="review" value="delete">Delete</button>
@@ -290,7 +290,7 @@ renderNavbar($user);
     }
     ?>
 
-    <form enctype="multipart/form-data" action="/SIR-TP1/controllers/review/review.php" method="post"
+    <form enctype="multipart/form-data" action="../../controllers/review/review.php" method="post"
           class="comment-form">
         <h3>Add Comment:</h3>
 

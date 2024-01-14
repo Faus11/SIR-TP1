@@ -22,7 +22,7 @@ $title = ' - Sign Up';
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -143,7 +143,7 @@ $title = ' - Sign Up';
     </style>
 </head>
 <body>
-      <a href="/SIR-TP1">
+      <a href="../../">
         <img id="logo" src="../../pages/assets/image.png" alt="Logo">
       </a>
     <main>
@@ -166,7 +166,7 @@ $title = ' - Sign Up';
             ?>
         </section>
 
-        <form action="/SIR-TP1/controllers/auth/signup.php" method="post" enctype="multipart/form-data">
+        <form action="../../controllers/auth/signup.php" method="post" enctype="multipart/form-data">
 
             <div class="form-floating mb-2">
                 <input type="text" class="form-control" name="firstname" placeholder="First Name" maxlength="100"

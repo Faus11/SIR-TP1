@@ -30,7 +30,7 @@ require_once __DIR__ . '/../../controllers/content/content.php';
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -279,14 +279,14 @@ require_once __DIR__ . '/../../controllers/content/content.php';
 
 <body>
     <main>
-        <a href="/SIR-TP1/pages/secure">
+        <a href="../../pages/secure">
             <img id="logo" src="../../pages/assets/image.png" alt="Logo">
         </a>
         <div class="show-list">
             <div class="list-group">
                 <?php foreach ($searchResults as $result): ?>
                     <?php $show = getByIdContent($result['id']) ?>
-                    <form action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
+                    <form action="../../../controllers/admin/user.php" method="post" class="form-control py-3">
                         <!-- Add your form elements here with values from $show -->
                         <img class="card-img-top" src="data:image/webp;base64,<?= $show['image'] ?>" alt="Card image cap">
                         <div class="input-group mb-3">

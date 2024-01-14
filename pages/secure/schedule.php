@@ -35,7 +35,7 @@ foreach ($contents as $content) {
         }
         body {
            
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
           
         }
@@ -64,7 +64,7 @@ foreach ($contents as $content) {
   </head>
   <body>
     <div id='calendar'></div>
-    <a href="/SIR-TP1/pages/secure/index.php">
+    <a href="../../pages/secure/index.php">
         <img id="logo" src="../../pages/assets/image.png" alt="Logo">
             </a>
   </body>

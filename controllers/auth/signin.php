@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once __DIR__ . '/../../infra/repositories/userRepository.php';
-require_once __DIR__ . '/../../helpers/validations/app/validate-login-password.php';
+require_once '../../infra/repositories/userRepository.php';
+require_once '../../helpers/validations/app/validate-login-password.php';
 
 if (isset($_POST['user'])) {
     if ($_POST['user'] == 'login') {
@@ -29,7 +29,7 @@ function login($req)
     } elseif ($user['deleted_at'] !== NULL) {
         $_SESSION['errors'] = "Usuário eliminado. Não é possível fazer login.";
         $params = '?' . http_build_query($req);
-        header('location: /SIR-TP1/pages/public/signin.php' . $params);
+        header('location: ../../pages/public/signin.php' . $params);
         exit; 
     }
 }
@@ -40,7 +40,7 @@ function checkErrors($data, $req)
     if (isset($data['invalid'])) {
         $_SESSION['errors'] = $data['invalid'];
         $params = '?' . http_build_query($req);
-        header('location: /SIR-TP1/pages/public/signin.php' . $params);
+        header('location: ../../pages/public/signin.php' . $params);
         return false;
     }
 
@@ -58,14 +58,8 @@ function doLogin($data)
 
     setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
     setcookie("firstname", $data['firstname'], time() + (60 * 60 * 24 * 30), "/");
-
-    if ($isAdmin) {
-        $admin_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/pages/secure/index.php';
-        header('Location: ' . $admin_url);
-    } else {
-        $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/pages/secure/index.php';
-        header('Location: ' . $home_url);
-    }
+    
+    header('Location: ../../pages/secure/index.php');
 }
 
 function logout()
@@ -83,6 +77,5 @@ function logout()
     setcookie('id', '', time() - 3600, "/");
     setcookie('firstname', '', time() - 3600, "/");
 
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1';
-    header('Location: ' . $home_url);
+    header('Location: ../../');
 }

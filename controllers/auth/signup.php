@@ -1,4 +1,6 @@
 <?php
+ob_start();
+
 session_start();
 
 require_once __DIR__ . '/../../infra/repositories/userRepository.php';
@@ -20,7 +22,7 @@ function signUp($req)
 
         $params = '?' . http_build_query($req);
 
-        header('location: /SIR-TP1/pages/public/signup.php' . $params);
+        header('location: ../../pages/public/signup.php' . $params);
     } else {
 
         $user = createNewUser($data);
@@ -31,10 +33,12 @@ function signUp($req)
 
             setcookie("id", $data['id'], time() + (60 * 60 * 24 * 30), "/");
             setcookie("firstname", $data['firstname'], time() + (60 * 60 * 24 * 30), "/");
-            header('location: /SIR-TP1/pages/secure/index.php');
+            header('location: ../../pages/secure/index.php');
         } else {
             $_SESSION['errors'] = "User criado, mas foi eliminado. Não é possível fazer login.";
-            header('location: /SIR-TP1/pages/secure/index.php');
+            header('location: ../../pages/secure/index.php');
         }
     }
 }
+
+ob_end_flush();

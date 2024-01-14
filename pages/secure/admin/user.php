@@ -25,7 +25,7 @@ $title = ' - User';
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -132,7 +132,7 @@ $title = ' - User';
 
 <body>
     <main>
-    <a href="/SIR-TP1/pages/secure/admin">
+    <a href="../../../pages/secure/admin">
         <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
             </a>
         <section>
@@ -154,7 +154,7 @@ $title = ' - User';
             ?>
         </section>
         <section class="pb-4">
-            <form enctype="multipart/form-data" action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
+            <form enctype="multipart/form-data" action="../../../controllers/admin/user.php" method="post" class="form-control py-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text">FirstName</span>
                     <input type="text" class="form-control" name="firstname" maxlength="100" size="100"

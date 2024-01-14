@@ -28,7 +28,7 @@ $title = ' - Admin management';
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -124,7 +124,7 @@ $title = ' - Admin management';
 </head>
 
 <body>
-    <a href="/SIR-TP1/pages/secure">
+    <a href="../../../pages/secure">
         <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
     </a>
     <main style="padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); backdrop-filter: blur(30px); background: transparent;">
@@ -178,7 +178,7 @@ $title = ' - Admin management';
                                 <td><?= $user['admin'] == '1' ? 'Yes' : 'No' ?></td>
                                 <td>
                                     <div class="d-flex justify-content">
-                                        <a href="/SIR-TP1/pages/secure/admin/update_user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
+                                        <a href="../../../pages/secure/admin/update_user.php?<?= 'user=update&id=' . $user['id'] ?>"><button type="button"
                                                 class="btn btn-primary me-2">update</button></a>
                                         <form method="POST" action="delete_user.php">
                                             <input type="hidden" name="id" value="<?= $user['id'] ?>">
@@ -200,7 +200,7 @@ $title = ' - Admin management';
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <a href="/SIR-TP1/controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
+                                            <a href="../../../controllers/admin/user.php?<?= 'user=delete&id=' . $user['id'] ?>"><button type="button"
                                                     class="btn btn-danger">Confirm</button></a>
                                         </div>
                                     </div>

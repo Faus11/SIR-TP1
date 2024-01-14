@@ -7,7 +7,6 @@ if (!isset($_SESSION['id'])) {
     $_SESSION['id'] = $_COOKIE['id'];
     $_SESSION['firstname'] = $_COOKIE['firstname'];
   } else {
-    $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/SIR-TP1/';
-    header('Location: ' . $home_url);
+    header('Location: ../../');
   }
 }

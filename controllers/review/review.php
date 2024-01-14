@@ -32,7 +32,7 @@ function create($data)
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
         $_SESSION['errors'] = ['Erro ao criar'];
-        header('Location: /SIR-TP1/pages/secure/index.php');
+        header('Location: ../../pages/secure/index.php');
     }
 }
 
@@ -44,10 +44,10 @@ function update($data)
      $success = updateReview($data);
    if ($success) {
         $_SESSION['success'] = 'Conteúdo atualizado com sucesso!';
-        header('location: /SIR-TP1/pages/secure/category.php');
+        header('location: ../../pages/secure/category.php');
      } else {
         $_SESSION['errors'] = ['Erro ao atualizar conteúdo'];
-         header('location: /SIR-TP1/pages/secure/index.php');
+         header('location: ../../pages/secure/index.php');
      }
 }
 
@@ -61,7 +61,7 @@ function delete($data)
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
         $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
-        header('Location: /SIR-TP1/pages/secure/content.php');
+        header('Location: ../../pages/secure/content.php');
     }
 }
 

@@ -25,7 +25,7 @@ $user = user();
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -151,7 +151,7 @@ $user = user();
     </style>
 </head>
 <body>
-<a href="/SIR-TP1/pages/secure/user/profile.php">
+<a href="../../../pages/secure/user/profile.php">
         <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
             </a>
     <main>
@@ -174,7 +174,7 @@ $user = user();
             ?>
         </section>
         <section>
-            <form action="/SIR-TP1/controllers/admin/user.php" method="post" class="form-control py-3">
+            <form action="../../../controllers/admin/user.php" method="post" class="form-control py-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Name</span>
                     <input type="text" readonly class="form-control" name="firstname" placeholder="<?= $user['firstname'] ?>"

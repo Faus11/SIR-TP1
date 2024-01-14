@@ -36,7 +36,7 @@ $shareCount = countShares();
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -83,7 +83,7 @@ $shareCount = countShares();
 
 <body>
     <main>
-    <a href="/SIR-TP1/pages/secure/admin">
+    <a href="../../../pages/secure/admin">
         <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
             </a>
         

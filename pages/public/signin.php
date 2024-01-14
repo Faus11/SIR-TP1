@@ -23,7 +23,7 @@ $title = ' - Sign In';
 
         body {
             font-family: Arial, sans-serif;
-            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
+            background: url('../assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -136,7 +136,7 @@ $title = ' - Sign In';
             ?>
         </section>
 
-        <form action="/SIR-TP1/controllers/auth/signin.php" method="post">
+        <form action="../../controllers/auth/signin.php" method="post">
   
 
             <div class="form-floating mb-2">
@@ -158,7 +158,7 @@ $title = ' - Sign In';
             <button class="w-100 btn btn-success" type="submit" name="user" value="login">Sign In</button>
         </form>
 
-        <a href="/SIR-TP1"><button class="w-100 btn btn-info">Back</button></a>
+        <a href="../../"><button class="w-100 btn btn-info">Back</button></a>
     </main>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
- require_once __DIR__ . '../setupdatabase.php';
+    require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
+    require_once 'setupdatabase.php';
 ?>
 
 <!DOCTYPE html>
@@ -185,9 +185,9 @@ require_once __DIR__ . '/infra/middlewares/middleware-not-authenticated.php';
     <footer>
         <p>© 2023 Movie Break. Todos os direitos reservados.</p>
         <div class="redes-sociais">
-            <a href="https://www.facebook.com/moviebreakdotde"><img src="pages/assets\facebook.png" alt="Facebook"></a>
-            <a href="https://github.com/Faus11/SIR-TP1"><img src="pages/assets\github.png" alt="Twitter"></a>
-            <a href="https://www.instagram.com/josefaus_03/"><img src="pages/assets\instagram.png" alt="Instagram"></a>
+            <a href="https://www.facebook.com/moviebreakdotde"><img src="pages/assets/facebook.png" alt="Facebook"></a>
+            <a href="https://github.com/Faus11/SIR-TP1"><img src="pages/assets/github.png" alt="Twitter"></a>
+            <a href="https://www.instagram.com/josefaus_03/"><img src="pages/assets/instagram.png" alt="Instagram"></a>
         </div>
         <div class="termos-e-condicoes">
             <p><a href="caminho-para-os-termos-e-condicoes.html"> •Termos e Condições</a></p>

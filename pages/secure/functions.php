@@ -35,16 +35,16 @@ function renderNavbar($user) {
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Create Content</a>
+                        <a href="../../pages/secure/content.php" class="btn btn-outline-light btn-lg px-4 mx-2">Create Content</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/categories.php" class="btn btn-outline-light btn-lg px-4 mx-2">Categories</a>
+                        <a href="../../pages/secure/categories.php" class="btn btn-outline-light btn-lg px-4 mx-2">Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/schedule.php" class="btn btn-outline-light btn-lg px-4 mx-2">Schedule</a>
+                        <a href="../../pages/secure/schedule.php" class="btn btn-outline-light btn-lg px-4 mx-2">Schedule</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/search.php" class="btn btn-outline-light btn-lg px-4 mx-2">Search</a>
+                        <a href="../../pages/secure/search.php" class="btn btn-outline-light btn-lg px-4 mx-2">Search</a>
                     </li>
                    
                 </ul>
@@ -52,12 +52,12 @@ function renderNavbar($user) {
                     <?php if (isAuthenticated()) { ?>
                         <?php if ($user['admin']) { ?>
                             <li class="nav-item">
-                                <a href="/SIR-TP1/pages/secure/admin/" class="btn btn-outline-light btn-lg px-4 mx-2">Admin</a>
+                                <a href="../../pages/secure/admin/" class="btn btn-outline-light btn-lg px-4 mx-2">Admin</a>
                             </li>
                         <?php } ?>
                     <?php } ?>
                     <li class="nav-item">
-                        <a href="/SIR-TP1/pages/secure/user/profile.php" class="btn btn-outline-light btn-lg px-4 mx-2">Change</a>
+                        <a href="../../pages/secure/user/profile.php" class="btn btn-outline-light btn-lg px-4 mx-2">Change</a>
                     </li>
                     <li class="nav-item">
                         <form action="../../controllers/auth/signin.php" method="post" class="nav-link">

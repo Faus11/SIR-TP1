@@ -75,7 +75,7 @@ renderNavbar($user);
 
 <main class="container">
     <div class="d-flex mt-5 py-5 justify-content-center">
-        <form action="/SIR-TP1/controllers/content/content.php" method="get" onsubmit="return validateSearchForm()" class="search-bar-size">
+        <form action="../../controllers/content/content.php" method="get" onsubmit="return validateSearchForm()" class="search-bar-size">
             <h2 style="margin-bottom: 20px; color: white;">What are you searching for?</h2>
             <div class="input-group w-100">
                 <input type="text" name="searchInput" class="form-control" placeholder="Search for shows..." maxlength="255">
