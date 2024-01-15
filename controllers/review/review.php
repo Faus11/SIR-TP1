@@ -1,5 +1,7 @@
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../../infra/repositories/reviewRepository.php';
 
 
@@ -26,12 +28,12 @@ function create($data)
     $success = createReview($data);
     
     if ($success) {
-        $_SESSION['success'] = 'Comment criado com sucesso!';
+        $_SESSION['success'] = 'Comment criated!';
         
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        $_SESSION['errors'] = ['Erro ao criar'];
+        $_SESSION['errors'] = ['Error creating comment'];
         header('Location: ../../pages/secure/index.php');
     }
 }
@@ -55,12 +57,12 @@ function delete($data)
 {
     $success = deleteReview($data['id_review']);
     if ($success) {
-        $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
+        $_SESSION['success'] = 'Content deleted succesfully!';
         
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
+        $_SESSION['errors'] = ['Erro deleting content'];
         header('Location: ../../pages/secure/content.php');
     }
 }

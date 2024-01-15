@@ -52,15 +52,15 @@ $title = ' - Sign In';
 
         .alert {
     font-size: 15px; 
-    padding: 20px; 
-    margin-bottom: 20px;
+    padding: 10px; 
+    margin-bottom: 55px;
 }
 
 .alert-danger {
     background-color: #dc3545;
     color: #fff;
     border: 1px solid #dc3545;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
         .form-floating {
@@ -130,7 +130,10 @@ $title = ' - Sign In';
         }
     </style>
 </head>
-<body><section>
+<body>
+    <main>
+        
+<section>
             <?php
             if (isset($_SESSION['errors'])) {
                 echo '<div class="alert alert-danger" role="alert">';
@@ -142,9 +145,6 @@ $title = ' - Sign In';
             }
             ?>
         </section>
-    <main>
-        
-
         <form action="../../controllers/auth/signin.php" method="post">
   
 

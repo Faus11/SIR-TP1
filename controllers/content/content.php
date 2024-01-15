@@ -81,7 +81,7 @@ function delete($data)
 {
     $success = deleteContent($data['id']);
     if ($success) {
-        $_SESSION['success'] = 'Conteúdo excluído com sucesso!';
+        
         
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -155,7 +155,7 @@ function getShows($searchInput, $user_id)
         header('Location: ../../pages/secure/searchResults.php' . $params);
         exit;
     } else {
-        $_SESSION['errors'] = ['No shows found for the search query!'];
+       
         header('Location: ../../pages/secure/searchResults.php');
         exit;
     }

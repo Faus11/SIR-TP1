@@ -1,5 +1,7 @@
 <?php
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 require_once __DIR__ . '/../../infra/repositories/shareRepository.php';
 
 
@@ -31,14 +33,14 @@ function create($data)
         $success = createShare($share);
 
         if ($success) {
-            $_SESSION['success'] = 'Conteúdo partilhado com sucesso!';
+            $_SESSION['success'] = 'Content shared!';
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
-            $_SESSION['errors'] = ['Erro ao partilhar conteúdo'];
+            $_SESSION['errors'] = ['Error sharing content'];
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         }
     } else {
-        $_SESSION['errors'] = ['Email do destinatário não encontrado'];
+        $_SESSION['errors'] = ['Email not found in our system'];
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }

@@ -40,16 +40,15 @@ require_once __DIR__ . '/../../controllers/content/content.php';
             align-items: center;
             position: relative;
         }
-
         main {
-    max-width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: rgba(255, 0, 0, 0.5); /* Cor vermelha com transparência */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
 
 
         section {

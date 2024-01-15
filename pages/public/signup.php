@@ -50,8 +50,17 @@ $title = ' - Sign Up';
         }
 
         .alert {
-            margin-bottom: 20px;
-        }
+    font-size: 15px; 
+    padding: 10px; 
+    margin-bottom: 55px;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #dc3545;
+    border-radius: 10px;
+}
 
         .form-floating {
             position: relative;

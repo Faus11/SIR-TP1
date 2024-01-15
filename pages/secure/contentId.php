@@ -252,13 +252,14 @@ renderNavbar($user);
 
 
             
-            <form enctype="multipart/form-data" action="../../controllers/sharee/share.php" method="post" style="margin-top: 10px;">
-                <input type="hidden" name="content_id" value="<?= $contentId ?>">
-                <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">
-                <label for="receiver_email">Share with user (Email):</label>
-                <input type="email" name="receiver_email" id="receiver_email" required>
-                <button type="submit" name="share" value="create" class="btn btn-warning">Share</button>
-            </form>
+    <form enctype="multipart/form-data" action="../../controllers/sharee/share.php" method="post" style="margin-top: 10px;">
+    <input type="hidden" name="content_id" value="<?= $contentId ?>">
+    <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">
+    <label for="receiver_email">Share with user (Email):</label>
+    <input type="email" name="receiver_email" id="receiver_email" required style="color: black;">
+    <button type="submit" name="share" value="create" class="btn btn-warning">Share</button>
+</form>
+
         </div>
 
         <?php
