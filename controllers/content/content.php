@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
+require_once __DIR__ . '/../../helpers/validations/content/empty.php';
 
 
 
@@ -27,6 +28,15 @@ if (isset($_POST['content'])) {
 
 function create($data)
 {
+    
+    $validatedData = isNotEmpty($data);
+
+    if (isset($validatedData['invalid'])) {
+        $_SESSION['errors'] = $validatedData['invalid'];
+        header('location: ../../pages/secure/content.php');
+        exit();
+    }
+
     if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $data12 = file_get_contents($_FILES['image']['tmp_name']);
         $receiptImageEncoded = base64_encode($data12);
@@ -36,7 +46,6 @@ function create($data)
     }
 
     $success = createContent($data);
-    
 
     if ($success) {
         $_SESSION['success'] = 'Conteúdo criado com sucesso!';
@@ -46,6 +55,7 @@ function create($data)
         header('location: ../../pages/secure/content.php');
     }
 }
+
 
 function update($data)
 {
