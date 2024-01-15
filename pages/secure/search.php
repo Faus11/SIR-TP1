@@ -86,7 +86,8 @@ renderNavbar($user);
             </button>
         </form>
     </div>
-    <h2><?= $user['id'] ?></h2>
+    <h2 style="display: none;"><?= $user['id'] ?></h2>
+
 </main>
 
 <script>

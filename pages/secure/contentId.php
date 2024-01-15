@@ -38,7 +38,7 @@
             justify-content: space-between;
             padding: 15px;
             width: 70%;
-            margin-top: 260px;
+            margin-top: 450px;
             border-radius: 15px;
         }
 
@@ -165,6 +165,8 @@
     input[type="hidden"] {
     display: none;
     }
+
+
     </style>
 </head>
 <body>
@@ -196,6 +198,24 @@ $title = 'Content Details';
 renderHeader($title);
 renderNavbar($user);
 ?>
+ <section>
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '</div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                }
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+            ?>
+        </section>
 
 <div class="card-container">
 
@@ -231,7 +251,7 @@ renderNavbar($user);
     </form>
 
 
-            <!-- Partilhar com o utilizador -->
+            
             <form enctype="multipart/form-data" action="../../controllers/sharee/share.php" method="post" style="margin-top: 10px;">
                 <input type="hidden" name="content_id" value="<?= $contentId ?>">
                 <input type="hidden" name="sharer_user_id" value="<?= $userId ?>">

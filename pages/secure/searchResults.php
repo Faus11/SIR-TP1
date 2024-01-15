@@ -42,14 +42,15 @@ require_once __DIR__ . '/../../controllers/content/content.php';
         }
 
         main {
-            max-width: 400px;
-            margin: auto;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.12);
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: rgba(255, 0, 0, 0.5); /* Cor vermelha com transparência */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
 
         section {
             margin-bottom: 20px;
@@ -278,16 +279,17 @@ require_once __DIR__ . '/../../controllers/content/content.php';
 </head>
 
 <body>
-    <main>
-        <a href="../../pages/secure">
-            <img id="logo" src="../../pages/assets/image.png" alt="Logo">
-        </a>
-        <div class="show-list">
-            <div class="list-group">
+<main>
+    <a href="../../pages/secure">
+        <img id="logo" src="../../pages/assets/image.png" alt="Logo">
+    </a>
+    <div class="show-list">
+        <div class="list-group">
+            <?php if ($searchResults !== null && !empty($searchResults)): ?>
                 <?php foreach ($searchResults as $result): ?>
                     <?php $show = getByIdContent($result['id']) ?>
                     <form action="../../../controllers/admin/user.php" method="post" class="form-control py-3">
-                        <!-- Add your form elements here with values from $show -->
+                        <!-- Adicione seus elementos de formulário aqui com valores de $show -->
                         <img class="card-img-top" src="data:image/webp;base64,<?= $show['image'] ?>" alt="Card image cap">
                         <div class="input-group mb-3">
                             <span class="input-group-text">Show Title</span>
@@ -299,9 +301,13 @@ require_once __DIR__ . '/../../controllers/content/content.php';
                         </div>
                     </form>
                 <?php endforeach; ?>
-            </div>
+            <?php else: ?>
+                <p>Não há nada aqui.</p>
+            <?php endif; ?>
         </div>
-    </main>
+    </div>
+</main>
+
 </body>
 
 </html>

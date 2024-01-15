@@ -307,15 +307,16 @@ function getTitleByName($title)
     }
 
     function getSearchedShows($searchInput, $user_id)
-{
-    $sql = 'SELECT id FROM visual_content WHERE user_id = :user_id AND title LIKE :searchInput';
-
-    $stmt = $GLOBALS['pdo']->prepare($sql);
-    $searchTermWithWildcards = '%' . $searchInput . '%';
-    $stmt->bindParam(':searchInput', $searchTermWithWildcards, PDO::PARAM_STR);
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    return $result;
-}
+    {
+        $sql = 'SELECT id FROM visual_content WHERE user_id = :user_id AND title LIKE :searchInput AND deleted_at IS NULL';
+    
+        $stmt = $GLOBALS['pdo']->prepare($sql);
+        $searchTermWithWildcards = '%' . $searchInput . '%';
+        $stmt->bindParam(':searchInput', $searchTermWithWildcards, PDO::PARAM_STR);
+        $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $result;
+    }
+    

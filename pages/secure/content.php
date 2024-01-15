@@ -125,7 +125,7 @@ $title = ' - Content';
       color: black; 
     }
     .alert {
-    font-size: 58px; 
+    font-size: 15px; 
     padding: 20px; 
     margin-bottom: 20px;
 }
@@ -136,6 +136,15 @@ $title = ' - Content';
     border: 1px solid #dc3545;
     border-radius: 8px;
 }
+.alert-success {
+    background-color: #28a745; /* Cor verde */
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #218838; /* Cor de borda para o verde */
+    border-radius: 8px;
+    font-size: 15px;
+}
     </style>
 </head>
 
@@ -144,17 +153,23 @@ $title = ' - Content';
         <img id="logo" src="../../pages/assets/image.png" alt="Logo">
             </a>
     <main>
-        <section>
-        <?php
-if (isset($_SESSION['errors'])) {
-    echo '<div class="alert alert-danger" role="alert">';
-    foreach ($_SESSION['errors'] as $error) {
-        echo $error . '<br>';
-    }
-    echo '</div>';
-    unset($_SESSION['errors']);
-}
-?>
+    <section>
+            <?php
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '</div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                }
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+            ?>
         </section>
         <section class="pb-4">
             <form enctype="multipart/form-data" action="../../controllers/content/content.php" method="post" class="form-control py-3">
@@ -181,7 +196,7 @@ if (isset($_SESSION['errors'])) {
 
                 <div class="form-floating mb-2">
                     <label for="input-group-text">Description</label>
-                    <input class="form-control" name="description" placeholder="Description" style="height: 100px;"><?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?></input>
+                    <input class="form-control" name="description" placeholder="Description" style="height: 100px;"value="<?= isset($_REQUEST['description']) ? $_REQUEST['description'] : '' ?>">
                 </div>
 
                 <div class="input-group mb-3">
