@@ -2,9 +2,9 @@
 
 try {
     $DATABASE_HOST = 'localhost';
-    $DATABASE_USER = 'id21790893_sir';
-    $DATABASE_PASS = 'Temquedar123!';
-    $DATABASE_NAME = 'id21790893_sir';
+    $DATABASE_USER = 'root';
+    $DATABASE_PASS = '';
+    $DATABASE_NAME = 'sir-tp';
 
     $pdo = new PDO('mysql:host=' . $DATABASE_HOST . ';dbname=' . $DATABASE_NAME . ';charset=utf8', $DATABASE_USER, $DATABASE_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
