@@ -127,6 +127,18 @@ $title = ' - User';
             opacity: 1;
             transition: opacity 0.3s ease-in-out;
         }
+            .alert {
+        font-size: 15px; 
+        padding: 10px; 
+        margin-bottom: 55px;
+    }
+
+    .alert-danger {
+        background-color: #dc3545;
+        color: #fff;
+        border: 1px solid #dc3545;
+        border-radius: 10px;
+    }
     </style>
 </head>
 
@@ -138,17 +150,17 @@ $title = ' - User';
         <section>
             <?php
             if (isset($_SESSION['success'])) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">';
+                echo '<div class="alert alert-success" role="alert">';
                 echo $_SESSION['success'] . '<br>';
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+                echo '</div>';
                 unset($_SESSION['success']);
             }
             if (isset($_SESSION['errors'])) {
-                echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
+                echo '<div class="alert alert-danger" role="alert">';
                 foreach ($_SESSION['errors'] as $error) {
                     echo $error . '<br>';
                 }
-                echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
+                echo '</div>';
                 unset($_SESSION['errors']);
             }
             ?>

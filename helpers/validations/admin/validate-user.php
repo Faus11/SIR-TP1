@@ -14,8 +14,12 @@ function validatedUser($req)
         $errors['lastname'] = 'The Last Name field cannot be empty and must be between 3 and 255 characters';
     }
 
-    if (!filter_var($req['phoneNumber'], FILTER_VALIDATE_INT) || strlen($req['phoneNumber']) != 9) {
-        $errors['phoneNumber'] = 'The Mobile phone field cannot be empty and must have 9 numbers.';
+    if (empty($req['username']) || strlen($req['username']) < 6) {
+        $errors['username'] = 'The Username field cannot be empty and must be at least 6 characters long.';
+    }
+
+    if (!preg_match('/^\d{9}$/', $req['phoneNumber'])) {
+        $errors['phoneNumber'] = 'The Phone Number field must have exactly 9 digits.';
     }
 
     if (!filter_var($req['email'], FILTER_VALIDATE_EMAIL)) {

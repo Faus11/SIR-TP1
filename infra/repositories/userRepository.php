@@ -163,7 +163,8 @@ function deleteUser($id)
 {
     $sqlUpdate = "UPDATE
         users SET
-            deleted_at = NOW()
+            deleted_at = NOW(),
+            email = NULL
         WHERE id = :id;";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
@@ -172,6 +173,7 @@ function deleteUser($id)
         ':id' => $id,
     ]);
 }
+
 
 function createNewUser($user)
 {
