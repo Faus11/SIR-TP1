@@ -116,7 +116,7 @@ function updateContent($visualContent)
 
 function deleteContent($contentId)
 {
-    $sqlUpdate = "UPDATE visual_content SET deleted_at = NOW(), end_date = NULL WHERE id = :id AND end_date IS NOT NULL";
+    $sqlUpdate = "UPDATE visual_content SET deleted_at = NOW(), end_date = NULL WHERE id = :id";
 
     $PDOStatement = $GLOBALS['pdo']->prepare($sqlUpdate);
 
@@ -124,6 +124,7 @@ function deleteContent($contentId)
         ':id' => $contentId, 
     ]);
 }
+
 
 
 

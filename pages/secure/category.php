@@ -110,4 +110,3 @@ if ($contentByCategory && isset($contentByCategory[$category_id])) {
   }
 }
 ?>
-
