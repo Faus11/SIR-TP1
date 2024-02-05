@@ -1,10 +1,23 @@
 <?php
+
 require_once __DIR__ . '/../../infra/repositories/contentRepository.php';
 require_once __DIR__ . '/../../infra/middlewares/middleware-user.php';
+require_once __DIR__ . '/../../helpers/validations/content/empty.php';
 require_once __DIR__ . '/../../templates/header.php'; 
 
 $previousPage = $_SERVER['HTTP_REFERER'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $validatedData = isNotEmpty($_POST);
+
+    if (isset($validatedData['invalid'])) {
+        // Defina as mensagens de erro na sessão
+        $_SESSION['errors'] = $validatedData['invalid'];
+        // Redirecione de volta para a página anterior com o parâmetro de erro
+        header("Location: $previousPage?error=true");
+        exit();
+    }
+    
     $visualContent = [
         'id' => $_POST['id'],
         'title' => $_POST['title'],
@@ -21,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
     unset($visualContent['image']);
     updateContent($visualContent);
+    $_SESSION['success'] = 'Content updated successfully.';
     header("Location: $previousPage");
     exit();
 }
@@ -49,7 +63,7 @@ $visualContent = getByIdContent($contentId);
 
         body {
             font-family: Arial, sans-serif;
-            background: url('../../../pages/assets/back.png') no-repeat center center fixed;
+            background: url('/SIR-TP1/pages/assets/back.png') no-repeat center center fixed;
             background-size: cover;
             margin: 0;
             padding: 0;
@@ -154,71 +168,97 @@ $visualContent = getByIdContent($contentId);
             opacity: 1;
             transition: opacity 0.3s ease-in-out;
         }
+        select[name="category_id"] option,
+        select[name="format_id"] option {
+      color: black; 
+    }
     </style>
    
 </head>
 
 <body>
-    <form method="POST" class="text-white">
-        <input type="hidden" name="id" value="<?= $visualContent['id'] ?>">
-        <label>Title: <input type="text" name="title" value="<?= $visualContent['title'] ?>"></label><br>
-        <label>Restricted: <input type="text" name="restricted" value="<?= $visualContent['restricted'] ?>"></label><br>
-        <label>Seasons: <input type="text" name="seasons" value="<?= $visualContent['seasons'] ?>"></label><br>
-        <label>Release Date: <input type="date" name="release_date" value="<?= $visualContent['release_date'] ?>"></label><br>
-        <label>Description: <input type="text" name="description" value="<?= $visualContent['description'] ?>"></label><br>
-        <label>Cast: <input type="text" name="cast" value="<?= $visualContent['cast'] ?>"></label><br>
-        <label>Attachments: <input type="text" name="trailer" value="<?= $visualContent['trailer'] ?>"></label><br>
-        <label>Category: 
-            <select name="category_id">
-                <?php
-                $categories = [
-                    1 => 'Drama',
-                    2 => 'Romance',
-                    3 => 'Action',
-                    4 => 'Comedy',
-                    5 => 'Adventure',
-                    6 => 'Terror',
-                    7 => 'Science Fiction',
-                    8 => 'Crime',
-                    9 => 'Animation',
-                    10 => 'Thriller',
-                    11 => 'Supernatural',
-                    12 => 'Sports',
-                ];
-
-                foreach ($categories as $id => $category) {
-                    $selected = ($visualContent['category_id'] == $id) ? 'selected' : '';
-                    echo "<option value=\"$id\" $selected>$category</option>";
-                }
-                ?>
-            </select>
-        </label><br>
-        <label>Format: 
-            <select name="format_id">
-                <?php
-                $formats = [
-                    1 => 'TV Show',
-                    2 => 'Movie',
-                    3 => 'Documentary',
-                    4 => 'Short Film',
-                    5 => 'Series',
-                ];
-
-                foreach ($formats as $id => $format) {
-                    $selected = ($visualContent['format_id'] == $id) ? 'selected' : '';
-                    echo "<option value=\"$id\" $selected>$format</option>";
-                }
-                ?>
-            </select>
-        </label><br>
+    <a href="../../pages/secure/categories.php">
+        <img id="logo" src="../../pages/assets/image.png" alt="Logo">
+    </a>
+    <main>
+        <section>
         <?php
-        if (isset($_SESSION['id'])) {
-            $user_id = $_SESSION['id'];
-        }
-        ?>
-        <label> <input type="hidden" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly></label><br>
-        <input type="submit" class="btn btn-warning" value="Update">
-    </form>
-</body>
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success" role="alert">';
+                echo $_SESSION['success'] . '<br>';
+                echo '</div>';
+                unset($_SESSION['success']);
+            }
+            if (isset($_SESSION['errors'])) {
+                echo '<div class="alert alert-danger" role="alert">';
+                foreach ($_SESSION['errors'] as $error) {
+                    echo $error . '<br>';
+                }
+                echo '</div>';
+                unset($_SESSION['errors']);
+            }
+            ?>
+        </section>
+        <form method="POST" class="text-white">
+            <input type="hidden" name="id" value="<?= $visualContent['id'] ?>">
+            <label>Title: <input type="text" name="title" value="<?= $visualContent['title'] ?>"></label><br>
+            <label>Restricted: <input type="text" name="restricted" value="<?= $visualContent['restricted'] ?>"></label><br>
+            <label>Seasons: <input type="text" name="seasons" value="<?= $visualContent['seasons'] ?>"></label><br>
+            <label>Release Date: <input type="date" name="release_date" value="<?= $visualContent['release_date'] ?>"></label><br>
+            <label>Description: <input type="text" name="description" value="<?= $visualContent['description'] ?>"></label><br>
+            <label>Cast: <input type="text" name="cast" value="<?= $visualContent['cast'] ?>"></label><br>
+            <label>Attachments: <input type="text" name="trailer" value="<?= $visualContent['trailer'] ?>"></label><br>
+            <label>Category: 
+                <select name="category_id">
+                    <?php
+                    $categories = [
+                        1 => 'Drama',
+                        2 => 'Romance',
+                        3 => 'Action',
+                        4 => 'Comedy',
+                        5 => 'Adventure',
+                        6 => 'Terror',
+                        7 => 'Science Fiction',
+                        8 => 'Crime',
+                        9 => 'Animation',
+                        10 => 'Thriller',
+                        11 => 'Supernatural',
+                        12 => 'Sports',
+                    ];
 
+                    foreach ($categories as $id => $category) {
+                        $selected = ($visualContent['category_id'] == $id) ? 'selected' : '';
+                        echo "<option value=\"$id\" $selected>$category</option>";
+                    }
+                    ?>
+                </select>
+            </label><br>
+            <label>Format: 
+                <select name="format_id">
+                    <?php
+                    $formats = [
+                        1 => 'TV Show',
+                        2 => 'Movie',
+                        3 => 'Documentary',
+                        4 => 'Short Film',
+                        5 => 'Series',
+                    ];
+
+                    foreach ($formats as $id => $format) {
+                        $selected = ($visualContent['format_id'] == $id) ? 'selected' : '';
+                        echo "<option value=\"$id\" $selected>$format</option>";
+                    }
+                    ?>
+                </select>
+            </label><br>
+            <?php
+            if (isset($_SESSION['id'])) {
+                $user_id = $_SESSION['id'];
+            }
+            ?>
+            <label> <input type="hidden" class="form-control" name="user_id" min="1" value="<?= isset($user_id) ? $user_id : '' ?>" readonly></label><br>
+            <input type="submit" class="btn btn-success" value="Update">
+        </form>
+    </main>
+</body>
 </html>

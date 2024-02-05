@@ -66,7 +66,22 @@ function create($data)
 
 function update($data)
 {
+    $validatedData = isNotEmpty($data);
 
+    if (isset($validatedData['invalid'])) {
+        $_SESSION['errors'] = $validatedData['invalid'];
+  
+        $params = '?' . http_build_query($data);
+        header('location: ../../pages/secure/updateContent.php' . $params);
+        exit();
+    }
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+        $data12 = file_get_contents($_FILES['image']['tmp_name']);
+        $receiptImageEncoded = base64_encode($data12);
+        $data['image'] = $receiptImageEncoded;
+    } else {
+        $data['image'] = null;
+    }
      $success = updateContent($data);
    if ($success) {
         $_SESSION['success'] = 'Conteúdo atualizado com sucesso!';

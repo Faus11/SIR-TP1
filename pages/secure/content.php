@@ -149,6 +149,7 @@ $title = ' - Content';
 </head>
 
 <body>
+    
 <a href="../../pages/secure">
         <img id="logo" src="../../pages/assets/image.png" alt="Logo">
             </a>
