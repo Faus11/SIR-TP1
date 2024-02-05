@@ -148,6 +148,27 @@ $user = user();
             opacity: 1;
             transition: opacity 0.3s ease-in-out;
         }
+        .alert {
+    font-size: 15px; 
+    padding: 20px; 
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: 1px solid #dc3545;
+    border-radius: 8px;
+}
+.alert-success {
+    background-color: #28a745; /* Cor verde */
+    color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #218838; /* Cor de borda para o verde */
+    border-radius: 8px;
+    font-size: 15px;
+}
     </style>
 </head>
 <body>

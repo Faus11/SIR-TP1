@@ -1,9 +1,22 @@
 <?php
 require_once __DIR__ . '/../../../infra/repositories/userRepository.php';
 require_once __DIR__ . '/../../../infra/middlewares/middleware-administrator.php';
+require_once __DIR__ . '/../../../helpers/validations/admin/validate-user.php';
 require_once __DIR__ . '/../../../templates/header.php'; 
 
+$previousPage = $_SERVER['HTTP_REFERER'];
+
+$user = [];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $validatedData = validatedUser($_POST);
+
+    if (isset($validatedData['invalid'])) {
+        $_SESSION['errors'] = $validatedData['invalid'];
+        header("Location: $previousPage?error=true");
+        exit();
+    }
+    
     $user = [
         'id' => $_POST['id'],
         'firstname' => $_POST['firstname'],
@@ -16,12 +29,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'pass' => $_POST['pass']
     ];
     updateUser($user);
+    $_SESSION['success'] = 'User updated successfully.';
     header('Location: ./index.php');
     exit();
 }
 
-$id = $_GET['id'];
-$user = getById($id);
+$id = isset($_GET['id']) ? $_GET['id'] : null;
+
+if ($id === null) {
+    // Redirecionar ou mostrar uma mensagem de erro
+    // Dependendo do seu fluxo de aplicação
+}
+
+if ($id !== null) {
+    $user = getById($id);
+}
 ?>
 
 <!DOCTYPE html>
@@ -112,23 +134,41 @@ $user = getById($id);
 
     </style>
 </head>
-        <a href="../../../pages/secure/admin">
-            <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
-        </a>
+
 <body>
+    <a href="../../../pages/secure/admin">
+        <img id="logo" src="../../../pages/assets/image.png" alt="Logo">
+    </a>
+    <section>
+        <?php
+        if (isset($_SESSION['success'])) {
+            echo '<div class="alert alert-success" role="alert">';
+            echo $_SESSION['success'] . '<br>';
+            echo '</div>';
+            unset($_SESSION['success']);
+        }
+        if (isset($_SESSION['errors'])) {
+            echo '<div class="alert alert-danger" role="alert">';
+            foreach ($_SESSION['errors'] as $error) {
+                echo $error . '<br>';
+            }
+            echo '</div>';
+            unset($_SESSION['errors']);
+        }
+        ?>
+    </section>
     <form method="POST">
-        <input type="hidden" name="id" value="<?= $user['id'] ?>">
-        <label>First Name: <input type="text" name="firstname" value="<?= $user['firstname'] ?>"></label><br>
-        <label>Last Name: <input type="text" name="lastname" value="<?= $user['lastname'] ?>"></label><br>
-        <label>Username: <input type="text" name="username" value="<?= $user['username'] ?>"></label><br>
-        <label>Phone Number: <input type="text" name="phoneNumber" value="<?= $user['phoneNumber'] ?>"></label><br>
-        <label>Email: <input type="email" name="email" value="<?= $user['email'] ?>"></label><br>
-        <label>Birthdate: <input type="date" name="birthdate" value="<?= $user['birthdate'] ?>"></label><br>
-        <label>Admin: <input type="checkbox" name="admin" <?= $user['admin'] == '1' ? 'checked' : '' ?>></label><br>
+        <input type="hidden" name="id" value="<?= isset($user['id']) ? $user['id'] : '' ?>">
+        <label>First Name: <input type="text" name="firstname" value="<?= isset($user['firstname']) ? $user['firstname'] : '' ?>"></label><br>
+        <label>Last Name: <input type="text" name="lastname" value="<?= isset($user['lastname']) ? $user['lastname'] : '' ?>"></label><br>
+        <label>Username: <input type="text" name="username" value="<?= isset($user['username']) ? $user['username'] : '' ?>"></label><br>
+        <label>Phone Number: <input type="text" name="phoneNumber" value="<?= isset($user['phoneNumber']) ? $user['phoneNumber'] : '' ?>"></label><br>
+        <label>Email: <input type="email" name="email" value="<?= isset($user['email']) ? $user['email'] : '' ?>"></label><br>
+        <label>Birthdate: <input type="date" name="birthdate" value="<?= isset($user['birthdate']) ? $user['birthdate'] : '' ?>"></label><br>
+        <label>Admin: <input type="checkbox" name="admin" <?= isset($user['admin']) && $user['admin'] == '1' ? 'checked' : '' ?>></label><br>
         <label>Password: <input type="password" name="pass"></label><br>
         <input type="submit" value="Update">
     </form>
 </body>
 
 </html>
-
