@@ -108,7 +108,7 @@ if ($contentByCategory && isset($contentByCategory[$category_id])) {
                 Are you sure you want to delete this content?
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
                 <form action="../../controllers/content/content.php" method="post">
                     <input type="hidden" name="id" value="<?= $contentId ?>">
                     <button type="submit" class="btn btn-danger" name="content" value="delete">Delete</button>
