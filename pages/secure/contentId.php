@@ -166,7 +166,10 @@
     display: none;
     }
 
-
+    .alert {
+   
+   
+}
     </style>
 </head>
 <body>
@@ -198,24 +201,28 @@ $title = 'Content Details';
 renderHeader($title);
 renderNavbar($user);
 ?>
- <section>
-            <?php
-            if (isset($_SESSION['success'])) {
-                echo '<div class="alert alert-success" role="alert">';
-                echo $_SESSION['success'] . '<br>';
-                echo '</div>';
-                unset($_SESSION['success']);
-            }
-            if (isset($_SESSION['errors'])) {
-                echo '<div class="alert alert-danger" role="alert">';
-                foreach ($_SESSION['errors'] as $error) {
-                    echo $error . '<br>';
-                }
-                echo '</div>';
-                unset($_SESSION['errors']);
-            }
-            ?>
-        </section>
+ 
+ <div style="position: absolute; top: 120px; left: 50%; transform: translateX(-50%); z-index: 9999;">
+    <?php
+    // Verificação de sessão para exibir alertas
+    if (isset($_SESSION['success'])) {
+        echo '<div class="alert alert-success" role="alert">';
+        echo $_SESSION['success'] . '<br>';
+        echo '</div>';
+        unset($_SESSION['success']);
+    }
+    if (isset($_SESSION['errors'])) {
+        echo '<div class="alert alert-danger" role="alert">';
+        foreach ($_SESSION['errors'] as $error) {
+            echo $error . '<br>';
+        }
+        echo '</div>';
+        unset($_SESSION['errors']);
+    }
+    ?>
+</div>
+
+        
 
 <div class="card-container">
 

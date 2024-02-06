@@ -28,7 +28,7 @@ function create($data)
     $success = createReview($data);
     
     if ($success) {
-        $_SESSION['success'] = 'Comment criated!';
+        $_SESSION['success'] = 'Comment created!';
         
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -62,7 +62,7 @@ function delete($data)
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        $_SESSION['errors'] = ['Erro deleting content'];
+        $_SESSION['errors'] = ['Error deleting content'];
         header('Location: ../../pages/secure/content.php');
     }
 }

@@ -33,7 +33,7 @@ function create($data)
         $success = createShare($share);
 
         if ($success) {
-            $_SESSION['success'] = 'Content shared!';
+            $_SESSION['success'] = "Content shared with $receiverEmail successfully!";
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
             $_SESSION['errors'] = ['Error sharing content'];
@@ -44,6 +44,7 @@ function create($data)
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     }
 }
+
 
 
 function delete($data)

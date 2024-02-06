@@ -108,19 +108,17 @@
                         Contactem-nos
                     </h1>
                     <p class="texto-formatado">
-                        Estamos aqui para ajudar e responder a todas as tuas perguntas. Não hesites em entrar em contato
-                        conosco,
+                        Estamos aqui para te ajudar e responder a todas as tuas perguntas. Não hesites em entrar em contato
+                        connosco,
                         seja para obter suporte, relatar problemas ou fornecer feedback. A tua opinião é importante para
                         nós!
+                        Qualquer dúvida envie um email para <u>josefaus@ipvc.pt</u>.
+                        Obrigado!
                     </p>
 
                     <br>
 
-                    <button id="mostrarFormulario" class="forms-botao" onclick="mostrarFormulario()">Formulário</button>
-                    <div id="formulario" class="hidden">
-                        <textarea id="campoTexto" rows="4" cols="50"
-                            placeholder="Diz-me aqui o que te incomoda"></textarea>
-                        <button id="enviar" onclick="enviarFormulario()">Enviar</button>
+                
                     </div>
                 </div>
             </div>

@@ -52,10 +52,10 @@ function create($data)
     $success = createContent($data);
 
     if ($success) {
-        $_SESSION['success'] = 'Conteúdo criado com sucesso!';
+        $_SESSION['success'] = 'Content successfully created!';
         header('location: ../../pages/secure/content.php');
     } else {
-        $_SESSION['errors'] = ['Erro ao criar conteúdo'];
+        $_SESSION['errors'] = ['Error creating content'];
       
         $params = '?' . http_build_query($data);
         header('location: ../../pages/secure/content.php' . $params);
@@ -84,10 +84,10 @@ function update($data)
     }
      $success = updateContent($data);
    if ($success) {
-        $_SESSION['success'] = 'Conteúdo atualizado com sucesso!';
+        $_SESSION['success'] = 'Conteúdo updated successfully!';
         header('Location: ' . $_SERVER['HTTP_REFERER']);
      } else {
-        $_SESSION['errors'] = ['Erro ao atualizar conteúdo'];
+        $_SESSION['errors'] = ['Error updating content.'];
         header('Location: ' . $_SERVER['HTTP_REFERER']);
      }
 }
@@ -101,7 +101,7 @@ function delete($data)
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
     } else {
-        $_SESSION['errors'] = ['Erro ao excluir conteúdo'];
+        $_SESSION['errors'] = ['Error deleting content'];
         header('Location: ../../pages/secure/content.php');
     }
 }
@@ -122,9 +122,9 @@ function addEndDate($data)
     $success = insertEndDate($contentId, $endDate);
 
     if ($success) {
-        $_SESSION['success'] = 'Data de término adicionada com sucesso!';
+        $_SESSION['success'] = 'Scheduling done successfully!';
     } else {
-        $_SESSION['errors'] = ['Erro ao adicionar a data de término.'];
+        $_SESSION['errors'] = ['Error scheduling.'];
     }
 
     header('Location: ' . $_SERVER['HTTP_REFERER']);
@@ -138,9 +138,9 @@ function deleteEndDate($data)
     $success = removeEndDate($contentId);
 
     if ($success) {
-        $_SESSION['success'] = 'Data de término removida com sucesso!';
+        $_SESSION['success'] = 'Scheduling removed successfully!';
     } else {
-        $_SESSION['errors'] = ['Erro ao remover a data de término.'];
+        $_SESSION['errors'] = ['Error .'];
     }
 
     header('Location: ' . $_SERVER['HTTP_REFERER']);

@@ -35,7 +35,7 @@ function signUp($req)
             setcookie("firstname", $data['firstname'], time() + (60 * 60 * 24 * 30), "/");
             header('location: ../../pages/secure/index.php');
         } else {
-            $_SESSION['errors'] = "User criado, mas foi eliminado. Não é possível fazer login.";
+            $_SESSION['errors'] = "User created, but was deleted.";
             header('location: ../../pages/secure/index.php');
         }
     }

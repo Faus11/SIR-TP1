@@ -27,7 +27,7 @@ function login($req)
     if ($user && $user['deleted_at'] === NULL) { 
         doLogin($data);
     } elseif ($user['deleted_at'] !== NULL) {
-        $_SESSION['errors'] = "User eliminado. Não é possível fazer login.";
+        $_SESSION['errors'] = "User deleted.";
         $params = '?' . http_build_query($req);
         header('location: ../../pages/public/signin.php' . $params);
         exit; 
