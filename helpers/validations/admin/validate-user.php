@@ -28,8 +28,7 @@ function validatedUser($req)
 
     $user = user(); 
 if (getByEmail($req['email'], $user['id'])) {
-    $errors['email'] = 'Email already registered in our system.';
-    return ['invalid' => $errors];
+  
 }
 
     if (!empty($req['pass']) && strlen($req['pass']) < 6) {

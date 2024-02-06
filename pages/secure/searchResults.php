@@ -289,7 +289,7 @@ require_once __DIR__ . '/../../controllers/content/content.php';
                     <?php $show = getByIdContent($result['id']) ?>
                     <form action="../../../controllers/admin/user.php" method="post" class="form-control py-3">
                         <!-- Adicione seus elementos de formulário aqui com valores de $show -->
-                        <img class="card-img-top" src="data:image/webp;base64,<?= $show['image'] ?>" alt="Card image cap">
+                        
                         <div class="input-group mb-3">
                             <span class="input-group-text">Show Title</span>
                             <input type="text" class="form-control" name="show_title" placeholder="Show Title" value="<?= $show['title'] ?>" readonly>
