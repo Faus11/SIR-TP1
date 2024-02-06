@@ -33,11 +33,11 @@ function isSignUpValid($req)
         $errors['birthdate'] = 'Birthdate must be a valid date.';
     }
 
-    if (empty($req['pass']) && strlen($req['pass']) < 6) {
+    if (!empty($req['pass']) && strlen($req['pass']) < 6) {
         $errors['pass'] = 'The Password field cannot be empty and must be at least 6 characters long.';
     }
 
-    if ($req['confirm_password'] != $req['pass']) {
+    if (!empty($req['confirm_password']) && ($req['confirm_password']) != $req['pass']) {
         $errors['confirm_password'] = 'The Confirm Password field must not be empty and must be the same as the Password field.';
     }
 

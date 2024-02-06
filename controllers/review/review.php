@@ -57,7 +57,7 @@ function delete($data)
 {
     $success = deleteReview($data['id_review']);
     if ($success) {
-        $_SESSION['success'] = 'Content deleted succesfully!';
+        $_SESSION['success'] = 'Comment deleted succesfully!';
         
         
         header('Location: ' . $_SERVER['HTTP_REFERER']);
